@@ -146,7 +146,7 @@ $(function() {
 		  }
 	  }
 	}
-	new ApexCharts(document.querySelector('#bar'), optionsBar).render();
+	// new ApexCharts(document.querySelector('#bar'), optionsBar).render();
 	
 	/* Apexcharts (#bar) closed */
 	
@@ -437,11 +437,11 @@ $(function() {
 	}
 
 
-	new ApexCharts(document.querySelector("#spark1"), spark1).render();
-	new ApexCharts(document.querySelector("#spark2"), spark2).render();
-	new ApexCharts(document.querySelector("#spark3"), spark3).render();
-	new ApexCharts(document.querySelector("#spark4"), spark4).render();
-	new ApexCharts(document.querySelector("#spark5"), spark5).render();
+	// new ApexCharts(document.querySelector("#spark1"), spark1).render();
+	// new ApexCharts(document.querySelector("#spark2"), spark2).render();
+	// new ApexCharts(document.querySelector("#spark3"), spark3).render();
+	// new ApexCharts(document.querySelector("#spark4"), spark4).render();
+	// new ApexCharts(document.querySelector("#spark5"), spark5).render();
 	
 	/*--- Apex (#spark5) closed ---*/
 		
@@ -514,31 +514,31 @@ $(function() {
 		labels: [""]
 	};
 
-	var chart = new ApexCharts(document.querySelector("#chart"), options);
-	chart.render();
+	// var chart = new ApexCharts(document.querySelector("#chart"), options);
+	// chart.render();
 	/*--- Apex (#chart)closed ---*/
 	
 	/*--- Map ---*/
-	$('#vmap2').vectorMap({
-		map: 'usa_en',
-		showTooltip: true,
-		backgroundColor: '#fff',
-		color: '#60adff',
-		colors: {
-			mo: '#9fceff',
-			fl: '#60adff',
-			or: '#409cff',
-			ca: '#005cbf',
-			tx: '#005cbf',
-			wy: '#005cbf',
-			ny: '#007bff'
-		},
-		hoverColor: '#222',
-		enableZoom: false,
-		borderWidth: 1,
-		borderColor: '#fff',
-		hoverOpacity: .85
-	});
+	// $('#vmap2').vectorMap({
+	// 	map: 'usa_en',
+	// 	showTooltip: true,
+	// 	backgroundColor: '#fff',
+	// 	color: '#60adff',
+	// 	colors: {
+	// 		mo: '#9fceff',
+	// 		fl: '#60adff',
+	// 		or: '#409cff',
+	// 		ca: '#005cbf',
+	// 		tx: '#005cbf',
+	// 		wy: '#005cbf',
+	// 		ny: '#007bff'
+	// 	},
+	// 	hoverColor: '#222',
+	// 	enableZoom: false,
+	// 	borderWidth: 1,
+	// 	borderColor: '#fff',
+	// 	hoverOpacity: .85
+	// });
 	/*--- Map closed ---*/
 	
 	$('.resp-tabs-list .index-valex').addClass('active');
