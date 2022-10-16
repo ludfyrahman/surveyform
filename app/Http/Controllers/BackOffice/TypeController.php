@@ -4,6 +4,11 @@ namespace App\Http\Controllers\BackOffice;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+/**
+ * model block
+ */
+use App\Models\Type;
 class TypeController extends Controller
 {
     /**
@@ -14,6 +19,9 @@ class TypeController extends Controller
     public function index()
     {
         //
+        $data = type::all();
+        $title = 'List Data Jenis';
+        return view('pages.backoffice.type.index', compact('data', 'title'));
     }
 
     /**
@@ -24,6 +32,12 @@ class TypeController extends Controller
     public function create()
     {
         //
+        $title = 'Tambah Data Jenis';
+        $data = (object)[
+            'jenis_barang'  => '',
+            'type'          => 'create',
+        ];
+        return view('pages.backoffice.type.form', compact('title', 'data'));
     }
 
     /**
@@ -35,6 +49,18 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'jenis_barang' => 'required',
+        ]);
+
+        try {
+            Type::create([
+                'jenis_barang' => $request->jenis_barang,
+            ]);
+            return redirect('type')->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+        }
     }
 
     /**
@@ -57,6 +83,8 @@ class TypeController extends Controller
     public function edit($id)
     {
         //
+        $data = Type::where('id', $id)->first();
+        return view('pages.backoffice.type.form', compact('data'));
     }
 
     /**
@@ -69,6 +97,19 @@ class TypeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'jenis_barang' => 'required',
+        ]);
+        try {
+            $data = ([
+                'jenis_barang' => $request->jenis_barang,
+            ]);
+
+            Type::where('id', $id)->update($data);
+            return redirect('type')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 
     /**
@@ -80,5 +121,7 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        Type::find($id)->destroy();
+        return redirect('type')->with('success', 'Berhasil mengubah data!');
     }
 }
