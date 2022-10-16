@@ -5,12 +5,12 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">Data Users</h4>
-                    <a href="{{ url('/user/create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
-                        User</a>
+                    <h4 class="card-title mg-b-0">Data Pegawai</h4>
+                    <a href="{{ url('/employe/create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
+                        Pegawai</a>
 
                 </div>
-                <p class="tx-12 tx-gray-500 mb-2">Data pengguna</p>
+                <p class="tx-12 tx-gray-500 mb-2">Data Pegawai</p>
                 @if (session('success'))
                     <div class="alert alert-success mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -26,8 +26,9 @@
                     <table class="table text-md-nowrap" id="example1">
                         <thead>
                             <tr>
-                                <th class="wd-15p border-bottom-0">Username</th>
-                                <th class="wd-20p border-bottom-0">Role</th>
+                                <th class="wd-15p border-bottom-0">Nama</th>
+                                <th class="wd-20p border-bottom-0">Username</th>
+                                <th class="wd-15p border-bottom-0">Telepon</th>
                                 <th class="wd-15p border-bottom-0">Status</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
@@ -35,10 +36,11 @@
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
+                                    <td>{{ $item->nama }}</td>
                                     <td>{{ $item->username }}</td>
-                                    <td>{{ $item->role }}</td>
+                                    <td>{{ $item->telepon }}</td>
                                     <td>{{ $item->status }}</td>
-                                    <td><a href="{{url('/user/'.$item->id.'/edit')}}" class="btn btn-sm btn-info"> <i class="mdi mdi-pencil"></i>
+                                    <td><a href="{{url('/employe/'.$item->id.'/edit')}}" class="btn btn-sm btn-info"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
                                         <a href="" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i>
                                             Hapus</a>

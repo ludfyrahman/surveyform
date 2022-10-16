@@ -15,19 +15,20 @@ class CreateBarang extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_satuan')->unsigned();
-            $table->integer('id_kategori')->unsigned();
+            $table->integer('satuan_id')->unsigned();
+            $table->integer('kategori_id')->unsigned();
             $table->string('kode');
             $table->string('nama');
             $table->integer('stok')->default(0);
             $table->integer('harga_jual')->default(0);
             $table->integer('harga_beli')->default(0);
             $table->string('foto')->default('-');
+            $table->date('expired_date');
             $table->text('deskripsi');
             $table->enum('status', ['Aktif', 'Nonaktif']);
             $table->timestamps();
-            $table->foreign('id_satuan')->references('id')->on('satuan');
-            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->foreign('satuan_id')->references('id')->on('satuan');
+            $table->foreign('kategori_id')->references('id')->on('kategori');
         });
     }
 

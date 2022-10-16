@@ -4,6 +4,8 @@ namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -13,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        return view('pages.backoffice.user.index');
+        $data = User::all();
+        return view('pages.backoffice.user.index', compact('data'));
     }
 
     /**
@@ -24,8 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        return view('pages.backoffice.user.form');
+        return view('pages.backoffice.user.add');
     }
 
     /**
@@ -36,7 +37,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+            'status' => 'required',
+        ]);
+
+        try {
+            User::create([
+                'username' => $request->username,
+                'role' => $request->role,
+                'status' => $request->status,
+                'password' => bcrypt($request->password),
+            ]);
+            return redirect('user')->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!');
+        }
     }
 
     /**
@@ -58,8 +76,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('pages.backoffice.user.form');
+        $data = User::where('id', $id)->first();
+
+        return view('pages.backoffice.user.edit', compact('data'));
     }
 
     /**
@@ -71,7 +90,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'role' => 'required',
+            'status' => 'required',
+        ]);
+        try {
+            $user = ([
+                'username' => $request->username,
+                'role' => $request->role,
+                'status' => $request->status,
+
+            ]);
+            if ($request->password) {
+                $user['password'] = bcrypt($request->password);
+            }
+
+            User::where('id', $id)->update($user);
+            return redirect('user')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 
     /**

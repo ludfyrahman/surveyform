@@ -15,13 +15,13 @@ class CreatePegawai extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_users')->unsigned();
+            $table->integer('users_id')->unsigned();
             $table->string('nama');
             $table->string('telepon');
             $table->text('alamat');
             $table->enum('status', ['Aktif', 'Nonaktif']);
             $table->timestamps();
-            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
