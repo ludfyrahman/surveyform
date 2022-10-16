@@ -21,7 +21,9 @@
                     <form class="form-horizontal" action="{{ $data->type == 'create' ? route('type.store') : route('type.update',$data->id) }}" method="POST"
                         enctype="multipart/form-data" data-parsley-validate="">
                         @csrf
-                        @method('PUT')
+                        @if($data->type != 'create')
+                            @method('PUT')
+                        @endif
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

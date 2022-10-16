@@ -4,6 +4,11 @@ namespace App\Http\Controllers\BackOffice;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+/**
+ * model block
+ */
+use App\Models\Supplier;
 class SupplierController extends Controller
 {
     /**
@@ -14,6 +19,9 @@ class SupplierController extends Controller
     public function index()
     {
         //
+        $data = Supplier::all();
+        $title = 'List Data Supplier';
+        return view('pages.backoffice.supplier.index', compact('data', 'title'));
     }
 
     /**
@@ -24,6 +32,15 @@ class SupplierController extends Controller
     public function create()
     {
         //
+        $title = 'Tambah Data Supplier';
+        $data = (object)[
+            'nama'      => '',
+            'telepon'   => '',
+            'alamat'    => '',
+            'status'    => '',
+            'supplier'      => 'create',
+        ];
+        return view('pages.backoffice.supplier.form', compact('title', 'data'));
     }
 
     /**
@@ -35,6 +52,24 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'status' => 'required',
+        ]);
+
+        try {
+            Supplier::create([
+                'nama'      => $request->nama,
+                'telepon'   => $request->telepon,
+                'alamat'    => $request->alamat,
+                'status'    => $request->status,
+            ]);
+            return redirect('supplier')->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+        }
     }
 
     /**
@@ -57,6 +92,8 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
+        $data = Supplier::where('id', $id)->first();
+        return view('pages.backoffice.supplier.form', compact('data'));
     }
 
     /**
@@ -69,6 +106,25 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'status' => 'required',
+        ]);
+        try {
+            $data = ([
+                'nama'      => $request->nama,
+                'telepon'   => $request->telepon,
+                'alamat'    => $request->alamat,
+                'status'    => $request->status,
+            ]);
+
+            Supplier::where('id', $id)->update($data);
+            return redirect('supplier')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 
     /**
@@ -80,5 +136,7 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
+        Supplier::find($id)->destroy();
+        return redirect('supplier')->with('success', 'Berhasil mengubah data!');
     }
 }
