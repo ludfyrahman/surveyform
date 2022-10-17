@@ -163,6 +163,11 @@
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
 
+
+<!--Internal Fileuploads js-->
+<script src="{{ asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+<script src="{{ asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+
 <!-- custom js -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
