@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\BackOffice;
 
-use App\Helper\Helper;
+use App\Http\Controllers\Controller;
+use App\Models\ProfileCompany;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-class ServiceController extends Controller
+class ProfileCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return Helper::kodeJual();
+        $data = ProfileCompany::first();
+        return view('pages.backoffice.settings.profileSetting', compact('data'));
     }
 
     /**
@@ -70,7 +71,17 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_perusahaan' => 'required'
+        ]);
+        try {
+            ProfileCompany::where('id', $id)->update([
+                'nama_perusahaan' => $request->nama_perusahaan,
+                'deskripsi' => $request->deskripsi,
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

@@ -23,25 +23,23 @@
 
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">Nama Lengkap <span class="tx-danger">*</span></label>
-                                    <input type="text" name="nama"
-                                        class="form-control @error('nama') parsley-error @enderror"
-                                        placeholder="Nama Lengkap" value="{{ old('nama')}}">
-                                    @error('nama')
+                                    <label for="">Nama Perusahaan <span class="tx-danger">*</span></label>
+                                    <input type="text" name="nama_perusahaan"
+                                        class="form-control @error('nama_perusahaan') parsley-error @enderror"
+                                        placeholder="Nama Perusahaan" value="{{ $data->nama_perusahaan }}">
+                                    @error('nama_perusahaan')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">Telepon <span class="tx-danger">*</span></label>
-                                    <input type="text" name="telepon"
-                                        class="form-control @error('telepon') parsley-error @enderror"
-                                        placeholder="Nomor Telepon/WA " value="{{ old('telepon')}}">
+                                    <label for="">Logo <span class="tx-danger">*</span></label>
+                                    <input type="file" class="dropify" data-height="200" />
                                     @error('telepon')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -50,40 +48,18 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">Username <span class="tx-danger">*</span></label>
-                                    <input type="text" name="username"
-                                        class="form-control @error('username') parsley-error @enderror"
-                                        placeholder="Username" value="{{ old('username')}}">
-                                    @error('username')
-                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
-                                            <li class="parsley-required">{{ $message }}</li>
-                                        </ul>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Password <span class="tx-danger">*</span></label>
-                                    <input type="password" name="password"
-                                        class="form-control @error('password') parsley-error @enderror" id="inputPassword3"
-                                        placeholder="Password">
-                                    @error('password')
-                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
-                                            <li class="parsley-required">{{ $message }}</li>
-                                        </ul>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Alamat <span class="tx-danger">*</span></label>
-                                    <textarea name="alamat" class="form-control @error('alamat') parsley-error @enderror" id="" cols="10"
-                                        rows="3">{{ old('alamat')}}</textarea>
+                                    <label for="">Deskripsi <span class="tx-danger">*</span></label>
+                                    {{-- <textarea name="alamat" class="form-control @error('alamat') parsley-error @enderror" id="" cols="10"
+                                        rows="3">{{ old('alamat') }}</textarea> --}}
+                                        <div class="ql-wrapper ql-wrapper-demo bg-gray-100">
+                                            <div id="quillEditor">
+                                                {{$data->deskripsi}}
+                                            </div>
+                                        </div>
 
                                     @error('alamat')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">

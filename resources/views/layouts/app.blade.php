@@ -37,6 +37,12 @@
     <link href="{{ asset('assets/css/boxed.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/dark-boxed.css') }}" rel="stylesheet">
 
+
+    <!--Internal  Quill css -->
+    <link href="{{ asset('assets/plugins/quill/quill.snow.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('assets/plugins/quill/quill.bubble.css') }}" rel="stylesheet">
+
     <!--- Dark-mode css --->
     <link href="{{ asset('assets/css/style-dark.css') }}" rel="stylesheet">
 
@@ -45,6 +51,12 @@
     <link href="{{ asset('assets/plugins/datatable/responsive.bootstrap5.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/datatable/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+    <!---Internal Fileupload css-->
+    <link href="{{ asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+
+    <!---Internal Fancy uploader css-->
+    <link href="{{ asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
 
     <!---Skinmodes css-->
     <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
@@ -159,6 +171,9 @@
 <!--Internal  Datatable js -->
 <script src="{{ asset('assets/js/table-data.js') }}"></script>
 
+<!--Internal quill js -->
+<script src="{{ asset('assets/plugins/quill/quill.min.js') }}"></script>
+
 <!-- P-scroll js -->
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
@@ -167,6 +182,9 @@
 <!--Internal Fileuploads js-->
 <script src="{{ asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
 <script src="{{ asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+
+<!-- Internal Form-editor js -->
+<script src="{{ asset('assets/js/form-editor.js') }}"></script>
 
 <!-- custom js -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>

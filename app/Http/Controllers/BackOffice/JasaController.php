@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\BackOffice;
 
 use App\Helper\Helper;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-class ServiceController extends Controller
+class JasaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return Helper::kodeJual();
+        
     }
 
     /**
