@@ -126,7 +126,7 @@ class UnitController extends Controller
     public function destroy($id)
     {
         //
-        Unit::find($id)->destroy();
+        Unit::find($id)->delete();
         return redirect('unit')->with('success', 'Berhasil mengubah data!');
     }
 }

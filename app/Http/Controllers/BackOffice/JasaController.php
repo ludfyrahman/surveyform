@@ -15,7 +15,7 @@ class JasaController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -82,5 +82,6 @@ class JasaController extends Controller
     public function destroy($id)
     {
         //
+
     }
 }
