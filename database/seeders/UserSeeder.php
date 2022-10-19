@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'username' => 'Super Admin',
+            'email' => 'admin@gmail.com',
             'role' => 'Super Admin',
             'status' => 'Aktif',
             'password' => bcrypt('posberkah'),
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'username' => 'Owner',
+            'email' => 'owner@gmail.com',
             'role' => 'Owner',
             'status' => 'Aktif',
             'password' => bcrypt('posberkah'),

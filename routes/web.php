@@ -24,19 +24,20 @@ use App\Http\Controllers\BackOffice\TypeController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function(){
     return view('welcome');
 });
+Route::middleware(['auth',  'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('user', UserController::class);
+    Route::resource('employe', EmployeController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('service', ServiceController::class);
+    Route::resource('supplier', SupplierController::class);
+    Route::resource('unit', UnitController::class);
+    Route::resource('customer', CustomerController::class);
+    Route::resource('type', TypeController::class);
+    Route::resource('profile', ProfileCompanyController::class);
+    Route::resource('unint', UnitController::class);
 
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::resource('user', UserController::class);
-Route::resource('employe', EmployeController::class);
-Route::resource('product', ProductController::class);
-Route::resource('service', ServiceController::class);
-Route::resource('supplier', SupplierController::class);
-Route::resource('unit', UnitController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('type', TypeController::class);
-Route::resource('profile', ProfileCompanyController::class);
-Route::resource('unint', UnitController::class);
+});
