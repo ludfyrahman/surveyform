@@ -118,7 +118,7 @@ class EmployeController extends Controller
             if ($request->password) {
                 $inputUser['password'] = bcrypt($request->password);
             }
-            
+
             User::where('id', $data->users_id)->update($inputUser);
             Employee::where('id', $id)->update([
                 'nama' => $request->nama,
@@ -142,5 +142,7 @@ class EmployeController extends Controller
     public function destroy($id)
     {
         //
+        Employee::find($id)->delete();
+        return redirect('employe')->with('success', 'Berhasil mengubah data!');
     }
 }

@@ -134,7 +134,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::find($id)->destroy();
+        Customer::find($id)->delete();
         return redirect('customer')->with('success', 'Berhasil mengubah data!');
     }
 }
