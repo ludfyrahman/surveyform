@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dasboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('user', UserController::class);
 Route::resource('employe', EmployeController::class);
 Route::resource('product', ProductController::class);

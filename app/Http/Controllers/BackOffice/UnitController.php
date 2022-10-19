@@ -4,6 +4,11 @@ namespace App\Http\Controllers\BackOffice;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+/**
+ * model block
+ */
+use App\Models\Unit;
 class UnitController extends Controller
 {
     /**
@@ -14,6 +19,9 @@ class UnitController extends Controller
     public function index()
     {
         //
+        $data = Unit::all();
+        $title = 'List Data Satuan';
+        return view('pages.backoffice.unit.index', compact('data', 'title'));
     }
 
     /**
@@ -24,6 +32,13 @@ class UnitController extends Controller
     public function create()
     {
         //
+        $title = 'Tambah Data Satuan';
+        $data = (object)[
+            'satuan'        => '',
+            'akronim'       => '',
+            'type'          => 'create',
+        ];
+        return view('pages.backoffice.unit.form', compact('title', 'data'));
     }
 
     /**
@@ -35,6 +50,20 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'satuan' => 'required',
+            'akronim' => 'required',
+        ]);
+
+        try {
+            Unit::create([
+                'satuan' => $request->satuan,
+                'akronim' => $request->akronim,
+            ]);
+            return redirect('unit')->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+        }
     }
 
     /**
@@ -57,6 +86,8 @@ class UnitController extends Controller
     public function edit($id)
     {
         //
+        $data = Unit::where('id', $id)->first();
+        return view('pages.backoffice.unit.form', compact('data'));
     }
 
     /**
@@ -69,6 +100,21 @@ class UnitController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'satuan' => 'required',
+            'akronim' => 'required',
+        ]);
+        try {
+            $data = ([
+                'satuan' => $request->satuan,
+                'akronim' => $request->akronim,
+            ]);
+
+            Unit::where('id', $id)->update($data);
+            return redirect('unit')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 
     /**
@@ -80,5 +126,7 @@ class UnitController extends Controller
     public function destroy($id)
     {
         //
+        Unit::find($id)->destroy();
+        return redirect('unit')->with('success', 'Berhasil mengubah data!');
     }
 }
