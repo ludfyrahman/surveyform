@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title mb-1">Tambah Data User</h4>
+                <h4 class="card-title mb-1">Tambah Data Satuan</h4>
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">

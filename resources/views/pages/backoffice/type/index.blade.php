@@ -35,8 +35,8 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->jenis_barang }}</td>
-                                    <td><a href="{{ route('type.edit', $item->id)}}" class="btn btn-sm btn-info"> <i class="mdi mdi-pencil"></i>
+                                    <td>{{ $item->kategori }}</td>
+                                    <td class="d-flex"><a href="{{ route('type.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
                                         <form method="POST" action="{{route('type.destroy', $item->id)}}">
                                             @method('delete')

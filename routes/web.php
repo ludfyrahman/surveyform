@@ -38,6 +38,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::resource('type', TypeController::class);
     Route::resource('profile', ProfileCompanyController::class);
-    Route::resource('unint', UnitController::class);
+    Route::resource('unit', UnitController::class);
 
 });

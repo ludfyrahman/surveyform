@@ -27,11 +27,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Jenis Barang <span class="tx-danger">*</span></label>
-                                    <input type="text" name="jenis_barang"
-                                        class="form-control @error('jenis_barang') parsley-error @enderror"
-                                        placeholder="Jenis Barang" value="{{$data->jenis_barang}}">
-                                    @error('jenis_barang')
+                                    <label for="">Kategori Barang <span class="tx-danger">*</span></label>
+                                    <input type="text" name="kategori"
+                                        class="form-control @error('kategori') parsley-error @enderror"
+                                        placeholder="Jenis Barang" value="{{$data->kategori}}">
+                                    @error('kategori')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>

@@ -34,7 +34,7 @@ class TypeController extends Controller
         //
         $title = 'Tambah Data Jenis';
         $data = (object)[
-            'jenis_barang'  => '',
+            'kategori'  => '',
             'type'          => 'create',
         ];
         return view('pages.backoffice.type.form', compact('title', 'data'));
@@ -50,12 +50,12 @@ class TypeController extends Controller
     {
         //
         $request->validate([
-            'jenis_barang' => 'required',
+            'kategori' => 'required',
         ]);
 
         try {
             Type::create([
-                'jenis_barang' => $request->jenis_barang,
+                'kategori' => $request->kategori,
             ]);
             return redirect('type')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
@@ -98,11 +98,11 @@ class TypeController extends Controller
     {
         //
         $request->validate([
-            'jenis_barang' => 'required',
+            'kategori' => 'required',
         ]);
         try {
             $data = ([
-                'jenis_barang' => $request->jenis_barang,
+                'kategori' => $request->kategori,
             ]);
 
             Type::where('id', $id)->update($data);
