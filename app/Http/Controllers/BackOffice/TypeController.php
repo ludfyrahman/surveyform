@@ -84,7 +84,8 @@ class TypeController extends Controller
     {
         //
         $data = Type::where('id', $id)->first();
-        return view('pages.backoffice.type.form', compact('data'));
+        $title = 'Edit Data Jenis';
+        return view('pages.backoffice.type.form', compact('data', 'title'));
     }
 
     /**

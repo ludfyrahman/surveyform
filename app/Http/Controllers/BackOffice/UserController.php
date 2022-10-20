@@ -49,6 +49,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'role' => $request->role,
                 'status' => $request->status,
+                'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
             return redirect('user')->with('success', 'Berhasil menambah data!');
@@ -100,6 +101,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'role' => $request->role,
                 'status' => $request->status,
+                'email' => $request->email,
 
             ]);
             if ($request->password) {

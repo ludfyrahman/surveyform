@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content-app')
-<div class="container">
+<div class="container mt-5">
     <!-- breadcrumb -->
 
     <!-- row -->

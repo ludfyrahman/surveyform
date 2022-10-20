@@ -38,7 +38,7 @@ class SupplierController extends Controller
             'telepon'   => '',
             'alamat'    => '',
             'status'    => '',
-            'supplier'      => 'create',
+            'type'      => 'create',
         ];
         return view('pages.backoffice.supplier.form', compact('title', 'data'));
     }
@@ -92,8 +92,9 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
+        $title = 'Edit Data Supplier';
         $data = Supplier::where('id', $id)->first();
-        return view('pages.backoffice.supplier.form', compact('data'));
+        return view('pages.backoffice.supplier.form', compact('data', 'title'));
     }
 
     /**

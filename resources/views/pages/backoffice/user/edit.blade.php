@@ -37,6 +37,19 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="">email <span class="tx-danger">*</span></label>
+                                    <input type="text" name="email"
+                                        class="form-control @error('email') parsley-error @enderror"
+                                        placeholder="email" value="{{ $data->email }}">
+                                    @error('email')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="">Password <span class="tx-danger">*</span></label>
                                     <input type="password" name="password"
                                         class="form-control @error('password') parsley-error @enderror" id="inputPassword3"

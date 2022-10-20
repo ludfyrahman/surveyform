@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title mb-1">Tambah Data User</h4>
+                <h4 class="card-title mb-1">{{$title}}</h4>
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -30,7 +30,7 @@
                                     <label for="">Satuan <span class="tx-danger">*</span></label>
                                     <input type="text" name="satuan"
                                         class="form-control @error('satuan') parsley-error @enderror"
-                                        placeholder="satuan" value="{{$data->satuan}}">
+                                        placeholder="satuan" value="{{$data->satuan == '' ? old('satuan') : $data->satuan}}">
                                     @error('satuan')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -43,7 +43,7 @@
                                     <label for="">Akronim <span class="tx-danger">*</span></label>
                                     <input type="text" name="akronim"
                                         class="form-control @error('akronim') parsley-error @enderror"
-                                        placeholder="akronim" value="{{$data->akronim}}">
+                                        placeholder="akronim" value="{{$data->akronim == '' ? old('akronim') : $data->akronim}}">
                                     @error('akronim')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
