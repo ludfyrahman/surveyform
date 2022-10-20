@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title mb-1">Tambah Data User</h4>
+                <h4 class="card-title mb-1">{{$title}}</h4>
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -30,7 +30,7 @@
                                     <label for="">Nama Pelanggan <span class="tx-danger">*</span></label>
                                     <input type="text" name="nama"
                                         class="form-control @error('nama') parsley-error @enderror"
-                                        placeholder="Nama" value="{{$data->nama}}">
+                                        placeholder="Nama" value="{{$data->nama ?? old('nama')}}">
                                     @error('nama')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -43,7 +43,7 @@
                                     <label for="">Telepon <span class="tx-danger">*</span></label>
                                     <input type="text" name="telepon"
                                         class="form-control @error('telepon') parsley-error @enderror"
-                                        placeholder="telepon" value="{{$data->telepon}}">
+                                        placeholder="telepon" value="{{$data->telepon ?? old('telepon')}}">
                                     @error('telepon')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -56,7 +56,7 @@
                                     <label for="">Nama Instasi</label>
                                     <input type="text" name="instansi"
                                         class="form-control @error('instansi') parsley-error @enderror"
-                                        placeholder="Instansi(Opsional)" value="{{$data->instansi}}">
+                                        placeholder="Instansi(Opsional)" value="{{$data->instansi ?? old('instansi')}}">
                                     @error('instansi')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -69,7 +69,7 @@
                                     <label for="">Telepon Instansi </label>
                                     <input type="text" name="telepon_instansi"
                                         class="form-control @error('telepon_instansi') parsley-error @enderror"
-                                        placeholder="Telepon Instansi(Opsional)" value="{{$data->telepon_instansi}}">
+                                        placeholder="Telepon Instansi(Opsional)" value="{{$data->telepon_instansi ?? old('telepon_instansi')}}">
                                     @error('telepon_instansi')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -82,10 +82,10 @@
                                     <label for="">Alamat <span class="tx-danger">*</span></label>
                                     <input type="text" name="alamat"
                                         class="form-control @error('alamat') parsley-error @enderror"
-                                        placeholder="alamat" value="{{$data->alamat}}">
+                                        placeholder="alamat" value="{{$data->alamat ?? old('alamat')}}">
                                     @error('alamat')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
-                                            <li class="parsley-required">{{ $message }}</li>
+                                            <li class="parsley-required">{{ $message  }}</li>
                                         </ul>
                                     @enderror
                                 </div>

@@ -87,7 +87,8 @@ class UnitController extends Controller
     {
         //
         $data = Unit::where('id', $id)->first();
-        return view('pages.backoffice.unit.form', compact('data'));
+        $title = 'Edit Data Satuan';
+        return view('pages.backoffice.unit.form', compact('data', 'title'));
     }
 
     /**

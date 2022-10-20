@@ -49,6 +49,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'role' => $request->role,
                 'status' => $request->status,
+                'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
             return redirect('user')->with('success', 'Berhasil menambah data!');
@@ -100,6 +101,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'role' => $request->role,
                 'status' => $request->status,
+                'email' => $request->email,
 
             ]);
             if ($request->password) {
@@ -122,5 +124,35 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function profile(){
+        $data = auth()->user();
+        return view('auth.profile', compact('data'));
+    }
+
+
+    public function updateProfile(Request $request){
+        $id = auth()->user()->id;
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'nullable|min:6|confirmed|unique:users,email,'.$id,
+        ]);
+        try {
+            $user = ([
+                'username' => $request->username,
+                'email' => $request->email,
+            ]);
+            if ($request->password) {
+                $user['password'] = bcrypt($request->password);
+            }
+
+            User::where('id', $id)->update($user);
+            return back()->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 }

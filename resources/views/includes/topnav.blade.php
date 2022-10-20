@@ -3,13 +3,13 @@
         <div class="main-header-left ">
             <a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
             <a class="header-brand" href="index.html">
-                <img src="../../assets/img/brand/logo-white.png" class="desktop-dark">
-                <img src="../../assets/img/brand/logo.png" class="desktop-logo">
-                <img src="../../assets/img/brand/favicon.png" class="desktop-logo-1">
-                <img src="../../assets/img/brand/favicon-white.png" class="desktop-logo-dark">
+                <img src="{{asset('assets/img/brand/logo-white.png')}}" class="desktop-dark">
+                <img src="{{asset('assets/img/brand/logo.png')}}" class="desktop-logo">
+                <img src="{{asset('assets/img/brand/favicon.png')}}" class="desktop-logo-1">
+                <img src="{{asset('assets/img/brand/favicon-white.png')}}" class="desktop-logo-dark">
             </a>
             <div class="main-header-center  ms-4">
-                <input class="form-control" placeholder="Search for anything..." type="search"><button class="btn"><i class="fe fe-search"></i></button>
+
             </div>
         </div><!-- search -->
         <div class="main-header-right">
@@ -40,26 +40,18 @@
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user"><img alt="" src="../../assets/img/faces/6.jpg" class=""></div>
                                 <div class="ms-3 my-auto">
-                                    <h6>Petey Cruiser</h6><span>Premium Member</span>
+                                    <h6>{{auth()->user()->email}}</h6>
+                                    <span>{{auth()->user()->role}}</span>
                                 </div>
                             </div>
                         </div>
-                        <a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>Profile</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
-                        <a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
+                        <a class="dropdown-item" href="{{route('profile')}}"><i class="bx bx-cog"></i> Edit Profile</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i> Sign Out</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     </div>
-                </li>
-                <li class="dropdown main-header-message right-toggle">
-                    <a class="nav-link pe-0" data-bs-toggle="sidebar-right" data-bs-target=".sidebar-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                    </a>
                 </li>
             </ul>
         </div>

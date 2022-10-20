@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BackOffice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
 class DashboardController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         //
+        // dd(Auth::user()->toArray());
         return view('pages.backoffice.dashboard.index');
     }
 

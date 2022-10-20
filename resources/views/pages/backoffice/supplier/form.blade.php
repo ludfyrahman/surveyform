@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title mb-1">Tambah Data User</h4>
+                <h4 class="card-title mb-1">{{$title}}</h4>
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -30,7 +30,7 @@
                                     <label for="">Nama <span class="tx-danger">*</span></label>
                                     <input type="text" name="nama"
                                         class="form-control @error('nama') parsley-error @enderror"
-                                        placeholder="Nama" value="{{$data->nama}}">
+                                        placeholder="Nama" value="{{$data->nama == '' ? old('nama') : $data->nama}}">
                                     @error('nama')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -43,7 +43,7 @@
                                     <label for="">telepon <span class="tx-danger">*</span></label>
                                     <input type="text" name="telepon"
                                         class="form-control @error('telepon') parsley-error @enderror"
-                                        placeholder="telepon" value="{{$data->telepon}}">
+                                        placeholder="telepon" value="{{$data->telepon == '' ? old('telepon') : $data->telepon}}">
                                     @error('telepon')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -56,7 +56,7 @@
                                     <label for="">alamat <span class="tx-danger">*</span></label>
                                     <input type="text" name="alamat"
                                         class="form-control @error('alamat') parsley-error @enderror"
-                                        placeholder="alamat" value="{{$data->alamat}}">
+                                        placeholder="alamat" value="{{$data->alamat == '' ? old('alamat') : $data->alamat}}">
                                     @error('alamat')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="">status <span class="tx-danger">*</span></label>
 
-                                    @php $status = $data->status; @endphp
+                                    @php $status = $data->status == '' ? old('status') : $data->status; @endphp
                                     <select name="status" id="" class="form-control" required>
                                         <option value="">Pilih Status</option>
                                         <option {{$status == 'Aktif' ? 'selected' : ''}} value="Aktif">Aktif</option>

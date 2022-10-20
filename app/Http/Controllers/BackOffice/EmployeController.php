@@ -50,6 +50,7 @@ class EmployeController extends Controller
         try {
             $user = User::create([
                 'username' => $request->username,
+                'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'Pegawai',
                 'status' => 'Aktif',
@@ -63,7 +64,7 @@ class EmployeController extends Controller
             ]);
             return redirect('employe')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menambah data!');
+            return back()->with('failed', 'Gagal menambah data!'.$th);
         }
     }
 
@@ -114,6 +115,7 @@ class EmployeController extends Controller
             $inputUser = ([
                 'username' => $request->username,
                 'status' => $request->status,
+                'email' => $request->email,
             ]);
             if ($request->password) {
                 $inputUser['password'] = bcrypt($request->password);
@@ -128,7 +130,6 @@ class EmployeController extends Controller
             ]);
             return redirect('employe')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
-            return $th;
             return back()->with('failed', 'Gagal mengubah data!');
         }
     }

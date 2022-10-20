@@ -65,6 +65,9 @@
         .form-control[type='file'] {
             height: 35px !important;
         }
+        .invalid-feedback{
+            display: block!important;
+        }
     </style>
 
 </head>
