@@ -29,6 +29,8 @@ Route::get('/', function(){
 });
 Route::middleware(['auth',  'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profil', [UserController::class, 'profile'])->name('profile');
+    Route::post('/profil', [UserController::class, 'updateProfile']);
     Route::resource('user', UserController::class);
     Route::resource('employe', EmployeController::class);
     Route::resource('product', ProductController::class);
