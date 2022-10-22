@@ -76,9 +76,6 @@
                             </div>
 
                         </div>
-
-
-
                         <div class="form-group mb-0 mt-3 justify-content-end">
                             <div>
                                 <button type="submit" onclick="" class="btn btn-primary">Simpan</button>
