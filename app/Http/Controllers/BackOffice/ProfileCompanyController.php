@@ -5,6 +5,9 @@ namespace App\Http\Controllers\BackOffice;
 use App\Http\Controllers\Controller;
 use App\Models\ProfileCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Console\Input\Input;
 
 class ProfileCompanyController extends Controller
 {
@@ -37,7 +40,6 @@ class ProfileCompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -71,16 +73,26 @@ class ProfileCompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
-            'nama_perusahaan' => 'required'
+            'nama_perusahaan' => 'required',
+
         ]);
+
+
         try {
-            ProfileCompany::where('id', $id)->update([
-                'nama_perusahaan' => $request->nama_perusahaan,
-                'deskripsi' => $request->deskripsi,
-            ]);
+            if ($request->logo) {
+                $fileType = $request->file('logo')->extension();
+                $name = Str::random(8) . '.' . $fileType;
+                $input['logo'] = Storage::putFileAs('logo', $request->file('logo'), $name);
+            }
+            $input['nama_perusahaan'] = $request->nama_perusahaan;
+            $input['deskripsi'] = $request->deskripsi ?? '-';
+            ProfileCompany::where('id', $id)->update($input);
+            return back()->with('success', 'Berhasil mengubah data');
         } catch (\Throwable $th) {
-            //throw $th;
+            return back()->with('failed', 'Gagal mengubah data ' . $th);
+            throw $th;
         }
     }
 

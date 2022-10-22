@@ -13,20 +13,28 @@
                         {{ session('failed') }}
                     </div>
                 @endif
+                @if (session('success'))
+                    <div class="alert alert-success mg-b-0" role="alert">
+                        <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ session('success') }}
+                    </div>
+                @endif
 
             </div>
             <div class="card-body">
 
                 <div class="card-body pt-0">
-                    <form class="form-horizontal" action="{{ route('employe.store') }}" method="POST"
+                    <form class="form-horizontal" action="{{ route('profile.update', $data->id) }}" method="POST"
                         enctype="multipart/form-data" data-parsley-validate="">
-
+                        @method('PUT')
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Nama Perusahaan <span class="tx-danger">*</span></label>
-                                    <input type="text" name="nama_perusahaan"
+                                    <input type="text" id="nama_perusahaan" name="nama_perusahaan"
                                         class="form-control @error('nama_perusahaan') parsley-error @enderror"
                                         placeholder="Nama Perusahaan" value="{{ $data->nama_perusahaan }}">
                                     @error('nama_perusahaan')
@@ -39,8 +47,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Logo <span class="tx-danger">*</span></label>
-                                    <input type="file" class="dropify" data-height="200" />
-                                    @error('telepon')
+                                    <input type="file" class="dropify" name="logo" data-height="200"
+                                        data-default-file="{{ asset($data->logo) }}" />
+                                    @error('logo')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
@@ -53,15 +62,12 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Deskripsi <span class="tx-danger">*</span></label>
-                                    {{-- <textarea name="alamat" class="form-control @error('alamat') parsley-error @enderror" id="" cols="10"
-                                        rows="3">{{ old('alamat') }}</textarea> --}}
-                                        <div class="ql-wrapper ql-wrapper-demo bg-gray-100">
-                                            <div id="quillEditor">
-                                                {{$data->deskripsi}}
-                                            </div>
-                                        </div>
+                                    <textarea name="deskripsi" class="form-control @error('deskripsi') parsley-error @enderror" id="summernote" cols="10"
+                                        rows="3"> {{ $data->deskripsi }}</textarea>
 
-                                    @error('alamat')
+
+
+                                    @error('deskripsi')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
@@ -72,12 +78,14 @@
                         </div>
 
 
+
                         <div class="form-group mb-0 mt-3 justify-content-end">
                             <div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" onclick="" class="btn btn-primary">Simpan</button>
                                 <button type="reset" class="btn btn-secondary">Batal</button>
                                 <a href="{{ url('employe') }}" class="btn btn-info">Kembali</a>
                             </div>
+
                         </div>
                     </form>
                 </div>

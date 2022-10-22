@@ -37,12 +37,6 @@
     <link href="{{ asset('assets/css/boxed.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/dark-boxed.css') }}" rel="stylesheet">
 
-
-    <!--Internal  Quill css -->
-    <link href="{{ asset('assets/plugins/quill/quill.snow.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('assets/plugins/quill/quill.bubble.css') }}" rel="stylesheet">
-
     <!--- Dark-mode css --->
     <link href="{{ asset('assets/css/style-dark.css') }}" rel="stylesheet">
 
@@ -171,8 +165,6 @@
 <!--Internal  Datatable js -->
 <script src="{{ asset('assets/js/table-data.js') }}"></script>
 
-<!--Internal quill js -->
-<script src="{{ asset('assets/plugins/quill/quill.min.js') }}"></script>
 
 <!-- P-scroll js -->
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
