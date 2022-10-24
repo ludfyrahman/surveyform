@@ -11,6 +11,7 @@ use App\Models\SaleDetail;
 use App\Models\Sale;
 use App\Models\Jasa;
 use App\Models\Product;
+use App\Models\Customer;
 
 use App\Helper\Helper;
 
@@ -41,12 +42,13 @@ class SaleController extends Controller
         //
         $title = 'Tambah Data Penjualan';
         $vouchers = DB::table('voucher')->where('status', 'Aktif')->get();
+        $customers = Customer::all();
         $items =  SaleDetail::with('service', 'product')->where('status', SaleStatus::PROSES)->get();
         $data = (object)[
             'kategori'  => '',
             'type'      => 'create',
         ];
-        return view('pages.backoffice.sale.form', compact('title', 'data', 'items', 'vouchers'));
+        return view('pages.backoffice.sale.form', compact('title','customers', 'data', 'items', 'vouchers'));
     }
 
     /**
@@ -166,6 +168,41 @@ class SaleController extends Controller
         return DB::table('voucher')->where('id', $id)->first();
     }
 
+    public function submitOrder(Request $request){
+        $request->validate([
+            'item_id'   => 'required',
+            'jumlah'    => 'required',
+            'tipe'      => 'required',
+        ]);
+
+        try {
+            DB::transaction(function () use ($request) {
+                $find = null;
+                $harga = 0;
+                if($request->tipe == ItemType::BARANG){
+                    $find = Product::find($request->item_id);
+                    $harga = $find->harga_jual;
+                }else{
+                    $find = Jasa::find($request->item_id);
+                    $harga = $find->harga;
+                }
+                $jumlah = $request->jumlah;
+
+                SaleDetail::create([
+                    'item_id'   => $request->item_id,
+                    'jumlah'    => $jumlah,
+                    'harga'     => $harga,
+                    'sub_total' => $harga * $jumlah,
+                    'tipe'      => $request->tipe,
+                    'status'    => SaleStatus::PROSES,
+                ]);
+            });
+
+            return back()->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+        }
+    }
 
     public function itemByType($type){
         $result = null;

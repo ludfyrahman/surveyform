@@ -38,6 +38,7 @@ Route::middleware(['auth',  'verified'])->group(function () {
      */
     Route::resource('sale', SaleController::class);
     Route::get('destroyDetail/{id}', [SaleController::class, 'destroyDetail'])->name('destroyDetail');
+    Route::post('submitOrder', [SaleController::class, 'submitOrder'])->name('submitOrder');
     /**
      * end sale block
      */

@@ -72,60 +72,83 @@
                                 <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambahkan</button>
                             </div>
                             <div class="col-md-12">
-                                <div class="table-responsive mt-2">
-                                    <h4>Data Transaksi Barang / Jasa</h4>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th><th>Item</th><th>Jenis</th><th>Jumlah</th><th>Harga</th><th>Subtotal</th><th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php $subtotal=0; @endphp
-                                            @foreach ($items as $item)
-                                            @php
-                                                $subtotal +=$item->sub_total;
-                                            @endphp
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{ $item->tipe == \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
-                                                <td>{{ $item->tipe}} </td>
-                                                <td>{{ $item->jumlah}} </td>
-                                                <td class="text-right">{{ Helper::rupiah($item->harga)}} </td>
-                                                <td class="text-right">{{ Helper::rupiah($item->sub_total)}} </td>
-                                                <td>
-                                                    <a href="{{route('destroyDetail', $item->id)}}" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="fas fa-trash text-danger"></i></a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            <tfoot>
+                                <form action="{{route('submitOrder')}}" method="post">
+                                    <div class="table-responsive mt-2">
+                                        <h4>Data Transaksi Barang / Jasa</h4>
+                                        <table class="table">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan='5' class="text-right"><h5>Subtotal</h5></td>
-                                                    <td class="text-right"><h5>{{Helper::rupiah($subtotal)}}</h5></td>
-                                                    <td></td>
+                                                    <th>#</th><th>Item</th><th>Jenis</th><th>Jumlah</th><th>Harga</th><th>Subtotal</th><th>Aksi</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php $subtotal=0; @endphp
+                                                @foreach ($items as $item)
+                                                @php
+                                                    $subtotal +=$item->sub_total;
+                                                @endphp
                                                 <tr>
-                                                    <td colspan='5' class="text-right"><h5>Diskon</h5></td>
-                                                    <td class="text-right">
-                                                        <select name="voucher" id="voucher" class="form-control" required>
-                                                            <option value="">Pilih Voucher</option>
-                                                            @foreach ($vouchers as $voucher)
-                                                                <option value="{{$voucher->id}}" price='{{$voucher->besaran}}' tipe='{{$voucher->tipe}}'>{{$voucher->nama_voucher}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>{{ $item->tipe == \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
+                                                    <td>{{ $item->tipe}} </td>
+                                                    <td>{{ $item->jumlah}} </td>
+                                                    <td class="text-right">{{ Helper::rupiah($item->harga)}} </td>
+                                                    <td class="text-right">{{ Helper::rupiah($item->sub_total)}} </td>
+                                                    <td>
+                                                        <a href="{{route('destroyDetail', $item->id)}}" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="fas fa-trash text-danger"></i></a>
                                                     </td>
-                                                    <td></td>
                                                 </tr>
-                                                <tr>
-                                                    <td colspan='5' class="text-right"><h5>Total</h5></td>
-                                                    <td class="text-right"><h5 id='total'>{{Helper::rupiah($subtotal)}}</h5></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tfoot>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <h3>Informasi Singkat</h3>
+                                                @endforeach
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan='5' class="text-right"><h5>Subtotal</h5></td>
+                                                        <td class="text-right"><h5>{{Helper::rupiah($subtotal)}}</h5></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan='5' class="text-right"><h5>Diskon</h5></td>
+                                                        <td class="text-right">
+                                                            <select name="voucher" id="voucher" class="form-control" required>
+                                                                <option value="">Pilih Voucher</option>
+                                                                @foreach ($vouchers as $voucher)
+                                                                    <option value="{{$voucher->id}}" price='{{$voucher->besaran}}' tipe='{{$voucher->tipe}}'>{{$voucher->nama_voucher}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan='5' class="text-right"><h5>Total</h5></td>
+                                                        <td class="text-right">
+                                                            <h5 id='total'>{{Helper::rupiah($subtotal)}}</h5>
+                                                            <input type="hidden" name='total' id='totalValue' value="{{$subtotal}}">
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan='5' class="text-right"><h5>Customer</h5></td>
+                                                        <td class="text-right">
+                                                            <select name="customer_id" id="customer_id" class="form-control" required>
+                                                                <option value="">Pilih Customer</option>
+                                                                @foreach ($customers as $customer)
+                                                                    <option value="{{$customer->id}}" >{{$customer->nama}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </tbody>
+                                        </table>
+                                        <div class="form-group mb-0 mt-3 justify-content-end">
+                                            <div>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="reset" class="btn btn-secondary">Batal</button>
+                                                <a href="{{ route('type.index') }}" class="btn btn-info">Kembali</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -174,6 +197,7 @@
                 var total = tipe == 'nominal' ? subtotal - amount : subtotal * amount / 100;
                 if(val !=''){
                     $('#total').text(formatRupiah(total, 'Rp '));
+                    $('#totalValue').val(total);
                 }
             })
         })
