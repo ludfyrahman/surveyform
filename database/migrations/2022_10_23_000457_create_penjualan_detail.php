@@ -15,7 +15,7 @@ class CreatePenjualanDetail extends Migration
     {
         Schema::create('penjualan_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('penjualan_id')->unsigned();
+            $table->integer('penjualan_id')->unsigned()->nullable();
             $table->integer('item_id')->unsigned();
             $table->integer('jumlah')->default(1);
             $table->integer('harga')->default(0);

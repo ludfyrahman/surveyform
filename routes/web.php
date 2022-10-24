@@ -12,6 +12,7 @@ use App\Http\Controllers\BackOffice\ProfileCompanyController;
 use App\Http\Controllers\BackOffice\ServiceController;
 use App\Http\Controllers\BackOffice\UnitController;
 use App\Http\Controllers\BackOffice\TypeController;
+use App\Http\Controllers\BackOffice\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,14 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::get('/profil', [UserController::class, 'profile'])->name('profile');
     Route::post('/profil', [UserController::class, 'updateProfile']);
     Route::resource('user', UserController::class);
+    /**
+     * sale block
+     */
+    Route::resource('sale', SaleController::class);
+    Route::get('destroyDetail/{id}', [SaleController::class, 'destroyDetail'])->name('destroyDetail');
+    /**
+     * end sale block
+     */
     Route::resource('employe', EmployeController::class);
     Route::resource('product', ProductController::class);
     Route::resource('service', ServiceController::class);
