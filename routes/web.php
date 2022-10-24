@@ -12,6 +12,8 @@ use App\Http\Controllers\BackOffice\ProfileCompanyController;
 use App\Http\Controllers\BackOffice\ServiceController;
 use App\Http\Controllers\BackOffice\UnitController;
 use App\Http\Controllers\BackOffice\TypeController;
+use App\Http\Controllers\BackOffice\VoucherController;
+use App\Models\Voucher;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +43,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('type', TypeController::class);
     Route::resource('profile', ProfileCompanyController::class);
     Route::resource('unit', UnitController::class);
+    Route::resource('voucher', VoucherController::class);
 
 });
