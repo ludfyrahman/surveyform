@@ -181,6 +181,15 @@
 <!-- custom js -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
+<script>
+
+const formatRupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+</script>
 @stack('script')
 
 </html>

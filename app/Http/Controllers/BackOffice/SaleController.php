@@ -40,12 +40,13 @@ class SaleController extends Controller
     {
         //
         $title = 'Tambah Data Penjualan';
+        $vouchers = DB::table('voucher')->where('status', 'Aktif')->get();
         $items =  SaleDetail::with('service', 'product')->where('status', SaleStatus::PROSES)->get();
         $data = (object)[
             'kategori'  => '',
             'type'      => 'create',
         ];
-        return view('pages.backoffice.sale.form', compact('title', 'data', 'items'));
+        return view('pages.backoffice.sale.form', compact('title', 'data', 'items', 'vouchers'));
     }
 
     /**
@@ -159,6 +160,10 @@ class SaleController extends Controller
     public function destroyDetail($id){
         SaleDetail::find($id)->delete();
         return back()->with('success', 'Berhasil Hapus data!');
+    }
+
+    public function voucherItem($id){
+        return DB::table('voucher')->where('id', $id)->first();
     }
 
 

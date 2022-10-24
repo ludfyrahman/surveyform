@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/getItem/{type}', [SaleController::class, 'itemByType'])->name('itemByType');
+Route::get('/getVoucher/{code}', [SaleController::class, 'voucherItem'])->name('voucherItem');

@@ -104,10 +104,28 @@
                                                     <td class="text-right"><h5>{{Helper::rupiah($subtotal)}}</h5></td>
                                                     <td></td>
                                                 </tr>
+                                                <tr>
+                                                    <td colspan='5' class="text-right"><h5>Diskon</h5></td>
+                                                    <td class="text-right">
+                                                        <select name="voucher" id="voucher" class="form-control" required>
+                                                            <option value="">Pilih Voucher</option>
+                                                            @foreach ($vouchers as $voucher)
+                                                                <option value="{{$voucher->id}}" price='{{$voucher->besaran}}' tipe='{{$voucher->tipe}}'>{{$voucher->nama_voucher}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan='5' class="text-right"><h5>Total</h5></td>
+                                                    <td class="text-right"><h5 id='total'>{{Helper::rupiah($subtotal)}}</h5></td>
+                                                    <td></td>
+                                                </tr>
                                             </tfoot>
                                         </tbody>
                                     </table>
                                 </div>
+                                <h3>Informasi Singkat</h3>
                             </div>
                         </div>
 
@@ -138,12 +156,25 @@
                     }
                 })
             });
+
             $('#jumlah').keyup(function(){
                 var val = $(this).val();
                 var item = $('#item');
                 var option = $('option:selected', item).attr('price');
 
                 $('#subtotal').text(option * val);
+            });
+
+            $('#voucher').change(function(){
+                var val = $(this).val();
+                var item = $('#item');
+                var amount = $('option:selected', this).attr('price');
+                var tipe = $('option:selected', this).attr('tipe');
+                var subtotal = '{{$subtotal}}';
+                var total = tipe == 'nominal' ? subtotal - amount : subtotal * amount / 100;
+                if(val !=''){
+                    $('#total').text(formatRupiah(total, 'Rp '));
+                }
             })
         })
     </script>
