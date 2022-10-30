@@ -28,7 +28,7 @@
             <div class="card-body">
 
                 <div class="card-body pt-0">
-                    <form class="form-horizontal" action="{{ route('sale.store')}}" method="POST"
+                    <form class="form-horizontal" action="{{ route('purchase.store')}}" method="POST"
                         enctype="multipart/form-data" data-parsley-validate="">
                         @csrf
                         <h4>Form Barang / Jasa</h4>
@@ -86,7 +86,7 @@
                     </form>
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{route('submitOrder')}}" method="post">
+                                <form action="{{route('submitPurchase')}}" method="post">
                                     @csrf
                                     <div class="table-responsive mt-2">
                                         <h4>Data Transaksi Barang / Jasa</h4>
@@ -110,7 +110,7 @@
                                                     <td class="text-right">{{ Helper::rupiah($item->harga)}} </td>
                                                     <td class="text-right">{{ Helper::rupiah($item->sub_total)}} </td>
                                                     <td>
-                                                        <a href="{{route('destroyDetail', $item->id)}}" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="fas fa-trash text-danger"></i></a>
+                                                        <a href="{{route('destroyDetailPurchase', $item->id)}}" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="fas fa-trash text-danger"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -118,18 +118,6 @@
                                                     <tr>
                                                         <td colspan='5' class="text-right"><h5>Subtotal</h5></td>
                                                         <td class="text-right"><h5>{{Helper::rupiah($subtotal)}}</h5></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan='5' class="text-right"><h5>Diskon</h5></td>
-                                                        <td class="text-right">
-                                                            <select name="voucher" id="voucher" class="form-control" required>
-                                                                <option value="">Pilih Voucher</option>
-                                                                @foreach ($vouchers as $voucher)
-                                                                    <option value="{{$voucher->id}}" price='{{$voucher->besaran}}' tipe='{{$voucher->tipe}}'>{{$voucher->nama_voucher}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
@@ -142,12 +130,12 @@
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan='5' class="text-right"><h5>Customer <span class="tx-danger">*</span></h5></td>
+                                                        <td colspan='5' class="text-right"><h5>Supplier <span class="tx-danger">*</span></h5></td>
                                                         <td class="text-right">
-                                                            <select name="customer_id" id="customer_id" class="form-control" required>
+                                                            <select name="supplier_id" id="supplier_id" class="form-control" required>
                                                                 <option value="">Pilih Customer</option>
-                                                                @foreach ($customers as $customer)
-                                                                    <option value="{{$customer->id}}" >{{$customer->nama}}</option>
+                                                                @foreach ($suppliers as $supplier)
+                                                                    <option value="{{$supplier->id}}" >{{$supplier->nama}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>

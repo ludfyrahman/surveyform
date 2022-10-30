@@ -13,6 +13,7 @@ use App\Http\Controllers\BackOffice\ServiceController;
 use App\Http\Controllers\BackOffice\UnitController;
 use App\Http\Controllers\BackOffice\TypeController;
 use App\Http\Controllers\BackOffice\SaleController;
+use App\Http\Controllers\BackOffice\PurchaseController;
 use App\Http\Controllers\BackOffice\VoucherController;
 use App\Models\Voucher;
 
@@ -43,6 +44,16 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::post('submitOrder', [SaleController::class, 'submitOrder'])->name('submitOrder');
     /**
      * end sale block
+     */
+
+     /**
+     * purchase block
+     */
+    Route::resource('purchase', PurchaseController::class);
+    Route::get('destroyDetailPurchase/{id}', [PurchaseController::class, 'destroyDetail'])->name('destroyDetailPurchase');
+    Route::post('submitPurchase', [PurchaseController::class, 'submitPurchase'])->name('submitPurchase');
+    /**
+     * end purchase block
      */
     Route::resource('employe', EmployeController::class);
     Route::resource('product', ProductController::class);
