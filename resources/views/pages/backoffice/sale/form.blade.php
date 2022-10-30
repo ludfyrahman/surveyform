@@ -13,8 +13,17 @@
                         {{ session('failed') }}
                     </div>
                 @endif
-
-
+                <div class="alert alert-warning text-black">
+                    <h3>Perhatian</h3>
+                    <ol>
+                        <li>Isi form barang atau jasa pada inputan terlebih dahulu untuk menambahkan pada tabel data baran / jas</li>
+                        <li>Subtotal harga barang ditampilkan dibawah form data / barang</li>
+                        <li>Data barang / jasa ditampilkan pada tabel data barang / jasa</li>
+                        <li>Dapat memilih diskon yang sedang aktif untuk memperoleh diskon transaksi</li>
+                        <li>Total dapat ditampilkan sesuai dengan barang / jasa yang di transaksi</li>
+                        <li>Customer menampilkan data customer yang ber transaksi di </li>
+                    </ol>
+                </div>
             </div>
             <div class="card-body">
 
@@ -22,6 +31,7 @@
                     <form class="form-horizontal" action="{{ route('sale.store')}}" method="POST"
                         enctype="multipart/form-data" data-parsley-validate="">
                         @csrf
+                        <h4>Form Barang / Jasa</h4>
                         <div class="row justify-content-end">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -71,8 +81,13 @@
                             <div class="col-md-3 text-right">
                                 <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambahkan</button>
                             </div>
+
+                        </div>
+                    </form>
+                        <div class="row">
                             <div class="col-md-12">
                                 <form action="{{route('submitOrder')}}" method="post">
+                                    @csrf
                                     <div class="table-responsive mt-2">
                                         <h4>Data Transaksi Barang / Jasa</h4>
                                         <table class="table">
@@ -122,11 +137,12 @@
                                                         <td class="text-right">
                                                             <h5 id='total'>{{Helper::rupiah($subtotal)}}</h5>
                                                             <input type="hidden" name='total' id='totalValue' value="{{$subtotal}}">
+                                                            <input type="hidden" name='diskon' id='diskon' >
                                                         </td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan='5' class="text-right"><h5>Customer</h5></td>
+                                                        <td colspan='5' class="text-right"><h5>Customer <span class="tx-danger">*</span></h5></td>
                                                         <td class="text-right">
                                                             <select name="customer_id" id="customer_id" class="form-control" required>
                                                                 <option value="">Pilih Customer</option>
@@ -137,9 +153,24 @@
                                                         </td>
                                                         <td></td>
                                                     </tr>
+                                                    <tr>
+                                                        <td colspan='5' class="text-right"><h5>Jenis Transaksi <span class="tx-danger">*</span></h5></td>
+                                                        <td class="text-right">
+                                                            <select name="tipe_transaksi" id="tipe_transaksi" class="form-control" required>
+                                                                <option value="">Pilih Jenis</option>
+                                                                @foreach (\App\Constants\TransactionType::TRANSAKSI as $type)
+                                                                    <option value="{{$type}}" >{{$type}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
                                                 </tfoot>
                                             </tbody>
                                         </table>
+                                        <h2>Invoice : {{ $invoice}}</h2>
+                                        <input type="hidden" name="invoice" value="{{ $invoice }}">
+                                        <p class="text-danger"><i>* Wajib Di isi</i></p>
                                         <div class="form-group mb-0 mt-3 justify-content-end">
                                             <div>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -153,7 +184,7 @@
                         </div>
 
 
-                    </form>
+
                 </div>
             </div>
         </div>
@@ -194,10 +225,12 @@
                 var amount = $('option:selected', this).attr('price');
                 var tipe = $('option:selected', this).attr('tipe');
                 var subtotal = '{{$subtotal}}';
-                var total = tipe == 'nominal' ? subtotal - amount : subtotal * amount / 100;
+                var diskon = tipe == 'nominal' ? amount : subtotal * amount / 100;
+                var total = subtotal  - diskon;
                 if(val !=''){
                     $('#total').text(formatRupiah(total, 'Rp '));
                     $('#totalValue').val(total);
+                    $('#diskon').val(diskon);
                 }
             })
         })

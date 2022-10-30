@@ -4,7 +4,7 @@ namespace App\Helper;
 use App\Models\Jasa;
 use App\Models\Product;
 use Carbon\Carbon;
-
+use App\Models\ProfileCompany;
 class Helper{
 
     public static function kodeJasa(){
@@ -50,5 +50,9 @@ class Helper{
         $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
         return $hasil_rupiah;
 
+    }
+
+    public static function profile(){
+        return ProfileCompany::first();
     }
 }

@@ -27,7 +27,10 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">No</th>
-                                <th class="wd-20p border-bottom-0">Penjualan Barang</th>
+                                <th class="wd-20p border-bottom-0">Invoice</th>
+                                <th class="wd-20p border-bottom-0">Total</th>
+                                <th class="wd-20p border-bottom-0">Diskon</th>
+                                <th class="wd-20p border-bottom-0">Customer</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
                         </thead>
@@ -35,16 +38,11 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kategori }}</td>
-                                    <td class="d-flex"><a href="{{ route('sale.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>
-                                            Ubah</a>
-                                        <form method="POST" action="{{route('sale.destroy', $item->id)}}">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" onclick="return confirm('apakah anda yakin ingin menghapus data ??')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i>
-                                            Hapus
-                                            </button>
-                                        </form>
+                                    <td>{{ $item->invoice }}</td>
+                                    <td class="text-success text-right">{{ Helper::rupiah($item->total) }}</td>
+                                    <td class="text-primary text-right">{{ Helper::rupiah($item->diskon) }}</td>
+                                    <td>{{ $item->customer->nama }}</td>
+                                    <td class="d-flex"><a href="{{ route('sale.show', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

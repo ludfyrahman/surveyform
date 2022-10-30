@@ -27,7 +27,7 @@ class SaleController extends Controller
     public function index()
     {
         //
-        $data = Sale::all();
+        $data = Sale::with('customer')->get();
         $title = 'List Data Penjualan';
         return view('pages.backoffice.sale.index', compact('data', 'title'));
     }
@@ -48,7 +48,8 @@ class SaleController extends Controller
             'kategori'  => '',
             'type'      => 'create',
         ];
-        return view('pages.backoffice.sale.form', compact('title','customers', 'data', 'items', 'vouchers'));
+        $invoice = Helper::kodeJual();
+        return view('pages.backoffice.sale.form', compact('title','customers', 'data', 'items', 'vouchers','invoice'));
     }
 
     /**
@@ -105,6 +106,11 @@ class SaleController extends Controller
     public function show($id)
     {
         //
+        $data = Sale::where('id', $id)->first();
+        $title = 'Detail Data Penjualan '.$data->invoice;
+
+        $items =  SaleDetail::with('service', 'product')->where('penjualan_id', $id)->get();
+        return view('pages.backoffice.sale.detail', compact('data', 'title', 'items'));
     }
 
     /**
@@ -156,7 +162,7 @@ class SaleController extends Controller
     {
         //
         Sale::find($id)->delete();
-        return redirect('type')->with('success', 'Berhasil Hapus data!');
+        return redirect('sale')->with('success', 'Berhasil Hapus data!');
     }
 
     public function destroyDetail($id){
@@ -170,35 +176,30 @@ class SaleController extends Controller
 
     public function submitOrder(Request $request){
         $request->validate([
-            'item_id'   => 'required',
-            'jumlah'    => 'required',
-            'tipe'      => 'required',
+            'invoice'       => 'required',
+            'customer_id'   => 'required',
+            'total'         => 'required',
+            'diskon'        => 'required',
+            'tipe_transaksi'=> 'required',
         ]);
 
         try {
             DB::transaction(function () use ($request) {
-                $find = null;
-                $harga = 0;
-                if($request->tipe == ItemType::BARANG){
-                    $find = Product::find($request->item_id);
-                    $harga = $find->harga_jual;
-                }else{
-                    $find = Jasa::find($request->item_id);
-                    $harga = $find->harga;
-                }
-                $jumlah = $request->jumlah;
-
-                SaleDetail::create([
-                    'item_id'   => $request->item_id,
-                    'jumlah'    => $jumlah,
-                    'harga'     => $harga,
-                    'sub_total' => $harga * $jumlah,
-                    'tipe'      => $request->tipe,
-                    'status'    => SaleStatus::PROSES,
+                $model = Sale::create([
+                    'customer_id'   => $request->customer_id,
+                    'invoice'       => $request->invoice,
+                    'total'         => $request->total,
+                    'diskon'        => $request->diskon,
+                    'tipe_transaksi'=> $request->tipe_transaksi,
+                    'status'        => SaleStatus::DONE,
+                    'tanggal'       => date('Y-m-d H:i:s'),
                 ]);
+
+
+                $detail = SaleDetail::where('status', SaleStatus::PROSES)->update(['status' => SaleStatus::DONE, 'penjualan_id' => $model->id]);
             });
 
-            return back()->with('success', 'Berhasil menambah data!');
+            return redirect('sale')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
         }
