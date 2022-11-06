@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackOffice\AbsensiController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BackOffice\DashboardController;
@@ -65,5 +66,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('profile', ProfileCompanyController::class);
     Route::resource('unit', UnitController::class);
     Route::resource('voucher', VoucherController::class);
+    Route::resource('kehadiran', AbsensiController::class);
 
 });

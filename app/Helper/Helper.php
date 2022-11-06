@@ -55,4 +55,24 @@ class Helper{
     public static function profile(){
         return ProfileCompany::first();
     }
+
+    public static function tanggal($tgl)
+    {
+        $qq = '';
+        // $dt = explode(" ", $tgl);
+        $k = explode("-", $tgl);
+        $bln = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $qq = $k[2] . ' ' . $bln[(int)$k[1]] . ' ' . $k[0];
+        return $qq;
+    }
+
+    public static function tanggalWaktu($tgl)
+    {
+        $qq = '';
+        $dt = explode(" ", $tgl);
+        $k = explode("-", $dt[0]);
+        $bln = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $qq = $k[2] . ' ' . $bln[(int)$k[1]] . ' ' . $k[0] . ' ' . $dt[1];
+        return $qq;
+    }
 }

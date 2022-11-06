@@ -46,6 +46,7 @@ class EmployeController extends Controller
             'username' => 'required',
             'password' => 'required',
             'alamat' => 'required',
+            'email' => 'required',
         ]);
         try {
             $user = User::create([
