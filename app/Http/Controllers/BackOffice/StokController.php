@@ -62,7 +62,7 @@ class StokController extends Controller
     public function show($id)
     {
         //
-        $data = Product::find($id);
+        $data = Product::with('satuan','kategori')->find($id);
         $title = 'Detail Stok Barang '.$data->nama;
         $purchase = PurchaseDetail::where('status', SaleStatus::DONE)->get();
         $sales = SaleDetail::where('status', SaleStatus::DONE)->get();

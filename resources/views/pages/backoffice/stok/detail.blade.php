@@ -20,6 +20,33 @@
                 <a href="{{ route('stok.index') }}" class="btn btn-info float-end">Kembali</a>
             </div>
             <div class="card-body">
+                <h4>Informasi Barang {{ $data->nama }}</h4>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Kode Barang</td><td>{{$data->kode}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Barang</td><td>{{$data->nama}}</td>
+                    </tr>
+                    <tr>
+                        <td>Deskripsi Barang</td><td>{{$data->deskripsi}}</td>
+                    </tr>
+                    <tr>
+                        <td>Harga Jual</td><td>{{Helper::rupiah($data->harga_jual)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Harga Beli</td><td>{{Helper::rupiah($data->harga_beli)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Stok</td><td><span class="badge bg-primary">{{$data->stok}}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Kategori</td><td>{{$data->kategori->kategori}}</td>
+                    </tr>
+                    <tr>
+                        <td>Satuan</td><td>{{$data->satuan->satuan}}</td>
+                    </tr>
+                </table>
                 <div class="table-responsive">
                     <table class="table text-md-nowrap" id="example1">
                         <thead>
