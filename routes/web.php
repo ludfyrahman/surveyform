@@ -16,6 +16,8 @@ use App\Http\Controllers\BackOffice\TypeController;
 use App\Http\Controllers\BackOffice\SaleController;
 use App\Http\Controllers\BackOffice\PurchaseController;
 use App\Http\Controllers\BackOffice\VoucherController;
+use App\Http\Controllers\BackOffice\StokController;
+use App\Http\Controllers\BackOffice\FinanceController;
 use App\Models\Voucher;
 
 /*
@@ -68,4 +70,10 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('voucher', VoucherController::class);
     Route::resource('kehadiran', AbsensiController::class);
 
+
+    Route::prefix('report')->group(function () {
+        Route::resource('stok', StokController::class);
+        Route::resource('finance', FinanceController::class);
+        Route::resource('attendance', FinanceController::class);
+    });
 });
