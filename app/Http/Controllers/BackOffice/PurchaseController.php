@@ -109,7 +109,7 @@ class PurchaseController extends Controller
         $data = Purchase::where('id', $id)->first();
         $title = 'Detail Data Penjualan '.$data->invoice;
 
-        $items =  PurchaseDetail::with('service', 'product')->where('penjualan_id', $id)->get();
+        $items =  PurchaseDetail::with('service', 'product')->where('pembelian_id', $id)->get();
         return view('pages.backoffice.purchase.detail', compact('data', 'title', 'items'));
     }
 
