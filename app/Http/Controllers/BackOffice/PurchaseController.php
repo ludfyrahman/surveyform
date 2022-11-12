@@ -195,7 +195,26 @@ class PurchaseController extends Controller
                 ]);
 
 
-                $detail = PurchaseDetail::where('status', SaleStatus::PROSES)->update(['status' => SaleStatus::DONE, 'pembelian_id' => $model->id]);
+
+                $details = PurchaseDetail::where('status', SaleStatus::PROSES)->get();
+
+                foreach ($details as $key => $detail) {
+
+                    $updateDetail = PurchaseDetail::find($detail->id);
+                    $updateDetail->status = SaleStatus::DONE;
+                    $updateDetail->pembelian_id = $model->id;
+                    $updateDetail->save();
+                    /**
+                     * update field stok in product
+                     */
+                    if($detail->tipe == ItemType::BARANG){
+                        $product = Product::find($detail->item_id);
+                        $product->stok = $product->stok + $detail->jumlah;
+                        $product->save();
+                    }
+
+                }
+
             });
 
             return redirect('purchase')->with('success', 'Berhasil menambah data!');

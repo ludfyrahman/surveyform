@@ -74,6 +74,9 @@ class SaleController extends Controller
                 $harga = 0;
                 if($request->tipe == ItemType::BARANG){
                     $find = Product::find($request->item_id);
+                    if($find->stok < $request->jumlah){
+                        return back()->with('failed', 'jumlah pembelian melebihi stok yang tersedia');
+                    }
                     $harga = $find->harga_jual;
                 }else{
                     $find = Jasa::find($request->item_id);
@@ -196,7 +199,23 @@ class SaleController extends Controller
                 ]);
 
 
-                $detail = SaleDetail::where('status', SaleStatus::PROSES)->update(['status' => SaleStatus::DONE, 'penjualan_id' => $model->id]);
+                // $detail = SaleDetail::where('status', SaleStatus::PROSES)->update(['status' => SaleStatus::DONE, 'penjualan_id' => $model->id]);
+                $details = SaleDetail::where('status', SaleStatus::PROSES)->get();
+                foreach ($details as $key => $detail) {
+                    $updateDetail = SaleDetail::find($detail->id)->update(['status' => SaleStatus::DONE, 'pembelian_id' => $model->id]);
+                    /**
+                     * update field stok in product
+                     */
+                    if($detail->tipe == ItemType::BARANG){
+                        $product = Product::find($detail->item_id);
+                        if($product->stok < 1){
+                            return back()->with('failed', 'stok tidak valid silahkan tambah stok terlebih dahulu');
+                        }
+                        $product->stok = $product->stok - $detail->jumlah;
+                        $product->save();
+                    }
+
+                }
             });
 
             return redirect('sale')->with('success', 'Berhasil menambah data!');
