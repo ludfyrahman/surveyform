@@ -15,6 +15,7 @@ use App\Http\Controllers\BackOffice\UnitController;
 use App\Http\Controllers\BackOffice\TypeController;
 use App\Http\Controllers\BackOffice\SaleController;
 use App\Http\Controllers\BackOffice\PurchaseController;
+use App\Http\Controllers\BackOffice\SosmedController;
 use App\Http\Controllers\BackOffice\VoucherController;
 use App\Models\Voucher;
 
@@ -67,5 +68,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('unit', UnitController::class);
     Route::resource('voucher', VoucherController::class);
     Route::resource('kehadiran', AbsensiController::class);
+    Route::resource('sosmed', SosmedController::class);
 
 });

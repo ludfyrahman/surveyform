@@ -23,6 +23,7 @@
                             <li aria-haspopup="true"><a href="{{route('product.index')}}" class="slide-item"> Barang</a></li>
                             <li aria-haspopup="true"><a href="{{route('service.index')}}" class="slide-item"> Jasa</a></li>
                             <li aria-haspopup="true"><a href="{{route('voucher.index')}}" class="slide-item"> Voucher</a></li>
+                            <li aria-haspopup="true"><a href="{{route('sosmed.index')}}" class="slide-item"> Sosial Media</a></li>
                         </ul>
                     </li>
                     @endif
