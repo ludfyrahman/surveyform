@@ -161,7 +161,7 @@
                                         <p class="text-danger"><i>* Wajib Di isi</i></p>
                                         <div class="form-group mb-0 mt-3 justify-content-end">
                                             <div>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="submit" class="btn btn-primary" onclick="return confirm('apakah anda yakin ingin menambahkan transaksi ini?')">Simpan</button>
                                                 <button type="reset" class="btn btn-secondary">Batal</button>
                                                 <a href="{{ route('type.index') }}" class="btn btn-info">Kembali</a>
                                             </div>

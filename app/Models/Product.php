@@ -10,4 +10,12 @@ class Product extends Model
     use HasFactory;
     protected $table = 'barang';
     protected $fillable = ['satuan_id', 'kategori_id', 'kode', 'nama', 'harga_beli', 'harga_jual', 'stok', 'foto', 'expired_date', 'status', 'deskripsi'];
+
+    public function kategori(){
+        return $this->belongsTo(Type::class, 'kategori_id');
+    }
+
+    public function satuan(){
+        return $this->belongsTo(Unit::class, 'satuan_id');
+    }
 }
