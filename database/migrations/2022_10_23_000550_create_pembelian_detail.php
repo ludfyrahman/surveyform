@@ -15,7 +15,7 @@ class CreatePembelianDetail extends Migration
     {
         Schema::create('pembelian_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pembelian_id')->unsigned()->nullable()
+            $table->integer('pembelian_id')->unsigned()->nullable();
             $table->integer('item_id')->unsigned();
             $table->integer('jumlah')->default(1);
             $table->integer('harga')->default(0);
