@@ -14,7 +14,14 @@ class FinanceController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Laporan Keuangan";
+        $subtitle = "Data Pembelian dan Penjualan";
+        //query penjualan
+
+        //query pembelian
+
+        // grouping dan order by created_at desc
+        return view('pages.backoffice.finance.index', compact('title', 'subtitle'));
     }
 
     /**
@@ -46,7 +53,9 @@ class FinanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'Detail Penjualan';
+        $subtitle = 'Detail Item Penjualan';
+        return view('pages.backoffice.finance.detail', compact('title', 'subtitle'));
     }
 
     /**
