@@ -19,6 +19,7 @@ use App\Http\Controllers\BackOffice\SosmedController;
 use App\Http\Controllers\BackOffice\VoucherController;
 use App\Http\Controllers\BackOffice\StokController;
 use App\Http\Controllers\BackOffice\FinanceController;
+use App\Http\Controllers\BackOffice\AttendanceController;
 use App\Models\Voucher;
 
 /*
@@ -76,6 +77,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::prefix('report')->group(function () {
         Route::resource('stok', StokController::class);
         Route::resource('finance', FinanceController::class);
-        Route::resource('attendance', FinanceController::class);
+        Route::resource('attendance', AttendanceController::class);
     });
 });
