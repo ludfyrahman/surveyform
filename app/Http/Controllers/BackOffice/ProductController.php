@@ -173,4 +173,9 @@ class ProductController extends Controller
             return back()->with('failed', 'Gagal menghapus data!' . $th->getMessage());
         }
     }
+
+
+    public function getData($id){
+        
+    }
 }

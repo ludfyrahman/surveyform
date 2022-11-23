@@ -29,7 +29,9 @@
                                 <th class="wd-15p border-bottom-0">Nama</th>
                                 <th class="wd-20p border-bottom-0">Username</th>
                                 <th class="wd-15p border-bottom-0">Telepon</th>
-                                <th class="wd-15p border-bottom-0">Status</th>
+                                @if (Auth::user()->role == 'Super Admin')
+                                    <th class="wd-15p border-bottom-0">Status</th>
+                                @endif
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
                         </thead>
@@ -39,11 +41,21 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->telepon }}</td>
-                                    <td>{{ $item->status }}</td>
-                                    <td><a href="{{url('/employe/'.$item->id.'/edit')}}" class="btn btn-sm btn-info"> <i class="mdi mdi-pencil"></i>
+                                    @if (Auth::user()->role == 'Super Admin')
+                                        <td>{{ $item->status }}</td>
+                                    @endif
+                                    <td class="d-flex"><a href="{{ url('/employe/' . $item->id . '/edit') }}" class="btn btn-sm btn-info me-2">
+                                            <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
-                                        <a href="" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i>
-                                            Hapus</a>
+                                        <form method="POST" action="{{ route('employe.destroy', $item->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit"
+                                                onclick="return confirm('apakah anda yakin ingin menghapus data ??')"
+                                                class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i>
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

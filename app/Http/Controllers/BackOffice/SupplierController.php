@@ -18,8 +18,14 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
-        $data = Supplier::all();
+        $data = [];
+        if (Auth::user()->role == 'Super Admin') {
+            $data = Supplier::all();
+        } else {
+            $data = Supplier::where('status', 'Admin')->get();
+        }
+
+
         $title = 'List Data Supplier';
         return view('pages.backoffice.supplier.index', compact('data', 'title'));
     }
@@ -56,7 +62,6 @@ class SupplierController extends Controller
             'nama' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
-            'status' => 'required',
         ]);
 
         try {
@@ -64,7 +69,7 @@ class SupplierController extends Controller
                 'nama'      => $request->nama,
                 'telepon'   => $request->telepon,
                 'alamat'    => $request->alamat,
-                'status'    => $request->status,
+                'status'    => $request->status ?? 'Aktif',
             ]);
             return redirect('supplier')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
@@ -111,14 +116,14 @@ class SupplierController extends Controller
             'nama' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
-            'status' => 'required',
+
         ]);
         try {
             $data = ([
                 'nama'      => $request->nama,
                 'telepon'   => $request->telepon,
                 'alamat'    => $request->alamat,
-                'status'    => $request->status,
+                'status'    => $request->status ?? 'Aktif',
             ]);
 
             Supplier::where('id', $id)->update($data);
