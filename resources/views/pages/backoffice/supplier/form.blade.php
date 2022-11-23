@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">telepon <span class="tx-danger">*</span></label>
+                                    <label for="">Telepon <span class="tx-danger">*</span></label>
                                     <input type="text" name="telepon"
                                         class="form-control @error('telepon') parsley-error @enderror"
                                         placeholder="telepon" value="{{$data->telepon == '' ? old('telepon') : $data->telepon}}">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">alamat <span class="tx-danger">*</span></label>
+                                    <label for="">Alamat <span class="tx-danger">*</span></label>
                                     <input type="text" name="alamat"
                                         class="form-control @error('alamat') parsley-error @enderror"
                                         placeholder="alamat" value="{{$data->alamat == '' ? old('alamat') : $data->alamat}}">
@@ -64,9 +64,10 @@
                                     @enderror
                                 </div>
                             </div>
+                            @if (Auth::user()->role == 'Super Admin')
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">status <span class="tx-danger">*</span></label>
+                                    <label for="">Status <span class="tx-danger">*</span></label>
 
                                     @php $status = $data->status == '' ? old('status') : $data->status; @endphp
                                     <select name="status" id="" class="form-control" required>
@@ -81,6 +82,8 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            @endif
 
                         </div>
                         <div class="form-group mb-0 mt-3 justify-content-end">

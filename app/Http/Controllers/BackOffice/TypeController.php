@@ -122,7 +122,11 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
-        Type::find($id)->delete();
+        try {
+            Type::find($id)->delete();
         return redirect('type')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menghapus data!');
+        }
     }
 }
