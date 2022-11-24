@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
@@ -18,14 +19,14 @@ class AttendanceController extends Controller
     {
         $title = "Laporan Kehadiran Karyawan";
         $subtitle = "Data Pembelian dan Penjualan";
-        $data = DB::select("SELECT absensi.pegawai_id, pegawai.nama, 
+        $data = DB::select("SELECT absensi.pegawai_id, pegawai.nama,
                             COUNT(IF(absensi.keterangan = 'Hadir', 1, NULL)) 'Hadir',
                             COUNT(IF(absensi.keterangan = 'Sakit', 1, NULL)) 'Sakit',
                             COUNT(IF(absensi.keterangan = 'Tanpa Keterangan', 1, NULL)) 'Alpa',
                             COUNT(IF(absensi.keterangan = 'Izin', 1, NULL)) 'Izin'
-                            FROM absensi JOIN pegawai ON absensi.pegawai_id=pegawai.id 
+                            FROM absensi JOIN pegawai ON absensi.pegawai_id=pegawai.id
                             GROUP BY absensi.pegawai_id");
-        // return $data;
+        return $data;
 
         return view('pages.backoffice.attendance.index', compact('title', 'subtitle'));
     }
@@ -61,7 +62,9 @@ class AttendanceController extends Controller
     {
         $title = "Detail Kehadiran Karyawan";
         $subtitle = "Data Kehadiran Karyawan";
-        return view('pages.backoffice.attendance.detail', compact('title','subtitle'));
+        $data = Absensi::where('pegawai_id', $id)->get();
+        $employee = Employee::where('id', $id)->first();
+        return view('pages.backoffice.attendance.detail', compact('title','subtitle', 'data', 'employee'));
     }
 
     /**

@@ -20,35 +20,40 @@
                 @endif
 
             </div>
-            <div class="card-body">                
-                
+            <div class="card-body">
+                <h4>Informasi Karyawan </h4>
+                <table class="table table-striped mt-3">
+                    <tr>
+                        <td>Nama</td><td>{{$employee->nama}}</td>
+                    </tr>
+                    <tr>
+                        <td>Telepon</td><td>{{$employee->telepon}}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td><td>{{$employee->alamat}}</td>
+                    </tr>
+
+
+                </table>
+                <h4>Informasi Kehadiran </h4>
                 <div class="table-responsive">
                     <table class="table text-md-nowrap" id="example1">
                         <thead>
                             <tr>
                                 <th class=" border-bottom-0">No</th>
-                                <th class=" border-bottom-0">Nama Karyawan</th>
                                 <th class=" border-bottom-0">Tanggal</th>
                                 <th class=" border-bottom-0">Kehadiran</th>
-                                <th class=" border-bottom-0">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_jual) }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_beli) }}</td>
-                                    <td>{{ $item->stok }}</td>
-                                    <td>{{ $item->satuan }}</td>
-                                    <td>{{ $item->kategori }}</td>
-                                    <td class="d-flex">
-                                        <a href="{{ route('stok.show', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
-                                            Detail</a>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ Helper::tanggal($item->tanggal) }}</td>
+                                    <td>{{ $item->keterangan }}</td>
+
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
