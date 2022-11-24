@@ -15,10 +15,19 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $data = Customer::all();
+        $data = [];
+        if (auth()->user()->role == 'Super Admin') {
+            $data = Customer::all();
+        } else {
+            $data = Customer::where('status', 'Aktif')->get();
+        }
+
+
+
         $title = 'List Data Pelanggan';
         return view('pages.backoffice.customer.index', compact('data', 'title'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +62,6 @@ class CustomerController extends Controller
             'nama' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
-            'status' => 'required',
         ]);
 
         try {
@@ -63,7 +71,7 @@ class CustomerController extends Controller
                 'alamat'    => $request->alamat,
                 'instansi'    => $request->instansi ?? '-',
                 'telepon_instansi'    => $request->telepon_instansi ?? '-',
-                'status'    => $request->status,
+                'status'    => $request->status ?? 'Aktif',
             ]);
             return redirect('customer')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
@@ -90,8 +98,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
+        $title = 'Ubah Data Pelanggan';
         $data = Customer::where('id', $id)->first();
-        return view('pages.backoffice.customer.form', compact('data'));
+        return view('pages.backoffice.customer.form', compact('data', 'title'));
     }
 
     /**
@@ -107,7 +116,6 @@ class CustomerController extends Controller
             'nama' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
-            'status' => 'required',
         ]);
         try {
             $data = ([
@@ -116,12 +124,13 @@ class CustomerController extends Controller
                 'instansi'      => $request->instansi ?? '-',
                 'telepon_instansi'   => $request->telepon_instansi ?? '-',
                 'alamat'    => $request->alamat,
-                'status'    => $request->status,
+                'status'    => $request->status ?? 'Aktif',
             ]);
 
             Customer::where('id', $id)->update($data);
             return redirect('customer')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
+            return $th;
             return back()->with('failed', 'Gagal mengubah data!');
         }
     }
@@ -134,7 +143,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::find($id)->delete();
+        Customer::where('id', $id)->update(['status' => 'Nonaktif']);
         return redirect('customer')->with('success', 'Berhasil mengubah data!');
     }
 }

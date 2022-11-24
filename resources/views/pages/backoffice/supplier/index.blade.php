@@ -38,7 +38,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->telepon }}</td>
-                                    <td><a href="{{ route('supplier.edit', $item->id)}}" class="btn btn-sm btn-info"> <i class="mdi mdi-pencil"></i>
+                                    <td class="d-flex"><a href="{{ route('supplier.edit', $item->id)}}" class="btn btn-sm btn-info  me-2"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
                                         <form method="POST" action="{{route('supplier.destroy', $item->id)}}">
                                             @method('delete')

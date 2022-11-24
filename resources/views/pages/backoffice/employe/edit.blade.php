@@ -18,7 +18,7 @@
             <div class="card-body">
 
                 <div class="card-body pt-0">
-                    <form class="form-horizontal" action="{{ url('employe/'.$data->id)}}" method="POST"
+                    <form class="form-horizontal" action="{{ url('employe/' . $data->id) }}" method="POST"
                         enctype="multipart/form-data" data-parsley-validate="">
                         @csrf
                         @method('PATCH')
@@ -68,8 +68,8 @@
                                 <div class="form-group">
                                     <label for="">email <span class="tx-danger">*</span></label>
                                     <input type="text" name="email"
-                                        class="form-control @error('email') parsley-error @enderror"
-                                        placeholder="email" value="{{ $data->email }}">
+                                        class="form-control @error('email') parsley-error @enderror" placeholder="email"
+                                        value="{{ $data->email }}">
                                     @error('email')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -92,21 +92,26 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Status <span class="tx-danger">*</span></label>
-                                    <select name="status" class="form-control @error('status') parsley-error @enderror">
-                                        <option value="">Pilih status</option>
-                                        <option {{ $data->status == 'Aktif' ? 'selected' : ''}} value="Aktif">Aktif</option>
-                                        <option {{ $data->status == 'Nonaktif' ? 'selected' : ''}} value="Nonaktif">Nonaktif</option>
-                                    </select>
-                                    @error('status')
-                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
-                                            <li class="parsley-required">{{ $message }}</li>
-                                        </ul>
-                                    @enderror
+                            @if (Auth::user()->role == 'Super Admin')
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Status <span class="tx-danger">*</span></label>
+                                        <select name="status"
+                                            class="form-control @error('status') parsley-error @enderror">
+                                            <option value="">Pilih status</option>
+                                            <option {{ $data->status == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif
+                                            </option>
+                                            <option {{ $data->status == 'Nonaktif' ? 'selected' : '' }} value="Nonaktif">
+                                                Nonaktif</option>
+                                        </select>
+                                        @error('status')
+                                            <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                                <li class="parsley-required">{{ $message }}</li>
+                                            </ul>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Alamat <span class="tx-danger">*</span></label>

@@ -16,9 +16,20 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        $data = Employee::leftJoin('users', 'users.id', 'pegawai.users_id')
+        $data =[];
+        if (auth()->user()->role == 'Super Admin') {
+            $data = Employee::leftJoin('users', 'users.id', 'pegawai.users_id')
             ->select('pegawai.*', 'users.username')
             ->get();
+        } else {
+            $data = Employee::leftJoin('users', 'users.id', 'pegawai.users_id')
+            ->select('pegawai.*', 'users.username')
+            ->where('users.status', 'Aktif')
+            ->where('pegawai.status', 'Aktif')
+            ->get();
+        }
+
+
         return view('pages.backoffice.employe.index', compact('data'));
     }
 
@@ -127,7 +138,7 @@ class EmployeController extends Controller
                 'nama' => $request->nama,
                 'telepon' => $request->telepon,
                 'alamat' => $request->alamat,
-                'status' => $request->status,
+                'status' => $request->status ?? 'Aktif',
             ]);
             return redirect('employe')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
@@ -144,7 +155,11 @@ class EmployeController extends Controller
     public function destroy($id)
     {
         //
-        Employee::find($id)->delete();
+        try {
+            Employee::where('id', $id)->update(['status' => 'Nonaktif']);
         return redirect('employe')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

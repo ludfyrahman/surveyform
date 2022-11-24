@@ -15,7 +15,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = [];
+        if (auth()->user()->role == 'Super Admin') {
+            $data = User::all();
+        } else {
+            $data = User::where('status', 'Aktif')->get();
+        }
+
         return view('pages.backoffice.user.index', compact('data'));
     }
 
@@ -123,7 +129,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            User::where('id', $id)->update(['status' => 'Nonaktif']);
+            return redirect('user')->with('success', 'Berhasil menghapus data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menghapus data!');
+        }
     }
 
 
