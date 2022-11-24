@@ -20,6 +20,7 @@ use App\Http\Controllers\BackOffice\VoucherController;
 use App\Http\Controllers\BackOffice\StokController;
 use App\Http\Controllers\BackOffice\FinanceController;
 use App\Http\Controllers\BackOffice\AttendanceController;
+use App\Http\Controllers\SiteController;
 use App\Models\Voucher;
 
 /*
@@ -33,9 +34,8 @@ use App\Models\Voucher;
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
-});
+
+Route::get('/', [SiteController::class, 'index'])->name('home');
 Route::middleware(['auth',  'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profil', [UserController::class, 'profile'])->name('profile');
