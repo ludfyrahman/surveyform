@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'barang';
+    private $path = 'storage/product/';
     protected $fillable = ['satuan_id', 'kategori_id', 'kode', 'nama', 'harga_beli', 'harga_jual', 'stok', 'foto', 'expired_date', 'status', 'deskripsi'];
 
     public function kategori(){
@@ -18,4 +19,14 @@ class Product extends Model
     public function satuan(){
         return $this->belongsTo(Unit::class, 'satuan_id');
     }
+
+    public function getFotoAttribute(){
+        if($this->attributes['foto'] == null){
+            return null;
+        }else{
+            return asset($this->path.$this->attributes['foto']);
+        }
+    }
+
+
 }
