@@ -7,7 +7,7 @@
                     <div class="edu-footer-widget">
                         <div class="logo">
                             <a href="index.html">
-                                <img class="logo-light" src="{{ asset('frontend/images/logo/logo-white.png') }}" alt="Site Logo">
+                                <img class="logo-light" src="{{ asset('img/logo/pos.png') }}" alt="Site Logo">
                             </a>
                         </div>
                         <p class="description">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>

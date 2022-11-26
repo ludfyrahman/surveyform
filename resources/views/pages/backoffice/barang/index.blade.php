@@ -45,7 +45,7 @@
                                     <td>{{ Helper::rupiah($item->harga_beli) }}</td>
                                     <td>{{ $item->stok }}</td>
                                     <td>{{ $item->satuan }}</td>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td><span class="badge bg-primary">{{ $item->kategori }}</span></td>
                                     <td class="d-flex">
                                         <a href="{{ route('product.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
