@@ -17,9 +17,15 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/x-icon" />
 
+    <!-- Internal Select2 css -->
+		<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <!-- Icons css -->
     <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
 
+
+    <link href="{{ asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/pickerjs/picker.min.css') }}" rel="stylesheet">
     <!-- Bootstrap css -->
     <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -161,6 +167,8 @@
 <script src="{{ asset('assets/plugins/datatable/pdfmake/pdfmake.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatable/pdfmake/vfs_fonts.js') }}"></script>
 
+<!-- Internal Select2.min js -->
+<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 
 <!--Internal  Datatable js -->
 <script src="{{ asset('assets/js/table-data.js') }}"></script>
@@ -169,8 +177,14 @@
 <!-- P-scroll js -->
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
+<!--Internal  Datepicker js -->
+<script src="{{ asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+<!--Internal  jquery-simple-date time picker js -->
+<script src="{{ asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
 
-
+<!--Internal  pickerjs js -->
+<script src="{{ asset('assets/plugins/pickerjs/picker.min.js') }}"></script>
 <!--Internal Fileuploads js-->
 <script src="{{ asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
 <script src="{{ asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
@@ -180,7 +194,8 @@
 
 <!-- Internal Modal js-->
 <script src="{{ asset('assets/js/modal.js')}}"></script>
-
+<!--Internal  jquery.maskedinput js -->
+<script src="{{ asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
 <!-- custom js -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
@@ -193,6 +208,8 @@ const formatRupiah = (number)=>{
     }).format(number);
   }
 </script>
+<!-- Internal form-elements js -->
+<script src="{{ asset('assets/js/form-elements.js') }}"></script>
 @stack('script')
 
 </html>

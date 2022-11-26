@@ -28,5 +28,9 @@ class Product extends Model
         }
     }
 
+    public function penjualan(){
+        return $this->hasMany(SaleDetail::class, 'item_id');
+    }
+
 
 }

@@ -58,7 +58,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $request->validate([
             'nama' => 'required',
             'harga_beli' => 'required|numeric',
@@ -68,8 +67,15 @@ class ProductController extends Controller
             'satuan' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
+            'foto'     => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
         try {
+            $foto = null;
+            if($request->foto != null){
+                $file = $request->file('foto');
+                $file->storeAs('public/product/', $file->hashName());
+                $foto      = $file->hashName();
+            }
             Product::create([
                 'nama'      => $request->nama,
                 'kode'   => $request->kode,
@@ -80,7 +86,7 @@ class ProductController extends Controller
                 'satuan_id'    => $request->satuan,
                 'kategori_id'    => $request->kategori,
                 'stok'    => $request->stok,
-                'foto'    => '-',
+                'foto'    => $foto,
                 'status'    => $request->status ?? 'Aktif',
             ]);
             return redirect('product')->with('success', 'Berhasil menambah data!');
@@ -134,8 +140,16 @@ class ProductController extends Controller
             'satuan' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
+            'foto'     => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
         try {
+            $product = Product::find($id);
+            $foto = $product->foto;
+            if($request->foto != null){
+                $file = $request->file('foto');
+                $file->storeAs('public/product/', $file->hashName());
+                $foto      = $file->hashName();
+            }
             Product::where('id', $id)->update([
                 'nama'      => $request->nama,
                 'kode'   => $request->kode,
@@ -146,7 +160,7 @@ class ProductController extends Controller
                 'satuan_id'    => $request->satuan,
                 'kategori_id'    => $request->kategori,
                 'stok'    => $request->stok,
-                'foto'    => '-',
+                'foto'    => $foto,
                 'status'    => $request->status ?? 'Aktif',
             ]);
             return redirect('product')->with('success', 'Berhasil mengubah data!');
@@ -176,6 +190,6 @@ class ProductController extends Controller
 
 
     public function getData($id){
-        
+
     }
 }

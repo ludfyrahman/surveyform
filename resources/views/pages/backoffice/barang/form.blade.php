@@ -141,7 +141,6 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Status </label>
-
                                     @php $status = $data->status; @endphp
                                     <select name="status" id="" class="form-control">
                                         <option value="">Pilih Status</option>
@@ -158,10 +157,24 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="">Foto </label>
+                                    @if ($data->type != 'create')
+                                    <a href="{{ $data->foto }}">Lihat Foto Produk</a>
+                                    @endif
+                                    <input type="file" class="form-control @error('foto') parsley-error @enderror" name='foto'>
+                                    @error('foto')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="">Deskripsi <span class="tx-danger">*</span></label>
-                                    <input type="text" name="deskripsi"
-                                        class="form-control @error('deskripsi') parsley-error @enderror"
-                                        placeholder="deskripsi" value="{{ $data->deskripsi }}">
+                                        <textarea name="deskripsi" class="form-control @error('deskripsi') parsley-error @enderror" id="" cols="30" rows="10">
+                                            {{ $data->deskripsi }}
+                                        </textarea>
                                     @error('deskripsi')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>

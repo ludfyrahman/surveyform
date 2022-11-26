@@ -25,22 +25,7 @@ $(function() {
 	$('#phoneExtMask').mask('(999) 999-9999? ext 99999');
 	$('#ssnMask').mask('999-99-9999');
 	// Color picker
-	$('#colorpicker').spectrum({
-		color: '#17A2B8'
-	});
-	$('#showAlpha').spectrum({
-		color: 'rgba(23,162,184,0.5)',
-		showAlpha: true
-	});
-	$('#showPaletteOnly').spectrum({
-		showPaletteOnly: true,
-		showPalette: true,
-		color: '#DC3545',
-		palette: [
-			['#1D2939', '#fff', '#0866C6', '#23BF08', '#F49917'],
-			['#DC3545', '#17A2B8', '#6610F2', '#fa1e81', '#72e7a6']
-		]
-	});
+
 	// Datepicker
 	$('.fc-datepicker').datepicker({
 		showOtherMonths: true,
@@ -74,9 +59,9 @@ $(function() {
 			placeholder: 'Choose one'
 		});
 	});
-	
+
 	// Filebrowser
-	
+
 	$(document).on('change', ':file', function() {
 	var input = $(this),
 		numFiles = input.get(0).files ? input.get(0).files.length : 1,

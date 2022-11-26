@@ -27,7 +27,7 @@
                             <div class="edu-card card-type-3 radius-small">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <a href="#">
+                                        <a href="#" style="height: 200px">
                                             <img class="w-100" src="{{$product->foto}}" alt="Course Meta">
                                         </a>
                                         <div class="wishlist-top-right">
@@ -49,7 +49,7 @@
                                                 </div>
                                             </div>
                                             <ul class="edu-meta meta-02">
-                                                <li><i class="icon-file-list-3-line"></i>45 Lessons</li>
+                                                <li><i class="icon-file-list-3-line"></i>{{ count($product->penjualan)}} Penjualan</li>
                                             </ul>
                                         </div>
                                         <h6 class="title"><a href="#">{{$product->nama}}</a>
