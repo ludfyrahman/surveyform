@@ -83,9 +83,9 @@
                                     <label for="">Kategori/Jenis <span class="tx-danger">*</span></label>
                                     <select name="kategori" required
                                         class="form-control @error('kategori') parsley-error @enderror" id="">
-                                        <option value="">Pilih Kategori</option>
+                                        <option value="">Pilih Kategori {{$data->kategori_id}}</option>
                                         @foreach ($kategori as $item)
-                                            <option {{$data->kategori_id == $item->id || $data->kategori == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->kategori }}</option>
+                                            <option {{ $data->kategori_id == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->kategori }}</option>
                                         @endforeach
                                     </select>
                                     @error('kategori')
@@ -102,7 +102,7 @@
                                         class="form-control @error('satuan') parsley-error @enderror" id="">
                                         <option value="">Pilih Satuan</option>
                                         @foreach ($satuan as $item)
-                                            <option {{$data->satuan_id == $item->id || $data->satuan == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->satuan }}</option>
+                                            <option {{$data->satuan_id == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->satuan }}</option>
                                         @endforeach
                                     </select>
                                     @error('satuan')
