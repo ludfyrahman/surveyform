@@ -78,16 +78,16 @@
         </div>
         <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
             <div class="shape-image shape-image-1">
-                <img src="assets/images/shapes/shape-21.png" alt="Shape Thumb" />
+                <img src="{{ asset('frontend/images/shapes/shape-21.png') }}" alt="Shape Thumb" />
             </div>
             <div class="shape-image shape-image-2">
-                <img src="assets/images/shapes/shape-13-04.png" alt="Shape Thumb" />
+                <img src="{{ asset('frontend/images/shapes/shape-13-04.png') }}" alt="Shape Thumb" />
             </div>
             <div class="shape-image shape-image-3">
-                <img src="assets/images/shapes/shape-03-05.png" alt="Shape Thumb" />
+                <img src="{{ asset('frontend/images/shapes/shape-03-05.png') }}" alt="Shape Thumb" />
             </div>
             <div class="shape-image shape-image-4">
-                <img src="assets/images/shapes/shape-15-02.png" alt="Shape Thumb" />
+                <img src="{{ asset('frontend/images/shapes/shape-15-02.png') }}" alt="Shape Thumb" />
             </div>
         </div>
 

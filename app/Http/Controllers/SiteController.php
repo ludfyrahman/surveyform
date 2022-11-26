@@ -17,7 +17,7 @@ class SiteController extends Controller
     public function index()
     {
         //
-        $products = Product::with('kategori')->get();
+        $products = Product::with('kategori', 'penjualan')->get();
         $types = Type::all();
         return view('pages.frontend.index', compact('types', 'products'));
     }

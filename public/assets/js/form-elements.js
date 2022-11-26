@@ -74,9 +74,9 @@ $(function() {
 			placeholder: 'Choose one'
 		});
 	});
-	
+
 	// Filebrowser
-	
+
 	$(document).on('change', ':file', function() {
 	var input = $(this),
 		numFiles = input.get(0).files ? input.get(0).files.length : 1,
