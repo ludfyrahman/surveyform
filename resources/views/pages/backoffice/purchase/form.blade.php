@@ -52,8 +52,7 @@
                                 <div class="form-group">
 
                                     <label for="">Item <span class="tx-danger">*</span></label>
-                                    <select name="item_id" id='item' class="form-control @error('item_id') parsley-error @enderror">
-                                        <option value="">Pilih Item</option>
+                                    <select name="item_id" id='item' class="form-control select2 @error('item_id') parsley-error @enderror">
                                     </select>
                                     @error('item_id')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
