@@ -24,8 +24,8 @@ class CreatePenjualanDetail extends Migration
             $table->enum('status', ['Proses', 'Done']);
             $table->timestamps();
             $table->foreign('penjualan_id')->references('id')->on('penjualan');
-            $table->foreign('item_id', 'item_barang')->references('id')->on('barang');
-            $table->foreign('item_id', 'item_jasa')->references('id')->on('jasa');
+            // $table->foreign('item_id', 'item_barang')->references('id')->on('barang');
+            // $table->foreign('item_id', 'item_jasa')->references('id')->on('jasa');
         });
     }
 

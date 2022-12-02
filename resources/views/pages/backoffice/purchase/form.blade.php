@@ -132,7 +132,7 @@
                                                         <td colspan='5' class="text-right"><h5>Supplier <span class="tx-danger">*</span></h5></td>
                                                         <td class="text-right">
                                                             <select name="supplier_id" id="supplier_id" class="form-control" required>
-                                                                <option value="">Pilih Customer</option>
+                                                                <option value="">Pilih Supplier</option>
                                                                 @foreach ($suppliers as $supplier)
                                                                     <option value="{{$supplier->id}}" >{{$supplier->nama}}</option>
                                                                 @endforeach
