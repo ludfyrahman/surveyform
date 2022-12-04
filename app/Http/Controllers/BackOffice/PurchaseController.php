@@ -4,7 +4,7 @@ namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
 use App\Models\PurchaseDetail;
@@ -48,7 +48,7 @@ class PurchaseController extends Controller
             'kategori'  => '',
             'type'      => 'create',
         ];
-        $invoice = Helper::kodeJual();
+        $invoice = Helper::kodeBeli();
         return view('pages.backoffice.purchase.form', compact('title','suppliers', 'data', 'items', 'vouchers','invoice'));
     }
 

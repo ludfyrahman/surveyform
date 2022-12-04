@@ -42,7 +42,7 @@
                             @endphp
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{ $item->tipe == \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
+                                <td>{{ $item->tipe ==    \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
                                 <td>{{ $item->tipe}} </td>
                                 <td>{{ $item->jumlah}} </td>
                                 <td class="text-right">{{ Helper::rupiah($item->harga)}} </td>
@@ -74,7 +74,7 @@
                     </table>
                 </div>
                 <hr class="mg-b-40">
-                <a href="{{ route('sale.index') }}" class="btn btn-info float-end mt-3 ms-2">
+                <a href="{{ route('purchase.index') }}" class="btn btn-info float-end mt-3 ms-2">
                     <i class="mdi mdi-back me-1"></i>Kembali
                 </a>
                 <a href="#" class="btn btn-danger float-end mt-3 ms-2"  onclick="javascript:window.print();">
@@ -88,7 +88,7 @@
     </div>
 @endsection
 @push('script')
-    <script>
+    {{-- <script>
         $(function(){
             $('#tipe').change(function(){
                 var val = $(this).val();
@@ -131,5 +131,5 @@
                 }
             })
         })
-    </script>
+    </script> --}}
 @endpush

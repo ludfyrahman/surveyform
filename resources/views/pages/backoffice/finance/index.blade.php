@@ -12,7 +12,8 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$5,74.12</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['daily']) }}
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +30,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$1,230.17</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['weekly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +47,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$7,125.70</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['monthly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$4,820.50</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['yearly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$5,74.12</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['daily']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +102,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$1,230.17</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['weekly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +119,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$7,125.70</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['monthly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +136,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">$4,820.50</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['yearly']) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +191,7 @@
                             <tr>
                                 <th class=" border-bottom-0">Kode</th>
                                 <th class=" border-bottom-0">Tanggal</th>
-                                <th class=" border-bottom-0">Tipe</th>
+                                <th class=" border-bottom-0">Tipe Transaksi</th>
                                 <th class=" border-bottom-0">Jenis Transaksi</th>
                                 <th class=" border-bottom-0">Total</th>
                                 <th class=" border-bottom-0">Status</th>
@@ -198,21 +199,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_jual) }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_beli) }}</td>
-                                    <td>{{ $item->stok }}</td>
-                                    <td>{{ $item->satuan }}</td>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td>{{ $item->invoice }}</td>
+                                    <td>{{ Helper::tanggal($item->tanggal) }}</td>
+                                    <td>{{ $item->tipe_transaksi }}</td>
+                                    <td>{{ $item->jenis }}</td>
+                                    <td>{{ Helper::rupiah($item->total) }}</td>
+                                    <td>{{ $item->status }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('stok.show', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
+                                        <a href="{{ route('finance.show', $item->invoice)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
                                             Detail</a>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-
+use Illuminate\Support\Facades\DB;
 
 use App\Models\SaleDetail;
 use App\Models\Sale;
