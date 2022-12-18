@@ -36,7 +36,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tipe <span class="tx-danger">*</span></label>
-                                    <select name="tipe" id='tipe' class="form-control @error('tipe') parsley-error @enderror">
+                                    <select name="tipe" required id='tipe' class="form-control @error('tipe') parsley-error @enderror">
                                         <option value="">Pilih Tipe</option>
                                         <option value="Jasa">Jasa</option>
                                         <option value="Barang">Barang</option>
@@ -52,7 +52,7 @@
                                 <div class="form-group">
 
                                     <label for="">Item <span class="tx-danger">*</span></label>
-                                    <select name="item_id" id='item' class="form-control select2 @error('item_id') parsley-error @enderror">
+                                    <select name="item_id" required id='item' class="form-control select2 @error('item_id') parsley-error @enderror">
                                     </select>
                                     @error('item_id')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
@@ -64,7 +64,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Jumlah <span class="tx-danger">*</span></label>
-                                    <input type="number" min='0' id='jumlah' name="jumlah"
+                                    <input type="number" required min='0' id='jumlah' name="jumlah"
                                         class="form-control @error('jumlah') parsley-error @enderror"
                                         placeholder="jumlah" value="{{old('jumlah')}}">
                                     @error('jumlah')
@@ -202,8 +202,8 @@
                 var val = $(this).val();
                 var item = $('#item');
                 var option = $('option:selected', item).attr('price');
-
-                $('#subtotal').text(option * val);
+                var sub = formatRupiah(option * val)
+                $('#subtotal').text(sub);
             });
 
             $('#voucher').change(function(){
