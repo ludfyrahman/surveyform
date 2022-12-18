@@ -2,150 +2,206 @@
 
 @section('content-app')
     <div class="container mt-4">
-        <div class="row row-sm">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-primary-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Hari Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['daily']) }}
-                                    </h4>
+        @if ($isFilter)
+            <div class="row row-sm">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-danger-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Total Pembelian</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($totalPurchase) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-danger-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Minggu Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['weekly']) }}</h4>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-primary-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Total Penjualan</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($totalSale) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-success-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Bulan Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['monthly']) }}</h4>
+            <!-- row closed -->
+        @else
+            <div class="row row-sm">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-primary-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Penjualan Hari Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summarySale['daily']) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-warning-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Tahun Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summarySale['yearly']) }}</h4>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-danger-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Penjualan Minggu Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summarySale['weekly']) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
-        </div>
-        <!-- row closed -->
-
-        <div class="row row-sm">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-primary-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Pembelian Hari Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['daily']) }}</h4>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-success-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Penjualan Bulan Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summarySale['monthly']) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-danger-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Pembelian Minggu Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['weekly']) }}</h4>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-warning-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Penjualan Tahun Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summarySale['yearly']) }}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-success-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Pembelian Bulan Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['monthly']) }}</h4>
+            <!-- row closed -->
+
+            <div class="row row-sm">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-primary-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Pembelian Hari Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summaryPurchase['daily']) }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-                <div class="card overflow-hidden sales-card bg-warning-gradient">
-                    <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
-                        <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Pembelian Tahun Ini</h6>
-                        </div>
-                        <div class="pb-0 mt-0">
-                            <div class="d-flex">
-                                <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summaryPurchase['yearly']) }}</h4>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-danger-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Pembelian Minggu Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summaryPurchase['weekly']) }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-success-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Pembelian Bulan Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summaryPurchase['monthly']) }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                    <div class="card overflow-hidden sales-card bg-warning-gradient">
+                        <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                            <div class="">
+                                <h6 class="mb-3 tx-12 text-white">Pembelian Tahun Ini</h6>
+                            </div>
+                            <div class="pb-0 mt-0">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <h4 class="tx-20 fw-bold mb-1 text-white">
+                                            {{ Helper::rupiah($summaryPurchase['yearly']) }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- row closed -->
+            <!-- row closed -->
+        @endif
 
         <div class="card">
             <div class="card-header pb-0">
@@ -171,16 +227,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 {{-- <label for=""></label> --}}
-                                <input class="form-control" placeholder="Enter your password" type="date">
+                                <input class="form-control" name="start_date" type="date">
                             </div>
                             <div class="col-md-1">
                                 <label for="" class="mt-2">S/d</label>
                             </div>
                             <div class="col-md-4">
-                                <input class="form-control" placeholder="Enter your password" type="date">
+                                <input class="form-control" name="end_date" type="date">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-main-primary btn-block">Filter</button>
+                                <button class="btn btn-main-primary btn-block" type="button"
+                                    onclick="filter()">Filter</button>
                             </div>
                         </div>
                     </form>
@@ -208,7 +265,8 @@
                                     <td>{{ Helper::rupiah($item->total) }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('finance.show', $item->invoice)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
+                                        <a href="{{ route('finance.show', $item->invoice) }}"
+                                            class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
                                             Detail</a>
                                     </td>
                                 </tr>
@@ -219,4 +277,27 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function filter() {
+            let start = document.getElementsByName("start_date")[0].value;
+            let end = document.getElementsByName("end_date")[0].value;
+            if (start === "") {
+                alert("Batas awal tidak boleh kosong");
+            } else if (end == "") {
+                alert("Batas akhir tidak boleh kosong");
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: "/report/finance?start=" + start + "&end=" + end,
+                    success: function(res) {
+                        window.location = "/report/finance?start=" + start + "&end=" + end;
+                        // console.log(res);
+                    }
+                });
+            }
+            console.log(start);
+            console.log(end);
+        }
+    </script>
 @endsection

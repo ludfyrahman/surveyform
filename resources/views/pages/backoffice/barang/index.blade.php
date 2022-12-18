@@ -41,8 +41,8 @@
                                 <tr>
                                     <td>{{ $item->kode }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_jual) }}</td>
                                     <td>{{ Helper::rupiah($item->harga_beli) }}</td>
+                                    <td>{{ Helper::rupiah($item->harga_jual) }}</td>
                                     <td>{{ $item->stok }}</td>
                                     <td>{{ $item->satuan }}</td>
                                     <td><span class="badge bg-primary">{{ $item->kategori }}</span></td>

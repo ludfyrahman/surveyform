@@ -96,7 +96,7 @@
                                         <select name="status"
                                             class="form-control @error('status') parsley-error @enderror">
                                             <option value="">Pilih status</option>
-                                            <option {{ old('status') == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif
+                                            <option {{ old('status') == 'Aktif' ? 'selected' : '' }} selected value="Aktif">Aktif
                                             </option>
                                             <option {{ old('status') == 'Nonaktif' ? 'selected' : '' }} value="Nonaktif">
                                                 Nonaktif</option>

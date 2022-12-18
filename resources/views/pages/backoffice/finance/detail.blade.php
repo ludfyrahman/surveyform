@@ -80,9 +80,7 @@
                 <a href="#" class="btn btn-danger float-end mt-3 ms-2"  onclick="javascript:window.print();">
                     <i class="mdi mdi-printer me-1"></i>Print
                 </a>
-                <a href="#" class="btn btn-success float-end mt-3">
-                    <i class="mdi mdi-telegram me-1"></i>Send Invoice
-                </a>
+               
             </div>
         </div>
     </div>

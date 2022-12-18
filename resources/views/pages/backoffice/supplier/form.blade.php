@@ -72,7 +72,7 @@
                                     @php $status = $data->status == '' ? old('status') : $data->status; @endphp
                                     <select name="status" id="" class="form-control" required>
                                         <option value="">Pilih Status</option>
-                                        <option {{$status == 'Aktif' ? 'selected' : ''}} value="Aktif">Aktif</option>
+                                        <option {{$status == 'Aktif' ? 'selected' : ''}} selected value="Aktif">Aktif</option>
                                         <option {{$status == 'Nonaktif' ? 'selected' : ''}} value="Nonaktif">Nonaktif</option>
                                     </select>
                                     @error('status')

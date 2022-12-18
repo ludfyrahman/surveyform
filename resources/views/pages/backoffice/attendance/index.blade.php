@@ -26,17 +26,17 @@
                     <form action="">
                         <div class="row">
                             <div class="col-md-4">
-                                {{-- <label for=""></label> --}}
-                                <input class="form-control" placeholder="Enter your password" type="date">
+
+                                <input class="form-control" name="start_date" type="date">
                             </div>
                             <div class="col-md-1">
                                 <label for="" class="mt-2">S/d</label>
                             </div>
                             <div class="col-md-4">
-                                <input class="form-control" placeholder="Enter your password" type="date">
+                                <input class="form-control" name="end_date" type="date">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-main-primary btn-block">Filter</button>
+                                <button type="button" onclick="filter()" class="btn btn-main-primary btn-block">Filter</button>
                             </div>
                         </div>
                     </form>
@@ -55,25 +55,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->kode }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_jual) }}</td>
-                                    <td>{{ Helper::rupiah($item->harga_beli) }}</td>
-                                    <td>{{ $item->stok }}</td>
-                                    <td>{{ $item->satuan }}</td>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td>{{ $item->Hadir }}</td>
+                                    <td>{{ $item->Izin }}</td>
+                                    <td>{{ $item->Sakit }}</td>
+                                    <td>{{ $item->Alpa }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('stok.show', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
+                                        <a href="{{ route('attendance.show', $item->pegawai_id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-book"></i>
                                             Detail</a>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function filter() {
+            let start = document.getElementsByName("start_date")[0].value;
+            let end = document.getElementsByName("end_date")[0].value;
+            if (start === "") {
+                alert("Batas awal tidak boleh kosong");
+            } else if (end == "") {
+                alert("Batas akhir tidak boleh kosong");
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: "/report/attendance?start=" + start + "&end=" + end,
+                    success: function(res) {
+                        window.location = "/report/attendance?start=" + start + "&end=" + end;
+                        
+                    }
+                });
+            }
+            console.log(start);
+            console.log(end);
+        }
+    </script>
 @endsection

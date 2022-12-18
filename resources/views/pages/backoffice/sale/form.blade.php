@@ -146,7 +146,7 @@
                                                             <select name="customer_id" id="customer_id" class="form-control" required>
                                                                 <option value="">Pilih Customer</option>
                                                                 @foreach ($customers as $customer)
-                                                                    <option value="{{$customer->id}}" >{{$customer->nama}}</option>
+                                                                    <option value="{{$customer->id}}" {{$customer->nama == 'General' ? 'selected' : ''}} >{{$customer->nama}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>

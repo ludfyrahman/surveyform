@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title mb-1">Tambah Data Jasa</h4>
+                <h4 class="card-title mb-1">Tambah Data Voucher</h4>
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -29,7 +29,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Nama Jasa <span class="tx-danger">*</span></label>
+                                    <label for="">Nama Voucher <span class="tx-danger">*</span></label>
                                     <input type="text" name="nama_voucher"
                                         class="form-control @error('nama_voucher') parsley-error @enderror" placeholder="Nama Voucher"
                                         value="{{ $data->nama_voucher }}">
