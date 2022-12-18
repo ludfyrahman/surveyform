@@ -46,10 +46,48 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">Logo <span class="tx-danger">*</span></label>
+                                    <label for="">Email Perusahaan <span class="tx-danger">*</span></label>
+                                    <input type="text" id="email" name="email"
+                                        class="form-control @error('email') parsley-error @enderror"
+                                        placeholder="Email Perusahaan" value="{{ $data->email }}">
+                                    @error('email')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">No Hp Perusahaan <span class="tx-danger">*</span></label>
+                                    <input type="text" id="email" name="phone"
+                                        class="form-control @error('phone') parsley-error @enderror"
+                                        placeholder="NoHp Perusahaan" value="{{ $data->phone }}">
+                                    @error('phone')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Dark Logo <span class="tx-danger">*</span></label>
                                     <input type="file" class="dropify" name="logo" data-height="200"
                                         data-default-file="{{ asset($data->logo) }}" />
                                     @error('logo')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Light Logo <span class="tx-danger">*</span></label>
+                                    <input type="file" class="dropify" name="light_logo" data-height="200"
+                                        data-default-file="{{ asset($data->light_logo) }}" />
+                                    @error('light_logo')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
@@ -65,8 +103,6 @@
                                     <textarea name="deskripsi" class="form-control @error('deskripsi') parsley-error @enderror" id="summernote" cols="10"
                                         rows="3"> {{ $data->deskripsi }}</textarea>
 
-
-
                                     @error('deskripsi')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -74,7 +110,21 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Alamat <span class="tx-danger">*</span></label>
+                                    <textarea name="deskripsi" class="form-control @error('alamat') parsley-error @enderror" id="summernote" cols="10"
+                                        rows="3"> {{ $data->alamat }}</textarea>
 
+                                    @error('alamat')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group mb-0 mt-3 justify-content-end">
                             <div>
