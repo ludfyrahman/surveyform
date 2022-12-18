@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\Models\ProfileCompany;
+use App\Models\Sosmed;
 use App\Models\Type;
 
 class SiteController extends Controller
@@ -19,7 +21,9 @@ class SiteController extends Controller
         //
         $products = Product::with('kategori', 'penjualan')->get();
         $types = Type::all();
-        return view('pages.frontend.index', compact('types', 'products'));
+        $social = Sosmed::all();
+        $profiles = ProfileCompany::first();
+        return view('pages.frontend.index', compact('types', 'products','social','profiles'));
     }
 
     /**

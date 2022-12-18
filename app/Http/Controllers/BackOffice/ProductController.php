@@ -91,7 +91,6 @@ class ProductController extends Controller
             ]);
             return redirect('product')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return $th;
             return back()->with('failed', 'Gagal menambah data!' . $th->getMessage());
         }
     }

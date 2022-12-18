@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
  * model block
  */
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Auth;
+
 class SupplierController extends Controller
 {
     /**

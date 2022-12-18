@@ -41,37 +41,13 @@
             <div class="col-lg-6">
                 <div class="inner">
                     <div class="section-title text-start" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                        <span class="pre-title">About Us</span>
-                        <h3 class="title">The highest result of education is tolerance</h3>
+                        <span class="pre-title">Tentang Kami</span>
+                        <h3 class="title">Kualitas Barang dan jasa prioritas kami</h3>
 
                     </div>
-                    <p class="description mt--40" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nunc null liobortis nibh porttitor. Facilisi arcu, nibh vel risus, morbi pharetra. Facilisi sit miam mauris non iaculis elit fusce amet nunc in odio molestie.</p>
-                    <div class="feature-style-5 row g-5">
-                        <div class="col-lg-12 col-xl-6" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                            <div class="edu-feature-list">
-                                <div class="icon">
-                                    <i class="icon-Board"></i>
-                                </div>
-                                <div class="content">
-                                    <h6 class="title">Flexible Classes</h6>
-                                    <p class="description">There are many variations of passages of the Ipsum available for now</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-6" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                            <div class="edu-feature-list">
-                                <div class="icon">
-                                    <i class="icon-Bag"></i>
-                                </div>
-                                <div class="content">
-                                    <h6 class="title">Educator Support</h6>
-                                    <p class="description">There are many variations of passages of the Ipsum available for now</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="description mt--40" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">Bidang usaha yang bergerak dalam pengadaan barang dan jasa konstruksi,terpercaya serta menjamin kualitas produk yang terbaik. kami memiliki lebih dari 30 relasi dan mitra kerja baik instansi pemerintahan dan swasta.</p>
                     <div class="read-more-btn mt--60 mt_lg--30 mt_md--30 mt_sm--30" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                        <a class="edu-btn" href="about-us-1.html">Learn More <i class="icon-arrow-right-line-right"></i></a>
+                        <a class="edu-btn" href="{{route('login')}}">Masuk Aplikasi <i class="icon-arrow-right-line-right"></i></a>
                     </div>
                 </div>
             </div>
