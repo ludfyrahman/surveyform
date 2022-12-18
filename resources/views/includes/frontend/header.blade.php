@@ -8,8 +8,7 @@
                         <div class="content text-start">
                             <h1 class="title" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
                                 CV ITA SOLUSI</h1>
-                            <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">Ultimate Feature
-                                Rich Education HTML5 Template for Online <br /> Schooling & Distance Learning.</p>
+                            <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">GENERALSUPPLIER<br />  AND CONSTRUCTOR</p>
                             <div class="btn-group-vertical" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
                                 <a class="edu-btn bg-white right-button" href="{{ url('/login') }}">Masuk Ke Aplikasi
                                     <i class="icon-arrow-right-line-right"></i>

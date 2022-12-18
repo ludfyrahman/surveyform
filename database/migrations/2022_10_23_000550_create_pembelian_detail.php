@@ -24,8 +24,8 @@ class CreatePembelianDetail extends Migration
             $table->enum('status', ['Proses', 'Done']);
             $table->timestamps();
             $table->foreign('pembelian_id')->references('id')->on('pembelian');
-            $table->foreign('item_id', 'item_barang_beli')->references('id')->on('barang');
-            $table->foreign('item_id', 'item_jasa_beli')->references('id')->on('jasa');
+            // $table->foreign('item_id', 'item_barang_beli')->references('id')->on('barang');
+            // $table->foreign('item_id', 'item_jasa_beli')->references('id')->on('jasa');
         });
     }
 

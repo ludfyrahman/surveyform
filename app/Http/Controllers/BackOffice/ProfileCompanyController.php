@@ -86,8 +86,16 @@ class ProfileCompanyController extends Controller
                 $name = Str::random(8) . '.' . $fileType;
                 $input['logo'] = Storage::putFileAs('logo', $request->file('logo'), $name);
             }
+            if ($request->light_logo) {
+                $fileType = $request->file('light_logo')->extension();
+                $name = Str::random(8) . '.' . $fileType;
+                $input['light_logo'] = Storage::putFileAs('logo', $request->file('light_logo'), $name);
+            }
             $input['nama_perusahaan'] = $request->nama_perusahaan;
             $input['deskripsi'] = $request->deskripsi ?? '-';
+            $input['address'] = $request->address ?? '-';
+            $input['email'] = $request->email ?? '-';
+            $input['phone'] = $request->phone ?? '-';
             ProfileCompany::where('id', $id)->update($input);
             return back()->with('success', 'Berhasil mengubah data');
         } catch (\Throwable $th) {

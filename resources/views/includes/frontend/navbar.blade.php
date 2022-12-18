@@ -4,7 +4,7 @@
             <div class="col-lg-4 col-xl-3 col-md-6 col-6">
                 <div class="logo">
                     <a href="index.html">
-                        <img class="logo-light" src="{{ asset('img/logo/pos.png') }}" alt="Site Logo">
+                        <img class="logo-light" src="{{ asset($profiles->logo) }}" alt="Site Logo">
                     </a>
                 </div>
             </div>

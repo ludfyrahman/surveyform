@@ -7,30 +7,22 @@
                     <div class="edu-footer-widget">
                         <div class="logo">
                             <a href="index.html">
-                                <img class="logo-light" src="{{ asset('img/logo/pos.png') }}" alt="Site Logo">
+                                <img class="logo-light" src="{{ asset($profiles->light_logo) }}" alt="Site Logo">
                             </a>
                         </div>
-                        <p class="description">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-                        <ul class="social-share">
-                            <li><a href="#"><i class="icon-Fb"></i></a></li>
-                            <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                            <li><a href="#"><i class="icon-Pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-Twitter"></i></a></li>
-                        </ul>
+                        <p class="description">{{$profiles->deskripsi}}</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="edu-footer-widget explore-widget">
-                        <h5 class="widget-title">Explore</h5>
+                        <h5 class="widget-title">Social Media</h5>
                         <div class="inner">
                             <ul class="footer-link link-hover">
-                                <li><a href="about-us-1.html"><i class="icon-Double-arrow"></i>About Us</a></li>
-                                <li><a href="event-list.html"><i class="icon-Double-arrow"></i>Upcoming Events</a></li>
-                                <li><a href="blog-standard.html"><i class="icon-Double-arrow"></i>Blog & News</a></li>
-                                <li><a href="faq.html"><i class="icon-Double-arrow"></i>FAQ Question</a></li>
-                                <li><a href="testimonial.html"><i class="icon-Double-arrow"></i>Testimonial</a></li>
-                                <li><a href="privacy-policy.html"><i class="icon-Double-arrow"></i>Privacy Policy</a></li>
+                                @foreach ($social as $soc)
+                                    <li><a target="_blank" href="{{url($soc->link)}}"><i class="icon-Double-arrow"></i>{{$soc->nama_akun}}</a></li>
+                                @endforeach
+
                             </ul>
                         </div>
                     </div>
@@ -38,15 +30,12 @@
 
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="edu-footer-widget quick-link-widget">
-                        <h5 class="widget-title">Useful Links</h5>
+                        <h5 class="widget-title">Produk</h5>
                         <div class="inner">
                             <ul class="footer-link link-hover">
-                                <li><a href="contact-us.html"><i class="icon-Double-arrow"></i>Contact Us</a></li>
-                                <li><a href="pricing.html"><i class="icon-Double-arrow"></i>Pricing Plan</a></li>
-                                <li><a href="instructor-profile.html"><i class="icon-Double-arrow"></i>Instructor Profile</a></li>
-                                <li><a href="faq.html"><i class="icon-Double-arrow"></i>FAQ</a></li>
-                                <li><a href="course-style-3.html"><i class="icon-Double-arrow"></i>Popular Courses</a></li>
-                                <li><a href="purchase-guide.html"><i class="icon-Double-arrow"></i>Terms & Conditions</a></li>
+                                @foreach ($products as $product)
+                                    <li><a href="#"><i class="icon-Double-arrow"></i>{{$product->nama}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -58,11 +47,9 @@
                         <div class="inner">
                             <div class="widget-information">
                                 <ul class="information-list">
-                                    <li><i class="icon-map-pin-line"></i>275 Quadra Street Victoria Road, New York
-                                    </li>
-                                    <li><i class="icon-phone-fill"></i><a href="tel:+1(237)382-2839">+ 1 (237) 382-2839</a></li>
-                                    <li><i class="icon-phone-fill"></i><a href="tel:+1(237)382-2840">+ 1 (237) 382-2840</a></li>
-                                    <li><i class="icon-mail-line-2"></i><a target="_blank" href="mailto:yourmailaddress@example.com">yourmailaddress@example.com</a></li>
+                                    <li><i class="icon-map-pin-line"></i>{{$profiles->address}}</li>
+                                    <li><i class="icon-phone-fill"></i><a href="tel:{{$profiles->phone}}">{{$profiles->phone}}</a></li>
+                                    <li><i class="icon-mail-line-2"></i><a target="_blank" href="mailto:yourmailaddress@example.com">{{$profiles->email}}</a></li>
                                 </ul>
                             </div>
                         </div>
