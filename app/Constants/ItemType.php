@@ -8,7 +8,7 @@ class ItemType
     public const BARANG = 'Barang';
 
     public const TYPE = [
-        self::Jasa => "Jasa",
+        self::JASA => "Jasa",
         self::BARANG => "Barang"
     ];
 }

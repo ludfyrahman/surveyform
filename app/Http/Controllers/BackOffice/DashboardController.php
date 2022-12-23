@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\BackOffice;
 
+use App\Http\Controllers\BackOffice\Services\SummaryService;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 use Auth;
@@ -13,11 +16,18 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public SummaryService $service;
+
+    public function __construct(SummaryService $service)
+    {
+        $this->service = $service;
+    }
+    public function index(Request $request)
     {
         //
-        // dd(Auth::user()->toArray());
-        return view('pages.backoffice.dashboard.index');
+        $summary = $this->service->getSummary($request);
+        $customers = Customer::orderBy('id', 'desc')->get();
+        return view('pages.backoffice.dashboard.index', compact('summary', 'customers'));
     }
 
     /**

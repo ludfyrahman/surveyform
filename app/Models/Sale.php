@@ -16,4 +16,9 @@ class Sale extends Model
     {
         return $this->hasOne(Customer::class, 'id', 'customer_id');
     }
+
+    public function detail()
+    {
+        return $this->hasMany(SaleDetail::class, 'penjualan_id');
+    }
 }
