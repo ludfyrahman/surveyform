@@ -181,7 +181,7 @@ class SaleController extends Controller
             'invoice'       => 'required',
             'customer_id'   => 'required',
             'total'         => 'required',
-            'diskon'        => 'required',
+            'diskon'        => 'nullable',
             'tipe_transaksi'=> 'required',
         ]);
 
@@ -191,7 +191,7 @@ class SaleController extends Controller
                     'customer_id'   => $request->customer_id,
                     'invoice'       => $request->invoice,
                     'total'         => $request->total,
-                    'diskon'        => $request->diskon,
+                    'diskon'        => $request->diskon ?? 0,
                     'tipe_transaksi'=> $request->tipe_transaksi,
                     'status'        => SaleStatus::DONE,
                     'tanggal'       => date('Y-m-d H:i:s'),
@@ -201,7 +201,10 @@ class SaleController extends Controller
                 // $detail = SaleDetail::where('status', SaleStatus::PROSES)->update(['status' => SaleStatus::DONE, 'penjualan_id' => $model->id]);
                 $details = SaleDetail::where('status', SaleStatus::PROSES)->get();
                 foreach ($details as $key => $detail) {
-                    $updateDetail = SaleDetail::find($detail->id)->update(['status' => SaleStatus::DONE, 'pembelian_id' => $model->id]);
+
+                    $detail->status = SaleStatus::DONE;
+                    $detail->penjualan_id = $model->id;
+                    $detail->save();
                     /**
                      * update field stok in product
                      */

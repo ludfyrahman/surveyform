@@ -16,4 +16,9 @@ class Purchase extends Model
     {
         return $this->hasOne(Supplier::class, 'id', 'supplier_id');
     }
+
+    public function detail()
+    {
+        return $this->hasMany(PurchaseDetail::class, 'pembelian_id');
+    }
 }

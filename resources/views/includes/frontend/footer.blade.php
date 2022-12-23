@@ -6,7 +6,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="edu-footer-widget">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="#">
                                 <img class="logo-light" src="{{ asset($profiles->light_logo) }}" alt="Site Logo">
                             </a>
                         </div>

@@ -2,11 +2,12 @@
     <div class="container">
         <div class="main-header-left ">
             <a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
-            <a class="header-brand" href="index.html">
-                <img src="{{asset('assets/img/brand/logo-white.png')}}" class="desktop-dark">
+            <a class="header-brand" href="#">
+                {{-- <img src="{{asset('assets/img/brand/logo-white.png')}}" class="desktop-dark">
                 <img src="{{asset('assets/img/brand/logo.png')}}" class="desktop-logo">
                 <img src="{{asset('assets/img/brand/favicon.png')}}" class="desktop-logo-1">
-                <img src="{{asset('assets/img/brand/favicon-white.png')}}" class="desktop-logo-dark">
+                <img src="{{asset('assets/img/brand/favicon-white.png')}}" class="desktop-logo-dark"> --}}
+                <h4>Admin Panel</h4>
             </a>
             <div class="main-header-center  ms-4">
 

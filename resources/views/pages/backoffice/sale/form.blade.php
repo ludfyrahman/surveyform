@@ -122,7 +122,7 @@
                                                     <tr>
                                                         <td colspan='5' class="text-right"><h5>Diskon</h5></td>
                                                         <td class="text-right">
-                                                            <select name="voucher" id="voucher" class="form-control" required>
+                                                            <select name="voucher" id="voucher" class="form-control">
                                                                 <option value="">Pilih Voucher</option>
                                                                 @foreach ($vouchers as $voucher)
                                                                     <option value="{{$voucher->id}}" price='{{$voucher->besaran}}' tipe='{{$voucher->tipe}}'>{{$voucher->nama_voucher}}</option>
