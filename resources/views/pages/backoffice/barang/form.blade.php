@@ -144,8 +144,8 @@
                                     @php $status = $data->status; @endphp
                                     <select name="status" id="" class="form-control">
                                         <option value="">Pilih Status</option>
-                                        <option {{ $data->status == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif</option>
-                                        <option {{ $data->status == 'Nonaktif' ? 'selected' : '' }} value="Nonaktif">Nonaktif
+                                        <option {{ $status == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif</option>
+                                        <option {{ $status == 'Nonaktif' ? 'selected' : '' }} value="Nonaktif">Nonaktif
                                         </option>
                                     </select>
                                     @error('status')

@@ -86,8 +86,8 @@
                                 <div class="form-group">
                                     <label for="">Status <span class="tx-danger">*</span></label>
                                     <select name="status" class="form-control @error('status') parsley-error @enderror">
-                                        <option value="">Pilih status</option>
-                                        <option value="Aktif">Aktif</option>
+                                        <option value="" >Pilih status</option>
+                                        <option value="Aktif" selected>Aktif</option>
                                         <option value="Nonaktif">Nonaktif</option>
                                     </select>
                                     @error('status')

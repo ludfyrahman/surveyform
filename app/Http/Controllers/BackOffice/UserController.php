@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $data = [];
         if (auth()->user()->role == 'Super Admin') {
             $data = User::all();
@@ -32,7 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.backoffice.user.add');
+        $title = 'Data User Akun';
+        return view('pages.backoffice.user.add', compact('title'));
     }
 
     /**

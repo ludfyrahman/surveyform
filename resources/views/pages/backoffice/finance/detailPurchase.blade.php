@@ -15,16 +15,16 @@
                     <div class="col-md">
                         <label class="tx-gray-600">Billed To</label>
                         <div class="billed-to">
-                            <h6>{{$data->customer->nama}}</h6>
-                            <p>{{$data->customer->alamat}}<br>
-                            Tel No: {{$data->customer->telepon}}<br></p>
+                            <h6>{{$detail['data']->customer->nama}}</h6>
+                            <p>{{$detail['data']->customer->alamat}}<br>
+                            Tel No: {{$detail['data']->customer->telepon}}<br></p>
                         </div>
                     </div>
                     <div class="col-md">
                         <label class="tx-gray-600">Invoice Information</label>
-                        <p class="invoice-info-row"><span>Invoice No</span> <span>{{$data->invoice}}</span></p>
-                        <p class="invoice-info-row"><span>Date:</span> <span>{{$data->created_at->format('d M, Y')}}</span></p>
-                        <p class="invoice-info-row"><span>Type:</span> <span class="badge bg-primary">{{$data->tipe_transaksi}}</span></p>
+                        <p class="invoice-info-row"><span>Invoice No</span> <span>{{$detail['data']->invoice}}</span></p>
+                        <p class="invoice-info-row"><span>Date:</span> <span>{{$detail['data']->created_at->format('d M, Y')}}</span></p>
+                        <p class="invoice-info-row"><span>Type:</span> <span class="badge bg-primary">{{$detail['data']->tipe_transaksi}}</span></p>
                     </div>
                 </div>
                 <div class="table-responsive mg-t-40">
@@ -36,13 +36,13 @@
                         </thead>
                         <tbody>
                             @php $subtotal=0; @endphp
-                            @foreach ($items as $item)
+                            @foreach ($detail['items'] as $item)
                             @php
                                 $subtotal +=$item->sub_total;
                             @endphp
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{ $item->tipe == \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
+                                <td>{{ $item->tipe ==    \App\Constants\ItemType::BARANG ? $item->product->nama : $item->service->nama}}</td>
                                 <td>{{ $item->tipe}} </td>
                                 <td>{{ $item->jumlah}} </td>
                                 <td class="text-right">{{ Helper::rupiah($item->harga)}} </td>
@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan='5' class="text-right"><h5>Diskon</h5></td>
-                                    <td class="text-right">{{Helper::rupiah($data->diskon)}}</td>
+                                    <td class="text-right">{{Helper::rupiah($detail['data']->diskon)}}</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -80,13 +80,13 @@
                 <a href="#" class="btn btn-danger float-end mt-3 ms-2"  onclick="javascript:window.print();">
                     <i class="mdi mdi-printer me-1"></i>Print
                 </a>
-
+                
             </div>
         </div>
     </div>
 @endsection
 @push('script')
-    <script>
+    {{-- <script>
         $(function(){
             $('#tipe').change(function(){
                 var val = $(this).val();
@@ -129,5 +129,5 @@
                 }
             })
         })
-    </script>
+    </script> --}}
 @endpush
