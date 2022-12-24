@@ -19,6 +19,7 @@ class ProfilSeeder extends Seeder
             'nama_perusahaan' => 'CV. ITA SOLUSI',
             'logo' => '-',
             'deskripsi' => '-',
+            'about' => '-',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

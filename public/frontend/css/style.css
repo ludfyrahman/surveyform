@@ -5,7 +5,7 @@
 
 **********************************************************************************/
 /**************************************************************
-	
+
 	STYLESHEET INDEXING
 	|
 	|___ Default Styles
@@ -86,7 +86,7 @@
 	|	|___ Course Details
 	|	|___ Preview
 	|	|___ Overall
-	|	
+	|
 	|___ Footer Styles
 	|	|___ Footer
 	|	|___ Copy Right
@@ -717,7 +717,7 @@ var {
   font-family: "Courier 10 Pitch", Courier, monospace; }
 
 /*---------------------------
-	List Style 
+	List Style
 ---------------------------*/
 ul,
 ol {
@@ -867,7 +867,7 @@ ul li a, ol li a, #scrollUp, .form-group input, .form-group textarea, .mainmenu-
   background-position: center center; }
 
 /*----------------------
-    Animation Css  
+    Animation Css
 -----------------------*/
 .post-scale {
   overflow: hidden; }
@@ -968,7 +968,7 @@ ul li a, ol li a, #scrollUp, .form-group input, .form-group textarea, .mainmenu-
   animation: customOne 2s infinite; }
 
 /* ------------------------
-    Custom Animation 01 
+    Custom Animation 01
 ----------------------------*/
 @-webkit-keyframes headerSlideDown {
   0% {
@@ -1024,7 +1024,7 @@ ul li a, ol li a, #scrollUp, .form-group input, .form-group textarea, .mainmenu-
     transform: translateY(0); } }
 
 /*--------------------------------
-Scroll Down Button Animation  
+Scroll Down Button Animation
 ----------------------------------*/
 @keyframes scrollDown {
   0% {
@@ -1039,7 +1039,7 @@ Scroll Down Button Animation
 /*==============================
  *  Utilities
 =================================*/
-/*------------------------------------- 
+/*-------------------------------------
 
 font-family: 'Urbanist', sans-serif;
 
@@ -1089,7 +1089,7 @@ iframe {
         width: 100%; } }
 
 /*===============================
-    Background Color 
+    Background Color
 =================================*/
 .bg-color-primary {
   background-color: var(--color-primary); }
@@ -1127,7 +1127,7 @@ iframe {
   background-image: linear-gradient(180deg, var(--color-black), transparent); }
 
 /*===========================
-    Background Image 
+    Background Image
 =============================*/
 .bg-image_fixed {
   background-attachment: fixed !important; }
@@ -1544,7 +1544,7 @@ textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
 
 /*=============================
-	Overlay styles 
+	Overlay styles
 ==============================*/
 [data-overlay],
 [data-black-overlay],
@@ -1628,7 +1628,7 @@ textarea:-ms-input-placeholder {
   opacity: 1; }
 
 /*------------------------------
-    Scroll Up 
+    Scroll Up
 --------------------------------*/
 #scrollUp {
   width: 70px;
@@ -1707,7 +1707,7 @@ textarea:-ms-input-placeholder {
     color: var(--color-primary); }
 
 /*--------------------
-    Contact Form 
+    Contact Form
 ----------------------*/
 .form-message {
   margin-bottom: 0;
@@ -1720,7 +1720,7 @@ textarea:-ms-input-placeholder {
     color: #0d8d2d; }
 
 /*=========================
-    Section Separation 
+    Section Separation
 ==========================*/
 .mt_dec--30 {
   margin-top: -30px; }
@@ -1729,21 +1729,21 @@ textarea:-ms-input-placeholder {
   margin-top: -20px; }
 
 .edu-section-gap {
-  padding: 130px 0 !important; }
+  padding: 50px 0 !important; }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .edu-section-gap {
-      padding: 80px 0 !important; } }
+      padding: 30px 0 !important; } }
   @media only screen and (max-width: 767px) {
     .edu-section-gap {
-      padding: 80px 0 !important; } }
+      padding: 30px 0 !important; } }
   .edu-section-gap.slider-dots {
-    padding: 130px 0 205px !important; }
+    padding: 50px 0 205px !important; }
     @media only screen and (min-width: 768px) and (max-width: 991px) {
       .edu-section-gap.slider-dots {
-        padding: 80px 0 130px !important; } }
+        padding: 30px 0 130px !important; } }
     @media only screen and (max-width: 767px) {
       .edu-section-gap.slider-dots {
-        padding: 80px 0 130px !important; } }
+        padding: 30px 0 130px !important; } }
 
 .edu-section-gapBottom {
   padding-bottom: 130px !important; }
@@ -5069,7 +5069,7 @@ textarea:-ms-input-placeholder {
     padding-left: 100px !important;
     padding-right: 100px !important; }
 
-/*======================== 
+/*========================
     Common Style Css
 ==========================*/
 /* Heading Font  */
@@ -6086,7 +6086,7 @@ body.sal-disabled [data-sal|='flip'] {
     Header Styles
 ***************************************/
 /*--------------------------
-    Header Styles  
+    Header Styles
 --------------------------*/
 .edu-header .logo a {
   display: block;
@@ -6135,7 +6135,7 @@ body.sal-disabled [data-sal|='flip'] {
       line-height: 80px; }
 
 /*------------------------
-    Header Style One  
+    Header Style One
 --------------------------*/
 .header-default {
   max-width: 100%;
@@ -6150,7 +6150,7 @@ body.sal-disabled [data-sal|='flip'] {
     align-items: center; }
 
 /*------------------------
-    Header Style Two  
+    Header Style Two
 --------------------------*/
 .header-style-2 {
   padding: 0 200px; }
@@ -6197,7 +6197,7 @@ body.sal-disabled [data-sal|='flip'] {
     transform: translateY(0); } }
 
 /*--------------------------
-    Navigation Styles 
+    Navigation Styles
 ----------------------------*/
 .mainmenu-nav .mainmenu {
   display: flex;
@@ -6291,7 +6291,7 @@ body.sal-disabled [data-sal|='flip'] {
       top: 100%; }
 
 /*------------------------
-    Header Quote  
+    Header Quote
 -------------------------*/
 .header-quote {
   display: flex;
@@ -6324,7 +6324,7 @@ body.sal-disabled [data-sal|='flip'] {
         color: var(--color-primary); }
 
 /*------------------------------
-    Popup Menu Styles  
+    Popup Menu Styles
 --------------------------------*/
 .popup-mobile-menu {
   z-index: 9999;
@@ -6438,7 +6438,7 @@ body.sal-disabled [data-sal|='flip'] {
       border-bottom-color: transparent; }
 
 /*----------------------
-    Search Popup  
+    Search Popup
 -----------------------*/
 .edu-search-popup {
   opacity: 0;
@@ -6722,7 +6722,7 @@ button.edu-btn {
     transform: rotate(-360deg); } }
 
 /*--------------------------------
-    Brands Area  
+    Brands Area
 ------------------------------*/
 .eduvibe-home-five-brands .client-logo {
   transition: all .4s;
@@ -8031,7 +8031,7 @@ button.edu-btn {
     stroke-dashoffset: 0; } }
 
 /*---------------------------
- Card Styles  
+ Card Styles
 -----------------------------*/
 .course-activation-item-2 .edu-card.card-type-2 {
   margin: 20px 0; }
@@ -8459,7 +8459,7 @@ button.edu-btn {
     transform: scale(1.1); }
 
 /*-----------------------
-    Card Styles  
+    Card Styles
 -------------------------*/
 .edu-meta {
   display: flex;
@@ -8567,7 +8567,7 @@ button.edu-btn {
     margin-right: 10px; }
 
 /*----------------------
-    Author Meta  
+    Author Meta
 -----------------------*/
 .author-meta {
   display: flex;
@@ -8590,7 +8590,7 @@ button.edu-btn {
       color: var(--color-primary); }
 
 /*-----------------------
- Badge Style  
+ Badge Style
 ------------------------*/
 .badge-transparent {
   display: inline-block;
@@ -8699,7 +8699,7 @@ button.edu-btn {
   display: inline-block; }
 
 /*--------------------------
-    Pagination Styles  
+    Pagination Styles
 ----------------------------*/
 .edu-pagination {
   margin: -5px;
@@ -8749,7 +8749,7 @@ button.edu-btn {
       color: var(--color-white); }
 
 /*-------------------------
-    Event Grid Style  
+    Event Grid Style
 --------------------------*/
 .edu-event .top-position {
   position: absolute;
@@ -8809,7 +8809,9 @@ button.edu-btn {
   background: var(--color-shade);
   transition: 0.4s;
   border-radius: 5px;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  flex-direction: column;
+}
   @media only screen and (max-width: 1199px) {
     .edu-event.event-list .inner {
       padding: 20px; } }
@@ -8910,7 +8912,7 @@ button.edu-btn {
   background: var(--color-white); }
 
 /*-------------------------
-    Team Styles  
+    Team Styles
 --------------------------*/
 .team-area-shape-position {
   position: relative; }
@@ -9179,7 +9181,7 @@ button.edu-btn {
         left: 0; } }
 
 /*------------------------
-    Service Style  
+    Service Style
 --------------------------*/
 .service-wrapper-1 {
   position: relative; }
@@ -9256,7 +9258,7 @@ button.edu-btn {
       width: 100%; }
 
 /*----------------------
-    Service Style Two  
+    Service Style Two
 -----------------------*/
 .service-card-2 {
   padding: 40px 30px;
@@ -9330,7 +9332,7 @@ button.edu-btn {
     opacity: 1; }
 
 /*----------------------
-    Service Style Three  
+    Service Style Three
 -----------------------*/
 .video-section-overlayto-another {
   position: relative;
@@ -9415,7 +9417,7 @@ button.edu-btn {
       color: #ffffff; }
 
 /*-------------------------------
-    Service Style Four  
+    Service Style Four
 ---------------------------------*/
 .service-card-4 {
   height: 100%; }
@@ -9473,7 +9475,7 @@ button.edu-btn {
       color: var(--color-white); }
 
 /*-------------------------------
-    Service Style Five  
+    Service Style Five
 ---------------------------------*/
 .service-card-5 .inner {
   background: #F5F5F5;
@@ -9531,7 +9533,7 @@ button.edu-btn {
     color: var(--color-white); }
 
 /*-------------------------------
-    Service Style 8  
+    Service Style 8
 ---------------------------------*/
 .service-activation-item5 .single-slick-card {
   margin-bottom: 20px; }
@@ -9601,7 +9603,7 @@ button.edu-btn {
     opacity: 1; }
 
 /*-------------------------------
-    Service Style 7  
+    Service Style 7
 ---------------------------------*/
 .service-card-single {
   position: relative; }
@@ -9678,7 +9680,7 @@ button.edu-btn {
     background: #FFA41B; }
 
 /*-----------------------------
-    Single Elements Styles  
+    Single Elements Styles
 ------------------------------*/
 .short-by p {
   margin: 0;
@@ -9756,7 +9758,7 @@ button.edu-btn {
     cursor: pointer; }
 
 /*----------------------------
-    Course Sidebar Styles 
+    Course Sidebar Styles
 -----------------------------*/
 .edu-course-widget {
   background: var(--color-shade);
@@ -9779,7 +9781,7 @@ button.edu-btn {
     justify-content: space-between; }
 
 /*--------------------------
-    Testimonial Area  
+    Testimonial Area
 ----------------------------*/
 .satisfied-learner {
   padding-right: 70px;
@@ -9889,7 +9891,7 @@ button.edu-btn {
       color: var(--color-primary); }
 
 /*-----------------------------
-    Testimonial Card Layout  
+    Testimonial Card Layout
 ------------------------------*/
 .testimonial-card-box {
   padding: 15px; }
@@ -10070,7 +10072,7 @@ button.edu-btn {
     top: 0; }
 
 /*--------------------------
-    Testimonial Style Two  
+    Testimonial Style Two
 ----------------------------*/
 .testimonial-nav-content .description {
   font-weight: 500;
@@ -10230,7 +10232,7 @@ button.edu-btn {
     -webkit-transform: rotate(180deg); } }
 
 /*---------------------
- Feature Styles  
+ Feature Styles
 -------------------------*/
 .feature-list-wrapper {
   display: flex;
@@ -10285,7 +10287,7 @@ button.edu-btn {
   border-radius: 100%; }
 
 /*----------------------
- Feature Style Two  
+ Feature Style Two
 -------------------------*/
 .feature-style-2 {
   display: flex;
@@ -10318,7 +10320,7 @@ button.edu-btn {
           font-size: 16px; } }
 
 /*----------------------
-    Feature Style Three  
+    Feature Style Three
 -------------------------*/
 .feature-style-3 .feature-content .feature-title {
   font-weight: 700;
@@ -10331,7 +10333,7 @@ button.edu-btn {
   margin-bottom: 0; }
 
 /*----------------------
-    Feature Style Four  
+    Feature Style Four
 -------------------------*/
 .feature-style-4 .edu-feature-list {
   display: flex; }
@@ -10358,7 +10360,7 @@ button.edu-btn {
       color: var(--color-primary); }
 
 /*----------------------
-    Feature Style 5  
+    Feature Style 5
 -------------------------*/
 .feature-style-5 .edu-feature-list {
   display: flex; }
@@ -10385,7 +10387,7 @@ button.edu-btn {
       color: var(--color-white); }
 
 /*----------------------
-    Feature Style 6  
+    Feature Style 6
 -------------------------*/
 .feature-style-6 .edu-feature-list {
   display: flex; }
@@ -10418,7 +10420,7 @@ button.edu-btn {
     background: rgba(251, 124, 86, 0.1); }
 
 /*------------------------
-    About Styles  
+    About Styles
 -------------------------*/
 .about-feature-list .our-feature {
   display: flex; }
@@ -10449,7 +10451,7 @@ button.edu-btn {
     margin-top: 30px; }
 
 /*----------------------
-    About Style One  
+    About Style One
 ------------------------*/
 .about-style-1 {
   position: relative;
@@ -10536,7 +10538,7 @@ button.edu-btn {
         right: 8px; } }
 
 /*----------------------
-    About Style Two  
+    About Style Two
 ------------------------*/
 .about-style-2 {
   position: relative; }
@@ -10663,7 +10665,7 @@ button.edu-btn {
     z-index: -1; }
 
 /*----------------------
-    About Style 3  
+    About Style 3
 ------------------------*/
 .about-style-3 {
   position: relative; }
@@ -10742,7 +10744,7 @@ button.edu-btn {
             line-height: 22px; }
 
 /*----------------------
-    About Style 4  
+    About Style 4
 ------------------------*/
 .about-style-4 {
   position: relative; }
@@ -10805,7 +10807,7 @@ button.edu-btn {
         border: 3px solid #FFFFFF; }
 
 /*----------------------
-    About Style 6  
+    About Style 6
 ------------------------*/
 .about-style-6 .about-image-gallery {
   position: relative;
@@ -11005,7 +11007,7 @@ button.edu-btn {
       padding: 80px 0 !important; } }
 
 /*-------------------------
-    Newsletter Styles  
+    Newsletter Styles
 -------------------------*/
 .newsletter-form-style-1 .input-box {
   position: relative;
@@ -11237,7 +11239,7 @@ button.edu-btn {
     font-size: 16px; }
 
 /*-------------------------
-    Back To Top  
+    Back To Top
 ---------------------------*/
 @-webkit-keyframes border-transform {
   0%,
@@ -11328,7 +11330,7 @@ button.edu-btn {
     transition: all 200ms linear; }
 
 /*--------------------------
-    Workshop Style One  
+    Workshop Style One
 ----------------------------*/
 .workshop-style-1 .workshop-inner .description {
   color: var(--color-white);
@@ -11344,7 +11346,7 @@ button.edu-btn {
       margin-bottom: 20px; } }
 
 /*--------------------------
-    Video Popup Styles  
+    Video Popup Styles
 ----------------------------*/
 .video-gallery-1 {
   padding: 8px;
@@ -11564,7 +11566,7 @@ button.edu-btn {
     opacity: 0; } }
 
 /*------------------------------
-    Choose Us Style  
+    Choose Us Style
 -------------------------------*/
 .choose-us-style-1 {
   position: relative; }
@@ -11586,7 +11588,7 @@ button.edu-btn {
     margin-top: 25px; } }
 
 /*----------------------------
-    Call To Action Styles  
+    Call To Action Styles
 -----------------------------*/
 .call-action-style-1 {
   padding-top: 24px;
@@ -11626,7 +11628,7 @@ button.edu-btn {
           display: none; } }
 
 /*-----------------------
-    Slick Slider  
+    Slick Slider
 -------------------------*/
 .edu-testimonial-activation.edu-slick-button {
   margin-bottom: 62px; }
@@ -11814,7 +11816,7 @@ button.edu-btn {
         left: 15px; } }
 
 /*------------------------
-    Winner Area Styles  
+    Winner Area Styles
 --------------------------*/
 .edu-winner-card {
   background: var(--color-white);
@@ -11842,7 +11844,7 @@ button.edu-btn {
       color: var(--color-primary); }
 
 /*----------------------------
-    Counterup Styles  
+    Counterup Styles
 -----------------------------*/
 .edu-counterup {
   background: var(--color-white);
@@ -12065,7 +12067,7 @@ button.edu-btn {
       padding: 0px; } }
 
 /*--------------------------------
-    Breadcrumb Area  
+    Breadcrumb Area
 ------------------------------*/
 .breadcrumb-style-1 .page-title .title {
   margin-bottom: 5px; }
@@ -12195,7 +12197,7 @@ button.edu-btn {
         width: 100%; } }
 
 /*-------------------------
-Accordion Style 
+Accordion Style
 -------------------------*/
 .edu-tab-nav {
   margin: -7.5px;
@@ -12436,7 +12438,7 @@ Accordion Style
     padding: 15px; }
 
 /*------------------------
-    Error Styles  
+    Error Styles
 -------------------------*/
 .edu-error-style {
   padding-bottom: 130px; }
@@ -12569,7 +12571,7 @@ Accordion Style
         margin-top: 20px; } }
 
 /* --------------------
-Gallery Item 
+Gallery Item
 ------------------- */
 .filters-button-group {
   margin: -7.5px;
@@ -12648,7 +12650,7 @@ Gallery Item
     opacity: 1; }
 
 /*--------------------------
-    Pricing Table  
+    Pricing Table
 ----------------------------*/
 .edu-pricing-area {
   background-image: url(../images/bg/pricing-plan.jpg); }
@@ -12759,7 +12761,7 @@ Gallery Item
         transform: translateY(-50%); }
 
 /*-------------------------
-    Profile Details 
+    Profile Details
 --------------------------*/
 .instructor-profile-left {
   background: #F5F5F5;
@@ -12862,7 +12864,7 @@ Gallery Item
     color: var(--color-heading); }
 
 /*-------------------------
-    Contact Us Area  
+    Contact Us Area
 ---------------------------*/
 .contact-address-card-1 {
   background: #FFFFFF;
@@ -12961,7 +12963,7 @@ Gallery Item
     z-index: -1; }
 
 /*------------------------------
-    Contact Form Style One 
+    Contact Form Style One
 -------------------------------*/
 .rwt-dynamic-form .form-group input {
   background: #F5F5F5;
@@ -12999,7 +13001,7 @@ Gallery Item
   color: #019267; }
 
 /*---------------------------
-    About Me 
+    About Me
 ----------------------------*/
 .about-me-1 .thumbnail {
   position: relative;
@@ -13049,7 +13051,7 @@ Gallery Item
     width: 100%; }
 
 /*-----------------------
-    Shop Style  
+    Shop Style
 ------------------------*/
 .eduvibe-shop-single-product .inner {
   text-align: center; }
@@ -13134,7 +13136,7 @@ Gallery Item
   opacity: 1; }
 
 /*-----------------------
-    Brand Styles  
+    Brand Styles
 -----------------------*/
 .brand-list li {
   margin: 0;
@@ -13147,7 +13149,7 @@ Gallery Item
       text-align: center; }
 
 /*--------------------------
-    Checkout Page Style  
+    Checkout Page Style
 ----------------------------*/
 .checkout-page-style .title {
   font-weight: 700;
@@ -13233,7 +13235,7 @@ Gallery Item
     Blog Styles
 ***************************************/
 /*-------------------------
-    Blog Grid Styles  
+    Blog Grid Styles
 ---------------------------*/
 .blog-shape-position {
   position: relative;
@@ -13506,7 +13508,7 @@ Gallery Item
           color: var(--color-white); }
 
 /*--------------------------
-    Blog Sidebar Styles 
+    Blog Sidebar Styles
 ----------------------------*/
 .edu-blog-widget {
   background: #F5F5F5;
@@ -13649,7 +13651,7 @@ Gallery Item
     background: #F5F5F5; }
 
 /*-----------------------------
-    Sidebar Style Two  
+    Sidebar Style Two
 -------------------------------*/
 .edu-blog-widget-2 .widget-title {
   font-weight: 700;
@@ -13723,7 +13725,7 @@ Gallery Item
       content: ""; }
 
 /*----------------------------
-    Blog Details Styles  
+    Blog Details Styles
 ------------------------------*/
 .social-share-action {
   position: relative; }
@@ -13947,7 +13949,7 @@ Gallery Item
         font-size: 14px; }
 
 /*---------------------------
-    Blog Details Style Two  
+    Blog Details Style Two
 ------------------------------*/
 .style-variation2 .content-blog-top .title {
   margin-top: 0; }
@@ -13966,7 +13968,7 @@ Gallery Item
     opacity: 0.7; }
 
 /*---------------------------
-    Blog Details Style 3  
+    Blog Details Style 3
 ------------------------------*/
 .style-variation3 .content-blog-top .title {
   margin-top: 0;
@@ -13997,7 +13999,7 @@ Gallery Item
     bottom: 8px; }
 
 /*-----------------------------
-    Blog Comments Style  
+    Blog Comments Style
 ------------------------------*/
 .comment-list-wrapper .comment {
   display: flex; }
@@ -14089,7 +14091,7 @@ Gallery Item
   padding: 17px 30px; }
 
 /*--------------------------------
-    Blog Style Pagination 
+    Blog Style Pagination
 ---------------------------------*/
 .blog-pagination-list {
   background-color: #F5F5F5;
@@ -14365,7 +14367,7 @@ Gallery Item
         margin: -30px 0 0 -30px; } }
 
 /*-------------------------
-    Banner Style Two  
+    Banner Style Two
 --------------------------*/
 .banner-style-2 {
   background-image: url(../images/bg/home-two-banner.jpg);
@@ -14540,7 +14542,7 @@ Gallery Item
       right: 90px; }
 
 /*-------------------------
-    Banner Style Three  
+    Banner Style Three
 --------------------------*/
 .banner-style-3 {
   position: relative;
@@ -14667,7 +14669,7 @@ Gallery Item
       bottom: -100px; }
 
 /*-------------------------
-    Banner Style Four  
+    Banner Style Four
 --------------------------*/
 .banner-style-4 {
   background-image: url(../images/bg/home-four-banner.jpg);
@@ -14867,7 +14869,7 @@ Gallery Item
           opacity: 1; }
 
 /*-------------------------
-    Banner Style five  
+    Banner Style five
 --------------------------*/
 .banner-style-5 {
   position: relative;
@@ -15061,7 +15063,7 @@ Gallery Item
       bottom: 90px; }
 
 /*-------------------------
-    Banner Style Six  
+    Banner Style Six
 --------------------------*/
 .banner-style-6 {
   position: relative;
@@ -15284,7 +15286,7 @@ Gallery Item
     border-top: 1px solid #EEEEEE; }
 
 /*----------------------------
-    Product Details Styles 
+    Product Details Styles
 ------------------------------*/
 .edu-product-details-style .content .edu-rating {
   margin-bottom: 20px; }
@@ -15540,7 +15542,7 @@ Gallery Item
         width: 100%; } }
 
 /*-----------------------
-    Cart Styles  
+    Cart Styles
 -------------------------*/
 .cart-table table {
   min-width: 1170px; }
@@ -15712,7 +15714,7 @@ Gallery Item
         margin-top: 20px; } }
 
 /*-------------------------
-    Price Filter  
+    Price Filter
 --------------------------*/
 .slider__range--output {
   margin-top: 14px; }
@@ -15815,7 +15817,7 @@ Gallery Item
   transform: translate(-50%, -50%); }
 
 /*---------------------------
-    Course Details 
+    Course Details
 -----------------------------*/
 .edu-course-details-area .main-image {
   margin-left: -75px;
@@ -16042,7 +16044,7 @@ Gallery Item
     margin-bottom: 0; }
 
 /*------------------------
-    Preview Styles  
+    Preview Styles
 -------------------------*/
 .pre-section-title .pretitle {
   letter-spacing: 0.1em;
@@ -16187,7 +16189,7 @@ Gallery Item
       left: -90px; }
 
 /*-----------------------
-    Course Layout Style    
+    Course Layout Style
 --------------------------*/
 .edu-demo-course-layout {
   background-image: url(../images/bg/landing-page-courses.jpg); }
@@ -16207,7 +16209,7 @@ Gallery Item
       animation: eduvibe-sm-x-move 3.5s alternate infinite linear; }
 
 /*-----------------------
-    InnerPages    
+    InnerPages
 --------------------------*/
 .background-marque {
   background-image: url(../images/bg/landing-page-innerpages.png);
@@ -16224,7 +16226,7 @@ Gallery Item
       height: 400px; } }
 
 /*-----------------------
-    Ecommerce Layout Style    
+    Ecommerce Layout Style
 --------------------------*/
 .edu-demo-ecommerce-layout {
   background-image: url(../images/bg/landing-page-ecommerce.jpg);
@@ -16277,7 +16279,7 @@ Gallery Item
       padding: 80px 0 !important; } }
 
 /*-----------------------
-    Demo Style   
+    Demo Style
 --------------------------*/
 .landing-home-demo-area .shape-image {
   position: absolute;
@@ -16574,7 +16576,7 @@ Gallery Item
     left: -150px; }
 
 /*------------------------
-    FAQ  
+    FAQ
 --------------------------*/
 .landing-demo-faq-wrapper .animate-image {
   position: absolute;
@@ -16587,14 +16589,14 @@ Gallery Item
     left: -180px; }
 
 /*------------------------
-    Header Splash Two  
+    Header Splash Two
 --------------------------*/
 .eduvibe-splash-header .header-menu-bar {
   display: flex;
   align-items: center; }
 
 /*-------------------------------
-    Overall HTML Specific Styles  
+    Overall HTML Specific Styles
     overall.scss
 ---------------------------------*/
 .header-style-2 a.edu-btn.btn-medium {
@@ -16659,7 +16661,7 @@ Gallery Item
     Footer Styles
 ***************************************/
 /*===========================
-    Start Footer Area 
+    Start Footer Area
 =============================*/
 .footer-style-default {
   position: relative;
@@ -16771,7 +16773,7 @@ Gallery Item
           right: -150px; } }
 
 /*---------------------------------
- Footer with Call To Action  
+ Footer with Call To Action
 ----------------------------------*/
 .edu-footer-with-cta {
   position: relative;
@@ -16847,7 +16849,7 @@ Gallery Item
         right: -150px; } }
 
 /*-------------------------
-    Copyright Styles  
+    Copyright Styles
 --------------------------*/
 .copyright-default p {
   color: var(--color-white); }

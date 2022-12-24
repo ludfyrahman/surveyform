@@ -76,7 +76,6 @@ class ProfileCompanyController extends Controller
 
         $request->validate([
             'nama_perusahaan' => 'required',
-
         ]);
 
 
@@ -95,6 +94,7 @@ class ProfileCompanyController extends Controller
             $input['deskripsi'] = $request->deskripsi ?? '-';
             $input['address'] = $request->address ?? '-';
             $input['email'] = $request->email ?? '-';
+            $input['about'] = $request->about ?? '-';
             $input['phone'] = $request->phone ?? '-';
             ProfileCompany::where('id', $id)->update($input);
             return back()->with('success', 'Berhasil mengubah data');

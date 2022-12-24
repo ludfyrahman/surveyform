@@ -8,7 +8,7 @@
                         <div class="content text-start">
                             <h1 class="title" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
                                 CV ITA SOLUSI</h1>
-                            <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">GENERALSUPPLIER<br />  AND CONSTRUCTOR</p>
+                            <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">{{$profiles->deskripsi}}</p>
                             <div class="btn-group-vertical" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
                                 <a class="edu-btn bg-white right-button" href="{{ url('/login') }}">Masuk Ke Aplikasi
                                     <i class="icon-arrow-right-line-right"></i>

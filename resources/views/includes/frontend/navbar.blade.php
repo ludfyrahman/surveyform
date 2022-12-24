@@ -14,6 +14,7 @@
                     <ul class="mainmenu">
                         <li><a href="#header">Home</a>
                         <li><a href="#about">About</a>
+                        <li><a href="#sosmed">Sosial Media</a>
                         <li><a href="#product">Product</a>
                     </ul>
                 </nav>

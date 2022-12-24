@@ -45,7 +45,7 @@
                         <h3 class="title">Kualitas Barang dan jasa prioritas kami</h3>
 
                     </div>
-                    <p class="description mt--40" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">Bidang usaha yang bergerak dalam pengadaan barang dan jasa konstruksi,terpercaya serta menjamin kualitas produk yang terbaik. kami memiliki lebih dari 30 relasi dan mitra kerja baik instansi pemerintahan dan swasta.</p>
+                    <p class="description mt--40" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">{{$profiles->about}}</p>
                     <div class="read-more-btn mt--60 mt_lg--30 mt_md--30 mt_sm--30" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
                         <a class="edu-btn" href="{{route('login')}}">Masuk Aplikasi <i class="icon-arrow-right-line-right"></i></a>
                     </div>

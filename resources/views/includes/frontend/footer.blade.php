@@ -10,7 +10,7 @@
                                 <img class="logo-light" src="{{ asset($profiles->light_logo) }}" alt="Site Logo">
                             </a>
                         </div>
-                        <p class="description">{{$profiles->deskripsi}}</p>
+                        <p class="description">{{ $profiles->deskripsi }}</p>
                     </div>
                 </div>
 
@@ -20,7 +20,8 @@
                         <div class="inner">
                             <ul class="footer-link link-hover">
                                 @foreach ($social as $soc)
-                                    <li><a target="_blank" href="{{url($soc->link)}}"><i class="icon-Double-arrow"></i>{{$soc->nama_akun}}</a></li>
+                                    <li><a target="_blank" href="{{ url($soc->link) }}"><i
+                                                class="icon-Double-arrow"></i>{{ $soc->nama_akun }}</a></li>
                                 @endforeach
 
                             </ul>
@@ -33,8 +34,17 @@
                         <h5 class="widget-title">Produk</h5>
                         <div class="inner">
                             <ul class="footer-link link-hover">
+                                @php
+                                    $i = 0;
+                                @endphp
                                 @foreach ($products as $product)
-                                    <li><a href="#"><i class="icon-Double-arrow"></i>{{$product->nama}}</a></li>
+                                    @if ($i <= 5)
+                                        <li><a href="#"><i class="icon-Double-arrow"></i>{{ $product->nama }}</a>
+                                        </li>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -47,9 +57,11 @@
                         <div class="inner">
                             <div class="widget-information">
                                 <ul class="information-list">
-                                    <li><i class="icon-map-pin-line"></i>{{$profiles->address}}</li>
-                                    <li><i class="icon-phone-fill"></i><a href="tel:{{$profiles->phone}}">{{$profiles->phone}}</a></li>
-                                    <li><i class="icon-mail-line-2"></i><a target="_blank" href="mailto:yourmailaddress@example.com">{{$profiles->email}}</a></li>
+                                    <li><i class="icon-map-pin-line"></i>{{ $profiles->address }}</li>
+                                    <li><i class="icon-phone-fill"></i><a
+                                            href="tel:{{ $profiles->phone }}">{{ $profiles->phone }}</a></li>
+                                    <li><i class="icon-mail-line-2"></i><a target="_blank"
+                                            href="mailto:yourmailaddress@example.com">{{ $profiles->email }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -72,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="inner text-center">
-                        <p>Copyright {{date('Y')}} <a href="#">POS ITA SOLUSI</a> . All Rights Reserved</p>
+                        <p>Copyright {{ date('Y') }} <a href="#">POS ITA SOLUSI</a> . All Rights Reserved</p>
                     </div>
                 </div>
             </div>

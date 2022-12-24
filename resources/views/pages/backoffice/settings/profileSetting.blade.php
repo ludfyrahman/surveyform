@@ -114,6 +114,21 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="">Tentang <span class="tx-danger">*</span></label>
+                                    <textarea name="about" class="form-control @error('about') parsley-error @enderror" id="summernote" cols="10"
+                                        rows="3"> {{ $data->about }}</textarea>
+
+                                    @error('about')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="">Alamat <span class="tx-danger">*</span></label>
                                     <textarea name="deskripsi" class="form-control @error('alamat') parsley-error @enderror" id="summernote" cols="10"
                                         rows="3"> {{ $data->alamat }}</textarea>
