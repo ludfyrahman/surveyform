@@ -19,6 +19,7 @@ class Helper{
 
         return $kode;
     }
+    
 
     public static function kodeProduk(){
         $prod = Product::latest('id')->first();
