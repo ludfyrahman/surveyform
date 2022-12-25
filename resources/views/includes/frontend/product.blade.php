@@ -28,7 +28,7 @@
                                 <div class="inner">
                                     <div class="thumbnail">
                                         <a href="#" style="height: 200px">
-                                            <img class="w-100" src="{{$product->foto}}" alt="Course Meta">
+                                            <img class="w-100" src="{{$product->foto ?? asset(Helper::profile()->logo) }}" alt="Course Meta">
                                         </a>
                                         <div class="wishlist-top-right">
                                             <button class="wishlist-btn"><i class="icon-Heart"></i></button>
@@ -44,7 +44,7 @@
                                                 <div class="author-thumb">
                                                     <a href="#">
                                                         <img src="{{ asset('frontend/images/instructor/instructor-small/instructor-1.jpg') }}" alt="Author Images">
-                                                        <span class="author-title">James Carlson</span>
+                                                        <span class="author-title">Administrator</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -53,6 +53,7 @@
                                             </ul>
                                         </div>
                                         <h6 class="title"><a href="#">{{$product->nama}}</a>
+                                            <p class="text-muted">Tersedia Di:{{$product->is_available_in}} - {{$product->store}}</p>
                                         </h6>
                                         <div class="card-bottom">
                                             <div class="price-list price-style-02">
@@ -76,7 +77,7 @@
                                         <h6 class="title"><a href="#">{{$product->nama}}</a></h6>
 
                                         <p class="description">{{$product->deskripsi}}</p>
-
+                                        <p class=" text-white">Tersedia Di:{{$product->is_available_in}} - {{$product->store}}</p>
                                         <div class="price-list price-style-02">
                                             <div class="price current-price">{{Helper::rupiah($product->harga_jual)}}</div>
                                         </div>

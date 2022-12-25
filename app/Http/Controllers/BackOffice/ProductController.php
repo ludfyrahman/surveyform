@@ -42,12 +42,16 @@ class ProductController extends Controller
             'kode'    => $kode,
             'status'    => '',
             'deskripsi'    => '',
+            'is_available_in'    => '',
+            'store'    => '',
             'stok'    => '',
             'type'  => 'create',
         ];
         $satuan = Unit::all();
         $kategori = Type::all();
-        return view('pages.backoffice.barang.form', compact('data', 'satuan', 'kategori'));
+        $available = Product::select('is_available_in as name')->distinct()->get();
+        $store = Product::select('store as name')->distinct()->get();
+        return view('pages.backoffice.barang.form', compact('data', 'satuan', 'kategori','available','store'));
     }
 
     /**
@@ -65,6 +69,8 @@ class ProductController extends Controller
             'expired_date' => 'required',
             'kategori' => 'required',
             'satuan' => 'required',
+            'is_available_in' => 'required',
+            'store' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
             'foto'     => 'nullable|image|mimes:jpeg,jpg,png,gif',
@@ -85,6 +91,8 @@ class ProductController extends Controller
                 'expired_date'    => $request->expired_date,
                 'satuan_id'    => $request->satuan,
                 'kategori_id'    => $request->kategori,
+                'is_available_in'    => $request->is_available_in,
+                'store'    => $request->store,
                 'stok'    => $request->stok,
                 'foto'    => $foto,
                 'status'    => $request->status ?? 'Aktif',
@@ -118,7 +126,9 @@ class ProductController extends Controller
 
         $satuan = Unit::all();
         $kategori = Type::all();
-        return view('pages.backoffice.barang.form', compact('data', 'satuan', 'kategori'));
+        $available = Product::select('is_available_in as name')->distinct()->get();
+        $store = Product::select('store as name')->distinct()->get();
+        return view('pages.backoffice.barang.form', compact('data', 'satuan', 'kategori','available','store'));
     }
 
     /**
@@ -137,6 +147,8 @@ class ProductController extends Controller
             'expired_date' => 'required',
             'kategori' => 'required',
             'satuan' => 'required',
+            'is_available_in' => 'required',
+            'store' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
             'foto'     => 'nullable|image|mimes:jpeg,jpg,png,gif',
@@ -158,6 +170,8 @@ class ProductController extends Controller
                 'expired_date'    => $request->expired_date,
                 'satuan_id'    => $request->satuan,
                 'kategori_id'    => $request->kategori,
+                'is_available_in'    => $request->is_available_in,
+                'store'    => $request->store,
                 'stok'    => $request->stok,
                 'foto'    => $foto,
                 'status'    => $request->status ?? 'Aktif',

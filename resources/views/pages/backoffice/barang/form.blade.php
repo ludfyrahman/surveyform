@@ -169,6 +169,36 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Tersedia Di(Nama Platform) <span class="tx-danger">* Nama Platform dapat dipilih dan di inputkan</span></label>
+                                    <select name="is_available_in" required id='item_1' class="form-control select2Input @error('is_available_in') parsley-error @enderror">
+                                        @foreach ($available as $avail)
+                                            <option {{$avail->name == $data->is_available_in ? 'selected' : ''}} value="{{$avail->name}}">{{$avail->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('is_available_in')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Nama Toko <span class="tx-danger">* Nama Toko dapat dipilih dan di inputkan</span></label>
+                                    <select name="store" required id='item' class="form-control select2InputSecond @error('store') parsley-error @enderror">
+                                        @foreach ($store as $st)
+                                            <option {{$st->name == $data->store ? 'selected' : ''}} value="{{$st->name}}">{{$st->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('foto')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Deskripsi <span class="tx-danger">*</span></label>

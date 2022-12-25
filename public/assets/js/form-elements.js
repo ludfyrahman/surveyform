@@ -54,6 +54,16 @@ $(function() {
 			placeholder: 'Choose one',
 			searchInputPlaceholder: 'Search'
 		});
+        $('.select2Input').select2({
+			placeholder: 'Choose one',
+            tags:true,
+			searchInputPlaceholder: 'Search'
+		});
+        $('.select2InputSecond').select2({
+			placeholder: 'Choose one',
+            tags:true,
+			searchInputPlaceholder: 'Search'
+		});
 		$('.select2-no-search').select2({
 			minimumResultsForSearch: Infinity,
 			placeholder: 'Choose one'
