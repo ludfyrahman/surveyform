@@ -20,6 +20,7 @@ class ProfilSeeder extends Seeder
             'logo' => '-',
             'deskripsi' => '-',
             'about' => '-',
+            'light_logo' => '-',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
