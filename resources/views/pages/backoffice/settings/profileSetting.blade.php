@@ -131,7 +131,7 @@
                                 <div class="form-group">
                                     <label for="">Alamat <span class="tx-danger">*</span></label>
                                     <textarea name="alamat" class="form-control @error('alamat') parsley-error @enderror" id="summernote" cols="10"
-                                        rows="3"> {{ $data->alamat }}</textarea>
+                                        rows="3"> {{ $data->address }}</textarea>
 
                                     @error('alamat')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
