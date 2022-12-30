@@ -92,7 +92,7 @@ class ProfileCompanyController extends Controller
             }
             $input['nama_perusahaan'] = $request->nama_perusahaan;
             $input['deskripsi'] = $request->deskripsi ?? '-';
-            $input['address'] = $request->address ?? '-';
+            $input['address'] = $request->alamat ?? '-';
             $input['email'] = $request->email ?? '-';
             $input['about'] = $request->about ?? '-';
             $input['phone'] = $request->phone ?? '-';
