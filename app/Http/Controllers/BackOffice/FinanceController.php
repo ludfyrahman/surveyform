@@ -9,6 +9,7 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class FinanceController extends Controller
 {
@@ -155,6 +156,57 @@ class FinanceController extends Controller
         });
 
         return view('pages.backoffice.finance.index', compact('title', 'subtitle', 'summarySale', 'summaryPurchase', 'data'));
+    }
+
+    public function cetak_pdf(Request $request)
+    {
+        $totalPenjualan = 0;
+        $totalPembelian = 0;
+        $totalLaba = 0;
+        $tmpSale = Sale::whereBetween('tanggal', [$request->start, $request->end])->orderBy('created_at', 'DESC')->get();
+        $historySale = [];
+        foreach ($tmpSale as $ts) {
+            $ts->jenis = 'Penjualan';
+            $totalPenjualan += $ts->total;
+            array_push($historySale, $ts);
+        }
+        //query pembelian
+
+        // ];
+        $historyPurchase = [];
+        $tmpPurchase = [];
+        if ($request) {
+            # code...
+            $tmpPurchase = Purchase::whereBetween('tanggal', [$request->start, $request->end])->orderBy('created_at', 'DESC')->get();
+        }
+        foreach ($tmpPurchase as $tp) {
+            $tp->jenis = 'Pembelian';
+            $totalPembelian += $ts->total;
+            array_push($historySale, $tp);
+        }
+        // grouping dan order by created_at desc
+        $data = [];
+        $historySale = (object)$historySale;
+        $historyPurchase = (object)$historyPurchase;
+        foreach ($historySale as $hs) {
+
+            array_push($data, $hs);
+        }
+        foreach ($historyPurchase as $ph) {
+
+            array_push($data, $ph);
+        }
+        $tmp = collect($data);
+
+        $data = $tmp->sortBy(function ($post) {
+            return $post->created_at;
+        });
+        $totalLaba = $totalPenjualan - $totalPembelian;
+        $fileName = "Laporan_keuangan_" . $request->start . "_" . $request->end;
+
+        // return view('pages.template.finance_template', ['data' => $data, 'start' => $request->start, 'end' => $request->end, 'penjualan' => $totalPenjualan, 'pembelian' => $totalPembelian, 'laba' => $totalLaba]);
+        $pdf = PDF::loadview('pages.template.finance_template', ['data' => $data, 'start' => $request->start, 'end' => $request->end, 'penjualan' => $totalPenjualan, 'pembelian' => $totalPembelian, 'laba' => $totalLaba]);
+        return $pdf->download($fileName);
     }
 
     /**

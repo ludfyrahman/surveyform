@@ -230,17 +230,34 @@
                                 <input class="form-control" name="start_date" type="date">
                             </div>
                             <div class="col-md-1">
-                                <label for="" class="mt-2">S/d</label>
+                                <label for="" class="mt-2">S.d</label>
                             </div>
                             <div class="col-md-4">
                                 <input class="form-control" name="end_date" type="date">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-main-primary btn-block" type="button"
-                                    onclick="filter()">Filter</button>
+                                <button class="btn btn-primary btn-block" type="button" onclick="filter()"><i
+                                        class="mdi mdi-tune "></i> Filter</button>
+                            </div>
+
+                        </div>
+                        <div class="row mt-2 d-flex justify-content-between">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-block" type="button" onclick="print()"><i
+                                        class="mdi mdi-printer me-2"></i>Export Data</button>
                             </div>
                         </div>
                     </form>
+
+                </div>
+                <div class="col-md-12 mb-3 d-flex justify-content-between">
+                    <div></div>
+                    <form action="">
+
+                    </form>
+
+
                 </div>
                 <div class="table-responsive">
                     <table class="table text-md-nowrap" id="example1">
@@ -296,8 +313,26 @@
                     }
                 });
             }
-            console.log(start);
-            console.log(end);
+        }
+
+        function print() {
+            let start = document.getElementsByName("start_date")[0].value;
+            let end = document.getElementsByName("end_date")[0].value;
+            if (start === "") {
+                alert("Batas awal tidak boleh kosong");
+            } else if (end == "") {
+                alert("Batas akhir tidak boleh kosong");
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: "/report/export-finance?start=" + start + "&end=" + end,
+                    success: function(res) {
+                        console.log("/report/export-finance?start=" + start + "&end=" + end);
+                        window.location = "/report/export-finance?start=" + start + "&end=" + end;
+                        // console.log(res);
+                    }
+                });
+            }
         }
     </script>
 @endsection
