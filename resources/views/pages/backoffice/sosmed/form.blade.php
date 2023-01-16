@@ -58,8 +58,9 @@
                                 <div class="form-group">
                                     <label for="">Link <span class="tx-danger">*</span></label>
                                     <input type="text" name="link"
-                                        class="form-control @error('link') parsley-error @enderror" placeholder="link"
+                                        class="form-control @error('link') parsley-error @enderror" placeholder="https://www.example.com"
                                         value="{{ $data->link == '' ? old('link') : $data->link }}">
+                                        <i><span>*</span>Gunakan format http://.www.example.com</i>
                                     @error('link')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>

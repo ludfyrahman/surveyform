@@ -22,6 +22,7 @@
                                         </ul>
                                     </div>
                                     <div class="content=right read-more-btn">
+                                        
                                         <a class="edu-btn btn-sm btn-dark" target="_blank" href="{{$item->link}}">Kunjungi<i class="icon-arrow-right-line-right"></i></a>
                                     </div>
                                 </div>
