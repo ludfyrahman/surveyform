@@ -167,12 +167,12 @@ class FinanceController extends Controller
         $historySale = [];
         foreach ($tmpSale as $ts) {
             $ts->jenis = 'Penjualan';
-            $totalPenjualan += $ts->total;
+
             array_push($historySale, $ts);
         }
         //query pembelian
 
-        // ];
+
         $historyPurchase = [];
         $tmpPurchase = [];
         if ($request) {
@@ -181,13 +181,14 @@ class FinanceController extends Controller
         }
         foreach ($tmpPurchase as $tp) {
             $tp->jenis = 'Pembelian';
-            $totalPembelian += $ts->total;
+
             array_push($historySale, $tp);
         }
         // grouping dan order by created_at desc
         $data = [];
         $historySale = (object)$historySale;
         $historyPurchase = (object)$historyPurchase;
+        // return $historySale;
         foreach ($historySale as $hs) {
 
             array_push($data, $hs);
@@ -197,7 +198,14 @@ class FinanceController extends Controller
             array_push($data, $ph);
         }
         $tmp = collect($data);
+        foreach ($tmp as $val) {
+            if (substr($val->invoice, 0, 3) == 'TRB') {
+                $totalPembelian += $val->total;
+            } else {
+                $totalPenjualan += $val->total;
+            }
 
+        }
         $data = $tmp->sortBy(function ($post) {
             return $post->created_at;
         });

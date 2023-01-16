@@ -16,6 +16,7 @@ use App\Helper\Helper;
 
 use App\Constants\ItemType;
 use App\Constants\SaleStatus;
+
 class SaleController extends Controller
 {
     /**
@@ -48,7 +49,7 @@ class SaleController extends Controller
             'type'      => 'create',
         ];
         $invoice = Helper::kodeJual();
-        return view('pages.backoffice.sale.form', compact('title','customers', 'data', 'items', 'vouchers','invoice'));
+        return view('pages.backoffice.sale.form', compact('title', 'customers', 'data', 'items', 'vouchers', 'invoice'));
     }
 
     /**
@@ -71,13 +72,13 @@ class SaleController extends Controller
             DB::transaction(function () use ($request) {
                 $find = null;
                 $harga = 0;
-                if($request->tipe == ItemType::BARANG){
+                if ($request->tipe == ItemType::BARANG) {
                     $find = Product::find($request->item_id);
-                    if($find->stok < $request->jumlah){
+                    if ($find->stok < $request->jumlah) {
                         return back()->with('failed', 'jumlah pembelian melebihi stok yang tersedia');
                     }
                     $harga = $find->harga_jual;
-                }else{
+                } else {
                     $find = Jasa::find($request->item_id);
                     $harga = $find->harga;
                 }
@@ -95,7 +96,7 @@ class SaleController extends Controller
 
             return back()->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+            return back()->with('failed', 'Gagal menambah data!' . $th->getMessage());
         }
     }
 
@@ -109,7 +110,7 @@ class SaleController extends Controller
     {
         //
         $data = Sale::where('id', $id)->first();
-        $title = 'Detail Data Penjualan '.$data->invoice;
+        $title = 'Detail Data Penjualan ' . $data->invoice;
 
         $items =  SaleDetail::with('service', 'product')->where('penjualan_id', $id)->get();
         return view('pages.backoffice.sale.detail', compact('data', 'title', 'items'));
@@ -167,22 +168,25 @@ class SaleController extends Controller
         return redirect('sale')->with('success', 'Berhasil Hapus data!');
     }
 
-    public function destroyDetail($id){
+    public function destroyDetail($id)
+    {
         SaleDetail::find($id)->delete();
         return back()->with('success', 'Berhasil Hapus data!');
     }
 
-    public function voucherItem($id){
+    public function voucherItem($id)
+    {
         return DB::table('voucher')->where('id', $id)->first();
     }
 
-    public function submitOrder(Request $request){
+    public function submitOrder(Request $request)
+    {
         $request->validate([
             'invoice'       => 'required',
             'customer_id'   => 'required',
             'total'         => 'required',
             'diskon'        => 'nullable',
-            'tipe_transaksi'=> 'required',
+            'tipe_transaksi' => 'required',
         ]);
 
         try {
@@ -192,7 +196,7 @@ class SaleController extends Controller
                     'invoice'       => $request->invoice,
                     'total'         => $request->total,
                     'diskon'        => $request->diskon ?? 0,
-                    'tipe_transaksi'=> $request->tipe_transaksi,
+                    'tipe_transaksi' => $request->tipe_transaksi,
                     'status'        => SaleStatus::DONE,
                     'tanggal'       => date('Y-m-d H:i:s'),
                 ]);
@@ -208,30 +212,36 @@ class SaleController extends Controller
                     /**
                      * update field stok in product
                      */
-                    if($detail->tipe == ItemType::BARANG){
+                    if ($detail->tipe == ItemType::BARANG) {
                         $product = Product::find($detail->item_id);
-                        if($product->stok < 1){
+                        if ($product->stok < 1) {
                             return back()->with('failed', 'stok tidak valid silahkan tambah stok terlebih dahulu');
                         }
                         $product->stok = $product->stok - $detail->jumlah;
                         $product->save();
                     }
-
                 }
             });
 
             return redirect('sale')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+            return back()->with('failed', 'Gagal menambah data!' . $th->getMessage());
         }
     }
 
-    public function itemByType($type){
+    public function itemByType($type, $trans)
+    {
         $result = null;
-        if($type == ItemType::JASA){
+        if ($type == ItemType::JASA) {
             $result = Jasa::get(['jasa.harga AS price', 'jasa.id AS id', 'jasa.nama as nama'])->each->setAppends([]);
-        }else{
-            $result = Product::get(['barang.nama AS nama', 'barang.harga_jual AS price', 'barang.id as id'])->each->setAppends([]);
+        } else if ($type == ItemType::PURCHASE) {
+        } else {
+            if ($trans == 'purchase') {
+                $result = Product::get(['barang.nama AS nama', 'barang.harga_beli AS price', 'barang.id as id'])->each->setAppends([]);
+            } else {
+                
+                $result = Product::get(['barang.nama AS nama', 'barang.harga_jual AS price', 'barang.id as id'])->each->setAppends([]);
+            }
         }
         return Response()->json($result);
     }

@@ -49,6 +49,7 @@ class PurchaseController extends Controller
             'type'      => 'create',
         ];
         $invoice = Helper::kodeBeli();
+        // return $items;
         return view('pages.backoffice.purchase.form', compact('title','suppliers', 'data', 'items', 'vouchers','invoice'));
     }
 
@@ -74,7 +75,7 @@ class PurchaseController extends Controller
                 $harga = 0;
                 if($request->tipe == ItemType::BARANG){
                     $find = Product::find($request->item_id);
-                    $harga = $find->harga_jual;
+                    $harga = $find->harga_beli;
                 }else{
                     $find = Jasa::find($request->item_id);
                     $harga = $find->harga;

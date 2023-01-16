@@ -184,7 +184,7 @@
                 var val = $(this).val();
                 $.ajax({
                     type:'GET',
-                    url:'/api/getItem/'+val,
+                    url:'/api/getItem/'+val+'/purchase',
                     success:function(response){
                         var result = '<option>Pilih Item</option>';
                         for (let index = 0; index < response.length; index++) {
