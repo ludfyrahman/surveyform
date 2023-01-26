@@ -13,6 +13,8 @@ use App\Models\Product;
 use App\Models\PurchaseDetail;
 use App\Models\SaleDetail;
 use App\Constants\SaleStatus;
+use PDF;
+
 class StokController extends Controller
 {
     /**
@@ -24,10 +26,10 @@ class StokController extends Controller
     {
         //
         $data = Product::leftJoin('kategori', 'kategori.id', 'barang.kategori_id')
-                        ->leftJoin('satuan', 'satuan.id', 'barang.satuan_id')
-                        ->where(['barang.status' => 'Aktif'])
-                        ->select('kategori.kategori', 'satuan.satuan', 'barang.*')
-                        ->get();
+            ->leftJoin('satuan', 'satuan.id', 'barang.satuan_id')
+            ->where(['barang.status' => 'Aktif'])
+            ->select('kategori.kategori', 'satuan.satuan', 'barang.*')
+            ->get();
         $title = 'List Stok Barang';
         return view('pages.backoffice.stok.index', compact('data', 'title'));
     }
@@ -62,30 +64,42 @@ class StokController extends Controller
     public function show($id)
     {
         //
-        $data = Product::with('satuan','kategori')->find($id);
-        $title = 'Detail Stok Barang '.$data->nama;
+        $data = Product::with('satuan', 'kategori')->find($id);
+        $title = 'Detail Stok Barang ' . $data->nama;
         $purchase = PurchaseDetail::where('status', SaleStatus::DONE)->get();
         $sales = SaleDetail::where('status', SaleStatus::DONE)->get();
         $list = [];
         foreach ($purchase as $key => $pur) {
             $list[] = (object)[
-                'tanggal' =>$pur->created_at,
+                'tanggal' => $pur->created_at,
                 'tipe' => 'Pembelian',
-                'jumlah' =>$pur->jumlah,
-                'harga' =>$pur->harga,
+                'jumlah' => $pur->jumlah,
+                'harga' => $pur->harga,
             ];
         }
 
         foreach ($sales as $key => $sale) {
             $list[] = (object)[
-                'tanggal' =>$sale->created_at,
+                'tanggal' => $sale->created_at,
                 'tipe' => 'Penjualan',
-                'jumlah' =>$sale->jumlah,
-                'harga' =>$sale->harga,
+                'jumlah' => $sale->jumlah,
+                'harga' => $sale->harga,
             ];
         }
         $list = (object)$list;
         return view('pages.backoffice.stok.detail', compact('data', 'title', 'list'));
+    }
+
+    public function cetak_pdf()
+    {
+        $data = Product::leftJoin('satuan', 'satuan.id', 'barang.satuan_id')
+        ->select('barang.*','satuan.akronim')->where('barang.status', 'Aktif')->get();
+
+        $fileName = "Laporan_stok.pdf";
+        // return $data;
+        // return view('pages.template.stok_template', ['data' => $data]);
+        $pdf = PDF::loadview('pages.template.stok_template', ['data' => $data]);
+        return $pdf->download($fileName);
     }
 
     /**

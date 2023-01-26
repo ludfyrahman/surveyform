@@ -79,6 +79,7 @@ Route::middleware(['auth',  'verified'])->group(function () {
         Route::resource('finance', FinanceController::class);
         Route::resource('attendance', AttendanceController::class);
         Route::get('export-finance', [FinanceController::class, 'cetak_pdf']);
+        Route::get('export-stock', [StokController::class, 'cetak_pdf']);
         // Route::get('finance', [FinanceController::class, 'filter']);
     });
 });
