@@ -28,10 +28,19 @@ class SaleController extends Controller
     {
         //
         $data = Sale::with('customer')->get();
+        /**
+         * update block
+         */
+        
         $title = 'List Data Penjualan';
         return view('pages.backoffice.sale.index', compact('data', 'title'));
     }
 
+    
+    public function add(){
+        SaleDetail::where('status', SaleStatus::PROSES)->delete();
+        redirect(route('sale.create'));
+    }
     /**
      * Show the form for creating a new resource.
      *

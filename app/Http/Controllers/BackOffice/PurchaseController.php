@@ -28,8 +28,17 @@ class PurchaseController extends Controller
     {
         //
         $data = Purchase::with('customer')->get();
+        /**
+         * update block
+         */
+        
         $title = 'List Data Pembelian';
         return view('pages.backoffice.purchase.index', compact('data', 'title'));
+    }
+
+    public function add(){
+        PurchaseDetail::where('status', SaleStatus::PROSES)->delete();
+        return redirect(route('purchase.create'));
     }
 
     /**
@@ -109,7 +118,6 @@ class PurchaseController extends Controller
         //
         $data = Purchase::where('id', $id)->first();
         $title = 'Detail Data Penjualan '.$data->invoice;
-
         $items =  PurchaseDetail::with('service', 'product')->where('pembelian_id', $id)->get();
         return view('pages.backoffice.purchase.detail', compact('data', 'title', 'items'));
     }

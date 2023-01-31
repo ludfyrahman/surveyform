@@ -6,7 +6,7 @@
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">{{$title}}</h4>
-                    <a href="{{ route('purchase.create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
+                    <a href="{{ route('purchase.add') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
                         Pembelian</a>
 
                 </div>

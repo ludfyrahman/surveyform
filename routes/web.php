@@ -45,6 +45,7 @@ Route::middleware(['auth',  'verified'])->group(function () {
      * sale block
      */
     Route::resource('sale', SaleController::class);
+    Route::get('saleAdd', [SaleController::class, 'add'])->name('sale.add');
     Route::get('destroyDetail/{id}', [SaleController::class, 'destroyDetail'])->name('destroyDetail');
     Route::post('submitOrder', [SaleController::class, 'submitOrder'])->name('submitOrder');
     /**
@@ -55,6 +56,7 @@ Route::middleware(['auth',  'verified'])->group(function () {
      * purchase block
      */
     Route::resource('purchase', PurchaseController::class);
+    Route::get('purchaseAdd', [PurchaseController::class, 'add'])->name('purchase.add');
     Route::get('destroyDetailPurchase/{id}', [PurchaseController::class, 'destroyDetail'])->name('destroyDetailPurchase');
     Route::post('submitPurchase', [PurchaseController::class, 'submitPurchase'])->name('submitPurchase');
     /**
