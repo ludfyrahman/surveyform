@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="">Email <span class="tx-danger">*</span></label>
                                     <input type="text" name="email"
-                                        class="form-control @error('email') parsley-error @enderror" placeholder="email">
+                                        class="form-control @error('email') parsley-error @enderror"  value="{{ old('email') }}" placeholder="email">
                                     @error('email')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>

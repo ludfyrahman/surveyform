@@ -20,7 +20,7 @@ class UserController extends Controller
         if (auth()->user()->role == 'Super Admin') {
             $data = User::all();
         } else {
-            $data = User::where('status', 'Aktif')->get();
+            $data = User::where('status', 'Aktif')->where('role', '!=', 'Super Admin')->get();
         }
 
         return view('pages.backoffice.user.index', compact('data'));
@@ -140,18 +140,20 @@ class UserController extends Controller
     }
 
 
-    public function profile(){
+    public function profile()
+    {
         $data = auth()->user();
         return view('auth.profile', compact('data'));
     }
 
 
-    public function updateProfile(Request $request){
+    public function updateProfile(Request $request)
+    {
         $id = auth()->user()->id;
         $request->validate([
             'username' => 'required',
             'email' => 'required|email',
-            'password' => 'nullable|min:6|confirmed|unique:users,email,'.$id,
+            'password' => 'nullable|min:6|confirmed|unique:users,email,' . $id,
         ]);
         try {
             $user = ([

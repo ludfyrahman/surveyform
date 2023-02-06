@@ -16,19 +16,20 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        $data =[];
+        $data = [];
         if (auth()->user()->role == 'Super Admin') {
             $data = Employee::leftJoin('users', 'users.id', 'pegawai.users_id')
-            ->select('pegawai.*', 'users.username')
-            ->get();
+                ->select('pegawai.*', 'users.username')
+                ->get();
         } else {
             $data = Employee::leftJoin('users', 'users.id', 'pegawai.users_id')
-            ->select('pegawai.*', 'users.username')
-            ->where('users.status', 'Aktif')
-            ->where('pegawai.status', 'Aktif')
-            ->get();
+                ->select('pegawai.*', 'users.username')
+                ->where('users.status', 'Aktif')
+                ->where('pegawai.status', 'Aktif')
+                ->get();
         }
 
+        // return $data;
 
         return view('pages.backoffice.employe.index', compact('data'));
     }
@@ -54,7 +55,7 @@ class EmployeController extends Controller
         $request->validate([
             'nama' => 'required',
             'telepon' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'password' => 'required',
             'alamat' => 'required',
             'email' => 'required',
@@ -76,7 +77,7 @@ class EmployeController extends Controller
             ]);
             return redirect('employe')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menambah data!'.$th);
+            return back()->with('failed', 'Gagal menambah data! Periksa kembali inputan');
         }
     }
 
@@ -118,7 +119,7 @@ class EmployeController extends Controller
         $request->validate([
             'nama' => 'required',
             'telepon' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'status' => 'required',
             'alamat' => 'required',
         ]);
@@ -157,7 +158,7 @@ class EmployeController extends Controller
         //
         try {
             Employee::where('id', $id)->update(['status' => 'Nonaktif']);
-        return redirect('employe')->with('success', 'Berhasil mengubah data!');
+            return redirect('employe')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
             throw $th;
         }
