@@ -28,7 +28,7 @@ class AttendanceController extends Controller
             COUNT(IF(absensi.keterangan = 'Izin', 1, NULL)) 'Izin'
             FROM absensi JOIN pegawai ON absensi.pegawai_id=pegawai.id
             WHERE (tanggal BETWEEN $request->start AND $request->end)
-            GROUP BY absensi.pegawai_id");
+            GROUP BY absensi.pegawai_id, pegawai.nama");
         } else {
             $data = DB::select("SELECT absensi.pegawai_id, pegawai.nama,
             COUNT(IF(absensi.keterangan = 'Hadir', 1, NULL)) 'Hadir',
@@ -36,7 +36,7 @@ class AttendanceController extends Controller
             COUNT(IF(absensi.keterangan = 'Tanpa Keterangan', 1, NULL)) 'Alpa',
             COUNT(IF(absensi.keterangan = 'Izin', 1, NULL)) 'Izin'
             FROM absensi JOIN pegawai ON absensi.pegawai_id=pegawai.id
-            GROUP BY absensi.pegawai_id");
+            GROUP BY absensi.pegawai_id, pegawai.nama");
         }
 
 

@@ -204,14 +204,13 @@ class FinanceController extends Controller
             } else {
                 $totalPenjualan += $val->total;
             }
-
         }
         $data = $tmp->sortBy(function ($post) {
             return $post->created_at;
         });
         $totalLaba = $totalPenjualan - $totalPembelian;
-        $fileName = "Laporan_keuangan_" . $request->start . "_" . $request->end;
-
+        $fileName = "Laporan_keuangan_" . $request->start . "_" . $request->end . ".pdf";
+        // return $fileName;
         // return view('pages.template.finance_template', ['data' => $data, 'start' => $request->start, 'end' => $request->end, 'penjualan' => $totalPenjualan, 'pembelian' => $totalPembelian, 'laba' => $totalLaba]);
         $pdf = PDF::loadview('pages.template.finance_template', ['data' => $data, 'start' => $request->start, 'end' => $request->end, 'penjualan' => $totalPenjualan, 'pembelian' => $totalPembelian, 'laba' => $totalLaba]);
         return $pdf->download($fileName);
