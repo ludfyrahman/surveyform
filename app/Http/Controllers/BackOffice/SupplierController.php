@@ -24,7 +24,7 @@ class SupplierController extends Controller
         if (Auth::user()->role == 'Super Admin') {
             $data = Supplier::all();
         } else {
-            $data = Supplier::where('status', 'Admin')->get();
+            $data = Supplier::where('status', 'Aktif')->get();
         }
 
 
