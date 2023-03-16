@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProfileCompany;
 use App\Models\Sosmed;
+use App\Models\SubCategory;
 use App\Models\Type;
 
 class SiteController extends Controller
@@ -23,7 +24,8 @@ class SiteController extends Controller
         $types = [];
         $social = [];
         $profiles = (object)['about' => null, 'logo' => null, 'deskripsi' => null, 'light_logo' => null, 'address'=> null, 'phone' => null, 'email' => null];
-        return view('pages.frontend.form', compact('types', 'products','social','profiles'));
+        $data = SubCategory::with('category','question')->get();
+        return view('pages.frontend.form', compact('types', 'products','social','profiles', 'data'));
     }
 
     /**

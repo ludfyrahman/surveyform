@@ -2,53 +2,42 @@
 @section('content-app')
 
     <form id="steps" method="post" class="show-section h-100" novalidate>
-
+        @foreach ($data as $index => $d)
         <!-- step 1 -->
         <section class="steps">
-            <div class="step-count">Question 1 / 4</div>
-            <h2 class="main-heading">What is Your First Reaction To the Product</h2>
+            <div class="step-count">Step {{$index + 1}}/ {{count($data)}}</div>
+            <h2 class="main-heading">{{$d->name}} ({{$d->category?->name}})</h2>
             <div class="line-break"></div>
 
             <!-- form -->
-            <fieldset class="form" id="step1">
+            <fieldset class="form" id="step{{$index+1}}">
                 <div class="row justify-content-space-between">
-                    <div class="col-md-6 tab-100">
-                        <div class="form-radio ">
-                            <input type="radio" name="op1" value="Somewhat Negative">
-                            <label>Somewhat Negative</label>
+                    <div class="rating">
+                        @foreach ($d->question as $question)
+                        <h3>{{$question->name}}</h3>
+                        <div class="score">
+                            <div class="score-inner delay-100ms">
+                                <div class="score-point">1</div>
+                                <div class="score-point">2</div>
+                                <div class="score-point">3</div>
+                                <div class="score-point">4</div>
+                                <div class="score-point">5</div>
+                            </div>
+                            <p><span>Sangat tidak setuju</span><span>Sangat Setuju</span></p>
                         </div>
-                    </div>
-                    <div class="col-md-6 tab-100">
-                        <div class="form-radio delay-100ms">
-                            <input type="radio" name="op1" value="Somewhat positive">
-                            <label>Somewhat positive</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 tab-100">
-                        <div class="form-radio delay-200ms">
-                            <input type="radio" name="op1" value="Neutral">
-                            <label>Neutral</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 tab-100">
-                        <div class="form-radio delay-300ms">
-                            <input type="radio" name="op1" value="Very posting">
-                            <label>Very posting</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 tab-100">
-                        <div class="form-radio delay-400ms">
-                            <input type="radio" name="op1" value="Very negative">
-                            <label>Very negative</label>
-                        </div>
+                        <div class="line-break mt-5 mb-5"></div>
+                        @endforeach
+
                     </div>
                 </div>
             </fieldset>
             <div class="next-prev-button">
                 <button type="button" class="prev">Previous Question</button>
-                <button type="button" class="next" id="step1btn">Next Question</button>
+                <button type="button" class="next" id="stepbtn" value="{{$index+1}}">Next Question</button>
             </div>
         </section>
+        @endforeach
+
 
         <!-- step 2 -->
         <section class="steps">

@@ -28,6 +28,7 @@
                             <tr>
                                 <th class="wd-15p border-bottom-0">No</th>
                                 <th class="wd-20p border-bottom-0">Sub Kategori</th>
+                                <th class="wd-20p border-bottom-0">Kategori</th>
                                 <th class="wd-20p border-bottom-0">Deskripsi</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
@@ -37,6 +38,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td><span class="badge {{$item->category->id % 2 == 0 ? 'bg-primary' : 'bg-info'}}">{{ $item->category?->name }}</span></td>
                                     <td>{{ $item->description }}</td>
                                     <td class="d-flex"><a href="{{ route('sub_category.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>

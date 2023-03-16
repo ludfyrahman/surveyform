@@ -20,7 +20,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         //
-        $data = SubCategory::all();
+        $data = SubCategory::with('category')->get();
         $title = 'List Data Sub Kategori';
         return view('pages.backoffice.sub_category.index', compact('data', 'title'));
     }

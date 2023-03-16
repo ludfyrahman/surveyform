@@ -23,7 +23,7 @@ function showActiveStep()
         $('.side-inner img').attr
         (
             {
-                src: url + '/frontend/images/side-img3.png',
+                src: url + '/frontend/images/side-img2.png',
             }
         )
     }
@@ -32,7 +32,7 @@ function showActiveStep()
         $('.side-inner img').attr
         (
             {
-                src: url + '/frontend/images/side-img4.png',
+                src: url + '/frontend/images/side-img2.png',
             }
         )
     }
@@ -194,14 +194,15 @@ $(document).ready(function()
 
 
     // check step1
-    $("#step1btn").on('click', function()
+    $("[id=stepbtn]").on('click', function()
     {
+        var val = $('#stepbtn').attr('value');
         formvalidate(1);
 
 
         if(inputschecked == false)
         {
-            formvalidate(1);
+            formvalidate(val);
         }
         else
         {

@@ -71,7 +71,7 @@
                                     <label for="">Deskripsi <span class="tx-danger">*</span></label>
                                     <textarea rows="5" type="text" name="description"
                                         class="form-control @error('description') parsley-error @enderror" placeholder="description"
-                                        value="{{ $data->description == '' ? old('description') : $data->description }}"></textarea>
+                                        >{{ $data->description == '' ? old('description') : $data->description }}</textarea>
                                     @error('description')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
