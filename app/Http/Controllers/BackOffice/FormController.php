@@ -21,7 +21,7 @@ class FormController extends Controller
     public function index()
     {
         //
-        $data = Form::with('subcategory')->get();
+        $data = Form::with('subcategory', 'subcategory.category')->get();
         $title = 'List Data Kuesioner';
         return view('pages.backoffice.form.index', compact('data', 'title'));
     }
