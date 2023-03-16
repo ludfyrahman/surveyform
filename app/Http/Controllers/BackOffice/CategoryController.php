@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\BackOffice;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Models\User;
 
+/**
+ * model block
+ */
 class CategoryController extends Controller
 {
     /**
@@ -16,8 +18,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //
         $data = Category::all();
-        return view('pages.backoffice.category.index', compact('data'));
+        $title = 'List Data Kategori';
+        return view('pages.backoffice.category.index', compact('data', 'title'));
     }
 
     /**
@@ -27,8 +31,15 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        //
         $title = 'Tambah Data Kategori';
-        return view('pages.backoffice.category.add', compact('title'));
+        $data = (object)[
+            'name'        => '',
+            'description'       => '',
+            'slug'       => '',
+            'type'          => 'create',
+        ];
+        return view('pages.backoffice.category.form', compact('title', 'data'));
     }
 
     /**
@@ -39,6 +50,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -48,12 +60,12 @@ class CategoryController extends Controller
         try {
             Category::create([
                 'name' => $request->name,
-                'slug' => $request->slug,
                 'description' => $request->description,
+                'slug' => $request->slug,
             ]);
             return redirect('category')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menambah data!');
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
         }
     }
 
@@ -76,9 +88,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        //
         $data = Category::where('id', $id)->first();
-
-        return view('pages.backoffice.category.edit', compact('data'));
+        $title = 'Edit Data Kategori';
+        return view('pages.backoffice.category.form', compact('data', 'title'));
     }
 
     /**
@@ -90,20 +103,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
         $request->validate([
             'name' => 'required',
-            'slug' => 'required',
             'description' => 'required',
+            'slug' => 'required',
         ]);
         try {
-            $user = ([
+            $data = ([
                 'name' => $request->name,
-                'slug' => $request->slug,
                 'description' => $request->description,
-
+                'slug' => $request->slug,
             ]);
 
-            Category::where('id', $id)->update($user);
+            Category::where('id', $id)->update($data);
             return redirect('category')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal mengubah data!');
@@ -118,43 +131,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            Category::where('id', $id)->update(['description' => 'Nonaktif']);
-            return redirect('category')->with('success', 'Berhasil menghapus data!');
-        } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal menghapus data!');
-        }
-    }
-
-
-    public function profile()
-    {
-        $data = auth()->user();
-        return view('auth.profile', compact('data'));
-    }
-
-
-    public function updateProfile(Request $request)
-    {
-        $id = auth()->user()->id;
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'nullable|min:6|confirmed|unique:users,email,' . $id,
-        ]);
-        try {
-            $user = ([
-                'name' => $request->name,
-                'email' => $request->email,
-            ]);
-            if ($request->password) {
-                $user['password'] = bcrypt($request->password);
-            }
-
-            Category::where('id', $id)->update($user);
-            return back()->with('success', 'Berhasil mengubah data!');
-        } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal mengubah data!');
-        }
+        //
+        Category::find($id)->delete();
+        return redirect('category')->with('success', 'Berhasil mengubah data!');
     }
 }

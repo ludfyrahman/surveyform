@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\BackOffice;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\SubCategory;
 
+/**
+ * model block
+ */
 class SubCategoryController extends Controller
 {
     /**
@@ -15,6 +20,9 @@ class SubCategoryController extends Controller
     public function index()
     {
         //
+        $data = SubCategory::all();
+        $title = 'List Data Sub Kategori';
+        return view('pages.backoffice.sub_category.index', compact('data', 'title'));
     }
 
     /**
@@ -25,6 +33,16 @@ class SubCategoryController extends Controller
     public function create()
     {
         //
+        $title = 'Tambah Data Sub Kategori';
+        $data = (object)[
+            'name'              => '',
+            'description'       => '',
+            'slug'              => '',
+            'category_id'       => '',
+            'type'              => 'create',
+        ];
+        $categories = Category::all();
+        return view('pages.backoffice.sub_category.form', compact('categories','title', 'data'));
     }
 
     /**
@@ -36,6 +54,24 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        try {
+            SubCategory::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'slug' => $request->slug,
+                'category_id' => $request->category_id,
+            ]);
+            return redirect('sub_category')->with('success', 'Berhasil menambah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
+        }
     }
 
     /**
@@ -58,6 +94,10 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         //
+        $data = SubCategory::where('id', $id)->first();
+        $title = 'Edit Data Sub Kategori';
+        $categories = Category::all();
+        return view('pages.backoffice.sub_category.form', compact('data', 'title', 'categories'));
     }
 
     /**
@@ -70,6 +110,25 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
+            'category_id' => 'required',
+        ]);
+        try {
+            $data = ([
+                'name' => $request->name,
+                'description' => $request->description,
+                'slug' => $request->slug,
+                'category_id' => $request->category_id,
+            ]);
+
+            SubCategory::where('id', $id)->update($data);
+            return redirect('sub_category')->with('success', 'Berhasil mengubah data!');
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Gagal mengubah data!');
+        }
     }
 
     /**
@@ -81,5 +140,7 @@ class SubCategoryController extends Controller
     public function destroy($id)
     {
         //
+        SubCategory::find($id)->delete();
+        return redirect('sub_category')->with('success', 'Berhasil mengubah data!');
     }
 }
