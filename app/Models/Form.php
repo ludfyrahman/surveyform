@@ -13,15 +13,11 @@ class Form extends Model
         'name',
         'type',
         'value',
-    'category_id',
+        'sub_category_id',
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
-    public function subcategory()
+    public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);
     }

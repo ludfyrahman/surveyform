@@ -21,7 +21,7 @@ class FormController extends Controller
     public function index()
     {
         //
-        $data = Form::all();
+        $data = Form::with('subcategory')->get();
         $title = 'List Data Kuesioner';
         return view('pages.backoffice.form.index', compact('data', 'title'));
     }
@@ -58,20 +58,23 @@ class FormController extends Controller
         $request->validate([
             'name' => 'required',
             'type' => 'required',
-            'value' => 'required',
+            'value' => 'nullable',
+            'sub_category_id' => 'required',
         ]);
 
         try {
             $value = null;
             if ($request->type == 'select' || $request->type == 'radio-range') {
-                $value = json_encode($request->value);
+                $explode = explode(',', $request->value);
+                $value = json_encode($explode);
             } else {
-                $value = $request->value;
+                $value = json_encode([]);
             }
             Form::create([
                 'name' => $request->name,
                 'type' => $request->type,
-                'value' => $request->value,
+                'sub_category_id' => $request->sub_category_id,
+                'value' => $value,
             ]);
             return redirect('form')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {

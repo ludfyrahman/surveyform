@@ -8,7 +8,7 @@
                 @if (session('failed'))
                     <div class="alert alert-danger mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-d-none="true">&times;</span>
                         </button>
                         {{ session('failed') }}
                     </div>
@@ -29,7 +29,7 @@
                                     <label for="">Nama Field <span class="tx-danger">*</span></label>
                                     <input type="text" id="name" name="name"
                                         class="form-control @error('name') parsley-error @enderror" placeholder="name"
-                                        value="{{ $data->name == '' ? old('name') : $data->slug }}">
+                                        value="{{ $data->name == '' ? old('name') : $data->name }}">
                                     @error('slug')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label for="">Tipe <span class="tx-danger">*</span></label>
                                     <select id='type' name="type" class="form-control @error('category_id') parsley-error @enderror" id="">
-                                        <option value="">Pilih Sub Kategori</option>
+                                        <option value="">Pilih Tipe</option>
                                         @foreach (\App\Constants\FormType::type as $type => $value)
                                             <option {{$type== $data->type ? 'selected' : ''}} value="{{ $type }}">{{ $type }}</option>
                                         @endforeach
@@ -67,6 +67,15 @@
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6 @if(in_array($data->type, ['select', 'radio-range'])) 'd-none' @endif" id='multi'>
+                                <div class="form-group">
+                                    <label for="">Nilai <span class="tx-danger">*</span> <span class="text-muted">Contoh:opsi1,opsi2,opsi3...dst</span></label>
+                                    @php
+                                        $value = json_decode($data->value);
+                                    @endphp
+                                    <textarea name="value" class="form-control @error('value') parsley-error @enderror" id="" cols="30" rows="10">{{ $data->value == '' ? old('value') : implode(',',$value) }}</textarea>
                                 </div>
                             </div>
                             <div class='col-md-12'>
@@ -94,6 +103,11 @@
         $(document).ready(function() {
             $('#type').change(function(){
                 var val = $(this).val();
+                if(val == 'radio-range' || val == 'select'){
+                    $('#multi').removeClass('d-none');
+                }else{
+                    $('#multi').addClass('d-none');
+                }
                 var json = JSON.parse('{!! json_encode(\App\Constants\FormType::type) !!}');
                 var html = '<div class="form-group"><label for="">'+$('#name').val()+'</label>'+ json[val] +'</div>';
                 $('#preview').html(html);

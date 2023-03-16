@@ -28,7 +28,7 @@
                             <tr>
                                 <th class="wd-15p border-bottom-0">No</th>
                                 <th class="wd-20p border-bottom-0">Sub Kategori</th>
-                                <th class="wd-20p border-bottom-0">Deskripsi</th>
+                                <th class="wd-20p border-bottom-0">Nama Field</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
                         </thead>
@@ -36,8 +36,8 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->subcategory?->name }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->description }}</td>
                                     <td class="d-flex"><a href="{{ route('form.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>
                                             Ubah</a>
                                         <form method="POST" action="{{route('form.destroy', $item->id)}}">
