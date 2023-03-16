@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return view('pages.backoffice.user.index', compact('data'));
+        $data = Category::all();
+        return view('pages.backoffice.category.index', compact('data'));
     }
 
     /**
@@ -26,8 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $title = 'Data User Akun';
-        return view('pages.backoffice.user.add', compact('title'));
+        $title = 'Tambah Data Kategori';
+        return view('pages.backoffice.category.add', compact('title'));
     }
 
     /**
@@ -39,19 +40,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-            'status' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
         ]);
 
         try {
-            User::create([
-                'username' => $request->username,
-                'status' => $request->status,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
+            Category::create([
+                'name' => $request->name,
+                'slug' => $request->slug,
+                'description' => $request->description,
             ]);
-            return redirect('user')->with('success', 'Berhasil menambah data!');
+            return redirect('category')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal menambah data!');
         }
@@ -76,9 +76,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data = User::where('id', $id)->first();
+        $data = Category::where('id', $id)->first();
 
-        return view('pages.backoffice.user.edit', compact('data'));
+        return view('pages.backoffice.category.edit', compact('data'));
     }
 
     /**
@@ -91,22 +91,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required',
-            'status' => 'required',
+            'name' => 'required',
+            'slug' => 'required',
+            'description' => 'required',
         ]);
         try {
             $user = ([
-                'username' => $request->username,
-                'status' => $request->status,
-                'email' => $request->email,
+                'name' => $request->name,
+                'slug' => $request->slug,
+                'description' => $request->description,
 
             ]);
-            if ($request->password) {
-                $user['password'] = bcrypt($request->password);
-            }
 
-            User::where('id', $id)->update($user);
-            return redirect('user')->with('success', 'Berhasil mengubah data!');
+            Category::where('id', $id)->update($user);
+            return redirect('category')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal mengubah data!');
         }
@@ -121,8 +119,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            User::where('id', $id)->update(['status' => 'Nonaktif']);
-            return redirect('user')->with('success', 'Berhasil menghapus data!');
+            Category::where('id', $id)->update(['description' => 'Nonaktif']);
+            return redirect('category')->with('success', 'Berhasil menghapus data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal menghapus data!');
         }
@@ -140,20 +138,20 @@ class UserController extends Controller
     {
         $id = auth()->user()->id;
         $request->validate([
-            'username' => 'required',
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'nullable|min:6|confirmed|unique:users,email,' . $id,
         ]);
         try {
             $user = ([
-                'username' => $request->username,
+                'name' => $request->name,
                 'email' => $request->email,
             ]);
             if ($request->password) {
                 $user['password'] = bcrypt($request->password);
             }
 
-            User::where('id', $id)->update($user);
+            Category::where('id', $id)->update($user);
             return back()->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal mengubah data!');

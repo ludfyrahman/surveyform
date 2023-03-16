@@ -1,6 +1,7 @@
 <?php
 namespace App\Helper;
 
+use App\Models\Apps;
 use App\Models\Jasa;
 use App\Models\Product;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class Helper{
 
         return $kode;
     }
-    
+
 
     public static function kodeProduk(){
         $prod = Product::latest('id')->first();
@@ -54,7 +55,7 @@ class Helper{
     }
 
     public static function profile(){
-        return ProfileCompany::first();
+        return Apps::first();
     }
 
     public static function tanggal($tgl)

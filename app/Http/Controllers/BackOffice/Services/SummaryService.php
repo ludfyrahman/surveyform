@@ -16,8 +16,47 @@ class SummaryService
 
     }
 
-
     public function getSummary($request){
+        $saletoday = 0;
+        $purchaseMonth = 0;
+        $saleMonth = 0;
+        $purchaseMonth = 0;
+        $saletodayBefore = 0;
+        $purchaseMonthBefore = 0;
+        $saleMonthBefore = 0;
+        $purhasetodayBefore = 0;
+        $purhasetoday = 0;
+        $service = 0;
+        $product = 0;
+        $salesChart = [];
+        $purchaseChart = [];
+        return (object)[
+            'saleToday' => $saletoday,
+            'purchaseMonth' => $purchaseMonth,
+            'saleMonth' => $saleMonth,
+            'purchaseToday' => $purhasetoday,
+
+            'saleTodayBefore' => ($saletoday - $saletodayBefore) / ($saletoday == 0 ? 1: $saletoday) * 100,
+            'purchaseMonthBefore' => ($purchaseMonth - $purchaseMonthBefore) / ($purchaseMonth == 0 ? 1: $purchaseMonth) * 100,
+            'saleMonthBefore' => ($saleMonth - $saleMonthBefore) / ($saleMonth == 0 ? 1: $saleMonth) * 100,
+            'purchaseTodayBefore' => ($purhasetoday - $purhasetodayBefore) / ($purhasetoday == 0 ? 1: $purhasetoday) * 100,
+
+
+            /**
+             * compare
+             */
+            'service' => $service,
+            'product' => $product,
+            /**
+             * chart
+             */
+            'salesChart' => $salesChart,
+            'purchaseChart' => $purchaseChart,
+
+            'sales' => [],
+        ];
+    }
+    public function _getSummary($request){
         $today = date('Y-m-d');
         $todayB = date('Y-m-d', strtotime('-1 day'));
         $month = date('m');

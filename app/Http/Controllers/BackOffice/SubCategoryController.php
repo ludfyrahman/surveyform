@@ -2,33 +2,19 @@
 
 namespace App\Http\Controllers\BackOffice;
 
-use App\Http\Controllers\BackOffice\Services\SummaryService;
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
-use App\Models\Sale;
 use Illuminate\Http\Request;
 
-use Auth;
-class DashboardController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public SummaryService $service;
-
-    public function __construct(SummaryService $service)
-    {
-        $this->service = $service;
-    }
-    public function index(Request $request)
+    public function index()
     {
         //
-        $summary = $this->service->getSummary($request);
-        // return $summary;
-        $customers = [];
-        return view('pages.backoffice.dashboard.index', compact('summary', 'customers'));
     }
 
     /**

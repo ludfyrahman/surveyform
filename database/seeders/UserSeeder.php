@@ -19,27 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'Super Admin',
             'email' => 'admin@gmail.com',
-            'role' => 'Super Admin',
             'status' => 'Aktif',
-            'password' => bcrypt('posberkah'),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        DB::table('users')->insert([
-            'username' => 'Owner',
-            'email' => 'owner@gmail.com',
-            'role' => 'Owner',
-            'status' => 'Aktif',
-            'password' => bcrypt('posberkah'),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        DB::table('users')->insert([
-            'username' => 'Pegawai',
-            'email' => 'pegawai@gmail.com',
-            'role' => 'Pegawai',
-            'status' => 'Aktif',
-            'password' => bcrypt('posberkah'),
+            'password' => bcrypt('password'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

@@ -15,15 +15,10 @@ class ProfilSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('profil')->insert([
-            'nama_perusahaan' => 'CV. ITA SOLUSI',
+        DB::table('apps')->insert([
+            'name' => 'CV. ITA SOLUSI',
             'logo' => '-',
-            'deskripsi' => '-',
-            'about' => '-',
-            'light_logo' => '-',
-            'address' => '-',
-            'phone' => '-',
-            'email' => '-',
+            'description' => '-',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="inner text-center">
-                        <p>Copyright {{ date('Y') }} <a href="#">POS ITA SOLUSI</a> . All Rights Reserved</p>
+                        <p>Copyright {{ date('Y') }} <a href="#">Survey App</a> . All Rights Reserved</p>
                     </div>
                 </div>
             </div>

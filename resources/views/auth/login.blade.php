@@ -22,11 +22,11 @@
                                 <a href="index.html"><img src="{{asset('assets/img/brand/favicon.png')}}" class="sign-favicon-a ht-40" alt="logo">
                                 <img src="{{asset('assets/img/brand/favicon-white.png')}}" class="sign-favicon-b ht-40" alt="logo">
                                 </a>
-                                <h1 class="main-logo1 ms-1 me-0 my-auto tx-28">Pos<span>I</span>Ta</h1>
+                                <h1 class="main-logo1 ms-1 me-0 my-auto tx-28">Survey<span>A</span>PP</h1>
                             </div>
                             <div class="card-sigin">
                                 <div class="main-signup-header">
-                                    <h2>Selamat Data di POS Ita Solusi</h2>
+                                    <h2>Selamat Data di Survey App</h2>
                                     <h5 class="fw-semibold mb-4">Please sign in to continue.</h5>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf

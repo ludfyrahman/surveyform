@@ -5,12 +5,11 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">Data Users</h4>
-                    <a href="{{ url('/user/create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
-                        User</a>
+                    <h4 class="card-title mg-b-0">Data Kategori</h4>
+                    <a href="{{ url('/category/create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah</a>
 
                 </div>
-                <p class="tx-12 tx-gray-500 mb-2">Data pengguna</p>
+                <p class="tx-12 tx-gray-500 mb-2">Data Kategori</p>
                 @if (session('success'))
                     <div class="alert alert-success mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -27,8 +26,8 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">Username</th>
-                                <th class="wd-15p border-bottom-0">Status</th>
+                                <th class="wd-15p border-bottom-0">Kategori</th>
+                                <th class="wd-15p border-bottom-0">Deskripsi</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>
                         </thead>
@@ -36,9 +35,9 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>{{ $item->status }}</td>
-                                    <td class="d-flex"><a href="{{ url('/user/' . $item->id . '/edit') }}" class="btn btn-sm btn-info me-2"> <i
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->description }}</td>
+                                    <td class="d-flex"><a href="{{ url('/category/' . $item->id . '/edit') }}" class="btn btn-sm btn-info me-2"> <i
                                                 class="mdi mdi-pencil"></i>
                                             Ubah</a>
 

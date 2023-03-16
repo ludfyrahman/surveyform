@@ -3,7 +3,7 @@
         <div class="row g-5 align-items-center mb--30">
             <div class="col-lg-6">
                 <div class="section-title text-start" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <span class="pre-title">POS ITA SOLUSI</span>
+                    <span class="pre-title">Survey App</span>
                     <h3 class="title">Produk yang terdaftar di sistem kami</h3>
                 </div>
             </div>

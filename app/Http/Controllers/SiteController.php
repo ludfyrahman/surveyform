@@ -19,10 +19,10 @@ class SiteController extends Controller
     public function index()
     {
         //
-        $products = Product::with('kategori', 'penjualan')->get();
-        $types = Type::all();
-        $social = Sosmed::all();
-        $profiles = ProfileCompany::first();
+        $products = [];
+        $types = [];
+        $social = [];
+        $profiles = (object)['about' => null, 'logo' => null, 'deskripsi' => null, 'light_logo' => null, 'address'=> null, 'phone' => null, 'email' => null];
         return view('pages.frontend.index', compact('types', 'products','social','profiles'));
     }
 
