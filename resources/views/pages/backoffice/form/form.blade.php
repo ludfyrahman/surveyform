@@ -26,14 +26,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Sub Kategori <span class="tx-danger">*</span></label>
-                                    <select name="sub_category_id" class="form-control @error('category_id') parsley-error @enderror" id="">
-                                        <option value="">Pilih Sub Kategori</option>
-                                        @foreach ($categories as $category)
-                                            <option {{$category->id == $data->sub_category_id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }} [{{$category->category->name}}]</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category_id')
+                                    <label for="">Nama Field <span class="tx-danger">*</span></label>
+                                    <input type="text" id="name" name="name"
+                                        class="form-control @error('name') parsley-error @enderror" placeholder="name"
+                                        value="{{ $data->name == '' ? old('name') : $data->slug }}">
+                                    @error('slug')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
@@ -42,15 +39,39 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Nama Field <span class="tx-danger">*</span></label>
-                                    <input type="text"  name="name"
-                                        class="form-control @error('name') parsley-error @enderror" placeholder="name"
-                                        value="{{ $data->name == '' ? old('name') : $data->slug }}">
-                                    @error('slug')
+                                    <label for="">Sub Kategori <span class="tx-danger">*</span></label>
+                                    <select name="sub_category_id" class="form-control @error('sub_category_id') parsley-error @enderror" id="">
+                                        <option value="">Pilih Sub Kategori</option>
+                                        @foreach ($categories as $category)
+                                            <option {{$category->id == $data->sub_category_id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }} [{{$category->category->name}}]</option>
+                                        @endforeach
+                                    </select>
+                                    @error('sub_category_id')
                                         <ul class="parsley-errors-list filled" id="parsley-id-5">
                                             <li class="parsley-required">{{ $message }}</li>
                                         </ul>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Tipe <span class="tx-danger">*</span></label>
+                                    <select id='type' name="type" class="form-control @error('category_id') parsley-error @enderror" id="">
+                                        <option value="">Pilih Sub Kategori</option>
+                                        @foreach (\App\Constants\FormType::type as $type => $value)
+                                            <option {{$type== $data->type ? 'selected' : ''}} value="{{ $type }}">{{ $type }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('type')
+                                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class='col-md-12'>
+                                <h5>Preview</h5>
+                                <div id='preview'>
                                 </div>
                             </div>
 
@@ -71,10 +92,15 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#name').keyup(function() {
-                var name = $(this).val();
-                var slug = name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                $('input[name="slug"]').val(slug);
+            $('#type').change(function(){
+                var val = $(this).val();
+                var json = JSON.parse('{!! json_encode(\App\Constants\FormType::type) !!}');
+                var html = '<div class="form-group"><label for="">'+$('#name').val()+'</label>'+ json[val] +'</div>';
+                $('#preview').html(html);
+            });
+            $('#option').change(function(){
+                var val = $(this).val();
+                console.log(val);
             });
         });
 

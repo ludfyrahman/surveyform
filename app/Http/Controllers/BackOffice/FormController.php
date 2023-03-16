@@ -62,6 +62,12 @@ class FormController extends Controller
         ]);
 
         try {
+            $value = null;
+            if ($request->type == 'select' || $request->type == 'radio-range') {
+                $value = json_encode($request->value);
+            } else {
+                $value = $request->value;
+            }
             Form::create([
                 'name' => $request->name,
                 'type' => $request->type,

@@ -22,7 +22,7 @@ class CreateFormTable extends Migration
             // type of field like type file, text, email, etc
             $table->string('type');
             // value of field json file
-            $table->json('value');
+            $table->json('value')->nullable();
             $table->timestamps();
         });
     }
