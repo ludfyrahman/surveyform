@@ -23,7 +23,7 @@ class SiteController extends Controller
         $types = [];
         $social = [];
         $profiles = (object)['about' => null, 'logo' => null, 'deskripsi' => null, 'light_logo' => null, 'address'=> null, 'phone' => null, 'email' => null];
-        return view('pages.frontend.index', compact('types', 'products','social','profiles'));
+        return view('pages.frontend.form', compact('types', 'products','social','profiles'));
     }
 
     /**
