@@ -7,10 +7,10 @@
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">{{$title}}</h4>
                     <a href="{{ route('sub_category.create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Tambah
-                        Satuan</a>
+                        </a>
 
                 </div>
-                <p class="tx-12 tx-gray-500 mb-2">Data Satuan</p>
+                <p class="tx-12 tx-gray-500 mb-2">Data </p>
                 @if (session('success'))
                     <div class="alert alert-success mg-b-0" role="alert">
                         <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">No</th>
-                                <th class="wd-20p border-bottom-0">Kategori</th>
+                                <th class="wd-20p border-bottom-0">Sub Kategori</th>
                                 <th class="wd-20p border-bottom-0">Deskripsi</th>
                                 <th class="wd-25p border-bottom-0">Aksi</th>
                             </tr>

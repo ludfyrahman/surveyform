@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Kategori <span class="tx-danger">*</span></label>
-                                    <input type="text" id="name" name="name"
+                                    <input type="text" {{$data->type == 'detail' ? 'disabled' :''}} id="name" name="name"
                                         class="form-control @error('name') parsley-error @enderror" placeholder="kategori"
                                         value="{{ $data->name == '' ? old('name') : $data->name }}">
                                     @error('name')
@@ -55,7 +55,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Deskripsi <span class="tx-danger">*</span></label>
-                                    <textarea rows="5" type="text" name="description"
+                                    <textarea rows="5" {{$data->type == 'detail' ? 'disabled' :''}} type="text" name="description"
                                         class="form-control @error('description') parsley-error @enderror" placeholder="description"
                                         value="{{ $data->description == '' ? old('description') : $data->description }}"></textarea>
                                     @error('description')
@@ -65,13 +65,36 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                         </div>
-                        <div class="form-group mb-0 mt-3 justify-content-end">
+                        @if($data->type == 'detail')
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="example1">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sub Kategori</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data->subcategory as $item)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->description }}</td>
+                                        </tr>
+                                    <tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+                        <div class="form-group mb-0 mt-3 justify-content-end" >
                             <div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <button type="reset" class="btn btn-secondary">Batal</button>
+                                @if(in_array($data->type, ['create', 'edit']))
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="reset" class="btn btn-secondary">Batal</button>
+                                @endif
                                 <a href="{{ route('category.index') }}" class="btn btn-info">Kembali</a>
                             </div>
                         </div>

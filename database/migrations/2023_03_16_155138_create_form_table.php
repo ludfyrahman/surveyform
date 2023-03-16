@@ -15,13 +15,14 @@ class CreateFormTable extends Migration
     {
         Schema::create('form', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('sub_category')->onDelete('cascade');
             // name of field
             $table->string('name');
             // type of field like type file, text, email, etc
             $table->string('type');
             // value of field json file
             $table->json('value');
-            $table->string('answer');
             $table->timestamps();
         });
     }

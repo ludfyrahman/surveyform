@@ -5,11 +5,13 @@ namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Form;
+use App\Models\SubCategory;
 
 /**
  * model block
  */
-class CategoryController extends Controller
+class FormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +21,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $data = Category::all();
-        $title = 'List Data Kategori';
-        return view('pages.backoffice.category.index', compact('data', 'title'));
+        $data = Form::all();
+        $title = 'List Data Kuesioner';
+        return view('pages.backoffice.form.index', compact('data', 'title'));
     }
 
     /**
@@ -32,14 +34,16 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $title = 'Tambah Data Kategori';
+        $title = 'Tambah Data Kuesioner';
+        $categories = SubCategory::all();
         $data = (object)[
             'name'        => '',
-            'description'       => '',
-            'slug'       => '',
+            'type'       => '',
+            'value'       => '',
+            'sub_category_id'       => '',
             'type'          => 'create',
         ];
-        return view('pages.backoffice.category.form', compact('title', 'data'));
+        return view('pages.backoffice.form.form', compact('title', 'data','categories'));
     }
 
     /**
@@ -53,17 +57,17 @@ class CategoryController extends Controller
         //
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'slug' => 'required',
+            'type' => 'required',
+            'value' => 'required',
         ]);
 
         try {
-            Category::create([
+            Form::create([
                 'name' => $request->name,
-                'description' => $request->description,
-                'slug' => $request->slug,
+                'type' => $request->type,
+                'value' => $request->value,
             ]);
-            return redirect('category')->with('success', 'Berhasil menambah data!');
+            return redirect('form')->with('success', 'Berhasil menambah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal menambah data!'.$th->getMessage());
         }
@@ -78,11 +82,11 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        $data = Category::where('id', $id)->first();
-        $title = 'Detail Data Kategori';
+        $data = Form::where('id', $id)->first();
+        $title = 'Detail Data Kuesioner';
         $data->type = 'detail';
-        
-        return view('pages.backoffice.category.form', compact('data', 'title'));
+
+        return view('pages.backoffice.form.form', compact('data', 'title'));
     }
 
     /**
@@ -94,10 +98,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $data = Category::where('id', $id)->first();
-        $title = 'Edit Data Kategori';
+        $data = Form::where('id', $id)->first();
+        $title = 'Edit Data Kuesioner';
+        $categories = SubCategory::all();
 
-        return view('pages.backoffice.category.form', compact('data', 'title'));
+        return view('pages.backoffice.form.form', compact('data', 'title', 'categories'));
     }
 
     /**
@@ -112,18 +117,18 @@ class CategoryController extends Controller
         //
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'slug' => 'required',
+            'type' => 'required',
+            'value' => 'required',
         ]);
         try {
             $data = ([
                 'name' => $request->name,
-                'description' => $request->description,
-                'slug' => $request->slug,
+                'type' => $request->type,
+                'value' => $request->value,
             ]);
 
-            Category::where('id', $id)->update($data);
-            return redirect('category')->with('success', 'Berhasil mengubah data!');
+            Form::where('id', $id)->update($data);
+            return redirect('form')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
             return back()->with('failed', 'Gagal mengubah data!');
         }
@@ -138,7 +143,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        Category::find($id)->delete();
-        return redirect('category')->with('success', 'Berhasil mengubah data!');
+        Form::find($id)->delete();
+        return redirect('form')->with('success', 'Berhasil mengubah data!');
     }
 }
