@@ -10,12 +10,12 @@
                 <div class="card overflow-hidden sales-card bg-primary-gradient">
                     <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Hari ini</h6>
+                            <h6 class="mb-3 tx-12 text-white">Survey Hari ini</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summary->saleToday) }}</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ $summary->saleToday }}</h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
                                 <span class="float-end my-auto ms-auto">
@@ -33,12 +33,12 @@
                 <div class="card overflow-hidden sales-card bg-danger-gradient">
                     <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Pembelian Hari Ini</h6>
+                            <h6 class="mb-3 tx-12 text-white">Survey Minggu Ini</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summary->purchaseToday) }}
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ $summary->purchaseToday }}
                                     </h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
@@ -57,12 +57,12 @@
                 <div class="card overflow-hidden sales-card bg-success-gradient">
                     <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Penjualan Bulan Ini</h6>
+                            <h6 class="mb-3 tx-12 text-white">Survey Bulan Ini</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summary->saleMonth) }}</h4>
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ $summary->saleMonth }}</h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
                                 <span class="float-end my-auto ms-auto">
@@ -86,7 +86,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ Helper::rupiah($summary->purchaseMonth) }}
+                                    <h4 class="tx-20 fw-bold mb-1 text-white">{{ $summary->purchaseMonth }}
                                     </h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
@@ -105,12 +105,12 @@
         <!-- row closed -->
 
         <!-- row opened -->
-        <div class="row row-sm">
+        <div class="row row-sm d-none" >
             <div class="col-md-12 col-lg-12 col-xl-7">
                 <div class="card">
                     <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title mb-0">Penjualan & Pembelian</h4>
+                            <h4 class="card-title mb-0">Total Kuesioner</h4>
                             <i class="mdi mdi-dots-horizontal text-gray"></i>
                         </div>
                         <p class="tx-12 text-muted mb-0">Grafik menampilkan informasi penjualan dan pembelian pada toko pada
@@ -179,7 +179,7 @@
         <!-- row closed -->
 
         <!-- row opened -->
-        <div class="row row-sm">
+        <div class="row row-sm d-none">
             <div class="col-xl-4 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header pb-0">
@@ -232,7 +232,7 @@
                                         <td>{{ $sale->invoice }}</td>
                                         <td class="tx-right tx-medium tx-inverse"><span
                                                 class="badge bg-primary">{{ $sale->detail->count() }}</span></td>
-                                        <td class="tx-right tx-medium tx-inverse">{{ Helper::rupiah($sale->total) }}</td>
+                                        <td class="tx-right tx-medium tx-inverse">{{ $sale->total }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
