@@ -85,8 +85,88 @@
                 </div>
             </div>
         </div>
-        <!-- row closed -->
-        <!-- row close -->
+        @foreach ($summary->chart as $index => $chart)
+            <h4>{{ $index+1 }}. {{$chart['category']}}</h4>
+            @foreach ($chart['subcategory'] as $subIndex => $subcategory)
+                <h5 class="text-muted ms-2">{{ $subIndex+1 }}. {{ $subcategory['name'] }}</h5>
+                <div class="row">
+                    @foreach ($subcategory['child'] as $childIndex => $sub)
+                    <div class="ms-4 col-md-4">
+                        <p class="text-muted">{{ $childIndex+1 }}. {{ $sub['name'] }}</p>
+                        <div id="chart-{{$sub['id']}}" class="ht-150"></div>
+                        <div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
+                            @if($sub['answer'])
+                                @foreach($sub['answer']['label'] as $indexLabel => $label)
+                                <div class="col-md-6 col">
+                                    <p class="mb-0 d-flex"><span class="legend bg-primary brround"></span>{{$label}}</p>
+                                    <h3 class="mb-1">{{$sub['answer']['value'][$indexLabel]}}</h3>
+                                </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                    @if($sub['answer'])
+                        @push('script')
+                        <script>
+                            $('#vmap2').vectorMap({
+                                map: 'usa_en',
+                                showTooltip: true,
+                                backgroundColor: '#fff',
+                                color: '#60adff',
+                                colors: {
+                                    mo: '#9fceff',
+                                    fl: '#60adff',
+                                    or: '#409cff',
+                                    ca: '#005cbf',
+                                    tx: '#005cbf',
+                                    wy: '#005cbf',
+                                    ny: '#007bff'
+                                },
+                                hoverColor: '#222',
+                                enableZoom: false,
+                                borderWidth: 1,
+                                borderColor: '#fff',
+                                hoverOpacity: .85
+                            });
+                            /*--- Apex (#chart) ---*/
+                            var options = {
+                                series:{!! json_encode($sub['answer']['value']) !!},
+                                chart: {
+                                    width: '100%',
+                                    type: 'pie',
+                                },
+                                labels: {!! json_encode($sub['answer']['label']) !!},
+                                theme: {
+                                    monochrome: {
+                                        enabled: true
+                                    }
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        dataLabels: {
+                                            offset: -5
+                                        }
+                                    }
+                                },
+                                title: {
+                                    text: "Grafik Kuesioner: {{$sub['name']}}"
+                                },
+                                legend: {
+                                    show: true
+                                }
+                            };
+                            var chart = new ApexCharts(document.querySelector("#chart-{{$sub['id']}}"), options);
+                            chart.render();
+                        </script>
+                        @endpush
+                    @endif
+
+                    @endforeach
+                </div>
+
+            @endforeach
+        @endforeach
         <!-- /row -->
+
     </div>
 @endsection

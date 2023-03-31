@@ -6,7 +6,9 @@ use App\Constants\ItemType;
 use App\Models\Customer;
 use App\Models\Purchase;
 use App\Models\Answer;
-use App\Models\User;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Form;
 use App\Shareds\BaseService;
 
 class SummaryService
@@ -18,16 +20,48 @@ class SummaryService
 
     public function getSummary($request){
         $date  = date('Y-m-d');
-        // $survey =Answer::get()->groupBy('key');
         $today = Answer::whereDate('created_at', $date)->get()->groupBy('key')->count();
         $week = 0;
         $month = Answer::whereMonth('created_at', $date)->get()->groupBy('key')->count();
         $year = Answer::whereYear('created_at', $date)->get()->groupBy('key')->count();
+        $summary = Category::with('subcategory', 'subcategory.question', 'subcategory.question.answer')->get();
+        $chart = null;
+        foreach ($summary as $summaryKey => $s) {
+            $subcategory = [];
+            foreach ($s->subcategory as $subKey => $sub) {
+                $questions = ['name' => $sub->name, 'child' => []];
+                foreach ($sub->question as $questionKey => $question) {
+                    if($question->type != 'radio-range' && $question->type !='select') {
+                        continue;
+                    }else{
+                        $childQuestion =['name' => $question->name, 'answer' => [], 'id' => $question->id];
+                        $answerChild = [];
+                        foreach ($question->answer as $answerKey => $answer) {
+                            $answerChild[] = $answer->answer;
+                        }
+                        $keyAnswer = array_count_values($answerChild);
+                        $finalQuestion = $childQuestion;
+                        foreach ($keyAnswer as $answerKeyIndication => $answerFinal) {
+                            $finalQuestion['answer']['label'][] = "$answerKeyIndication";
+                            $finalQuestion['answer']['value'][] = $answerFinal;
+                        }
+                        $questions['child'][] = $finalQuestion;
+                    }
+
+                }
+                $subcategory[] = $questions;
+            }
+
+            $array = ['category' => $s->name, 'subcategory' => $subcategory];
+            $chart[] = $array;
+        }
+        // dd($chart);
         return (object)[
             'today' => $today,
             'week' => $week,
             'month' => $month,
             'year' => $year,
+            'chart' => $chart
         ];
     }
     public function _getSummary($request){
