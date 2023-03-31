@@ -5,7 +5,7 @@ namespace App\Http\Controllers\BackOffice\Services;
 use App\Constants\ItemType;
 use App\Models\Customer;
 use App\Models\Purchase;
-use App\Models\Sale;
+use App\Models\Answer;
 use App\Models\User;
 use App\Shareds\BaseService;
 
@@ -17,43 +17,17 @@ class SummaryService
     }
 
     public function getSummary($request){
-        $saletoday = 0;
-        $purchaseMonth = 0;
-        $saleMonth = 0;
-        $purchaseMonth = 0;
-        $saletodayBefore = 0;
-        $purchaseMonthBefore = 0;
-        $saleMonthBefore = 0;
-        $purhasetodayBefore = 0;
-        $purhasetoday = 0;
-        $service = 0;
-        $product = 0;
-        $salesChart = [];
-        $purchaseChart = [];
+        $date  = date('Y-m-d');
+        // $survey =Answer::get()->groupBy('key');
+        $today = Answer::whereDate('created_at', $date)->get()->groupBy('key')->count();
+        $week = 0;
+        $month = Answer::whereMonth('created_at', $date)->get()->groupBy('key')->count();
+        $year = Answer::whereYear('created_at', $date)->get()->groupBy('key')->count();
         return (object)[
-            'saleToday' => $saletoday,
-            'purchaseMonth' => $purchaseMonth,
-            'saleMonth' => $saleMonth,
-            'purchaseToday' => $purhasetoday,
-
-            'saleTodayBefore' => ($saletoday - $saletodayBefore) / ($saletoday == 0 ? 1: $saletoday) * 100,
-            'purchaseMonthBefore' => ($purchaseMonth - $purchaseMonthBefore) / ($purchaseMonth == 0 ? 1: $purchaseMonth) * 100,
-            'saleMonthBefore' => ($saleMonth - $saleMonthBefore) / ($saleMonth == 0 ? 1: $saleMonth) * 100,
-            'purchaseTodayBefore' => ($purhasetoday - $purhasetodayBefore) / ($purhasetoday == 0 ? 1: $purhasetoday) * 100,
-
-
-            /**
-             * compare
-             */
-            'service' => $service,
-            'product' => $product,
-            /**
-             * chart
-             */
-            'salesChart' => $salesChart,
-            'purchaseChart' => $purchaseChart,
-
-            'sales' => [],
+            'today' => $today,
+            'week' => $week,
+            'month' => $month,
+            'year' => $year,
         ];
     }
     public function _getSummary($request){

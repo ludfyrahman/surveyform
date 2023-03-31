@@ -26,7 +26,6 @@ class DashboardController extends Controller
     {
         //
         $summary = $this->service->getSummary($request);
-        // return $summary;
         $customers = [];
         return view('pages.backoffice.dashboard.index', compact('summary', 'customers'));
     }

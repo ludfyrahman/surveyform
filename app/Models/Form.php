@@ -16,7 +16,6 @@ class Form extends Model
         'sub_category_id',
     ];
 
-
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);

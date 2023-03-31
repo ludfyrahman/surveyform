@@ -196,9 +196,9 @@ $(document).ready(function()
     // check step1
     $("[id=stepbtn]").on('click', function()
     {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         var val = $('#stepbtn').attr('value');
         formvalidate(1);
-
 
         if(inputschecked == false)
         {

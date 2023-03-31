@@ -23,6 +23,8 @@ use App\Models\Voucher;
 
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::post('/form/submit', [SiteController::class, 'store'])->name('form.submit');
+Route::get('/form/success', [SiteController::class, 'success'])->name('form.success');
 Route::middleware(['auth',  'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profil', [UserController::class, 'profile'])->name('profile');

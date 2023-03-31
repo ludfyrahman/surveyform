@@ -37,8 +37,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        {{ $item->subcategory?->name }}<br/>
-                                        <span class="badge {{$item->subcategory->category->id % 2 == 0 ? 'bg-primary' : 'bg-info'}}">{{ $item->subcategory->category?->name }}</span>
+                                        {{ $item->subcategory->name }}<br/>
+                                        <span class="badge {{$item->subcategory->category->id % 2 == 0 ? 'bg-primary' : 'bg-info'}}">{{ $item->subcategory->category->name }}</span>
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td class="d-flex"><a href="{{ route('form.edit', $item->id)}}" class="btn btn-sm btn-info me-2"> <i class="mdi mdi-pencil"></i>

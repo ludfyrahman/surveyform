@@ -69,13 +69,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6 @if(in_array($data->type, ['select', 'radio-range'])) 'd-none' @endif" id='multi'>
+                            <div class="col-md-6 d-none @if(in_array($data->type, ['select', 'radio-range'])) 'd-none' @endif" id='multi'>
                                 <div class="form-group">
                                     <label for="">Nilai <span class="tx-danger">*</span> <span class="text-muted">Contoh:opsi1,opsi2,opsi3...dst</span></label>
                                     @php
                                         $value = json_decode($data->value);
                                     @endphp
-                                    <textarea name="value" class="form-control @error('value') parsley-error @enderror" id="" cols="30" rows="10">{{ $data->value == '' ? old('value') : implode(',',$value) }}</textarea>
+                                    <textarea name="value" class="form-control @error('value') parsley-error @enderror" id="" cols="30" rows="10">-</textarea>
                                 </div>
                             </div>
                             <div class='col-md-12'>
