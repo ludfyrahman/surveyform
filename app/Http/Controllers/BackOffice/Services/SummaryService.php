@@ -10,7 +10,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Form;
 use App\Shareds\BaseService;
-
+use Carbon\Carbon;
 class SummaryService
 {
     public function __construct()
@@ -20,8 +20,12 @@ class SummaryService
 
     public function getSummary($request){
         $date  = date('Y-m-d');
+        $now = Carbon::now();
         $today = Answer::whereDate('created_at', $date)->get()->groupBy('key')->count();
-        $week = 0;
+        $week = Answer::whereBetween('created_at',[
+            $now->startOfWeek()->format('Y-m-d'), //This will return date in format like this: 2022-01-10
+            $now->endOfWeek()->format('Y-m-d')
+        ])->get()->groupBy('key')->count();;
         $month = Answer::whereMonth('created_at', $date)->get()->groupBy('key')->count();
         $year = Answer::whereYear('created_at', $date)->get()->groupBy('key')->count();
         $summary = Category::with('subcategory', 'subcategory.question', 'subcategory.question.answer')->get();
@@ -55,7 +59,6 @@ class SummaryService
             $array = ['category' => $s->name, 'subcategory' => $subcategory];
             $chart[] = $array;
         }
-        // dd($chart);
         return (object)[
             'today' => $today,
             'week' => $week,

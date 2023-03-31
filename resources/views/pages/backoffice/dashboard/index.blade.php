@@ -91,7 +91,7 @@
                 <h5 class="text-muted ms-2">{{ $subIndex+1 }}. {{ $subcategory['name'] }}</h5>
                 <div class="row">
                     @foreach ($subcategory['child'] as $childIndex => $sub)
-                    <div class="ms-4 col-md-4">
+                    <div class="ms-4 col-md-3">
                         <p class="text-muted">{{ $childIndex+1 }}. {{ $sub['name'] }}</p>
                         <div id="chart-{{$sub['id']}}" class="ht-150"></div>
                         <div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
@@ -105,7 +105,7 @@
                             @endif
                         </div>
                     </div>
-                    @if($sub['answer'])
+
                         @push('script')
                         <script>
                             $('#vmap2').vectorMap({
@@ -129,37 +129,43 @@
                                 hoverOpacity: .85
                             });
                             /*--- Apex (#chart) ---*/
-                            var options = {
-                                series:{!! json_encode($sub['answer']['value']) !!},
-                                chart: {
-                                    width: '100%',
-                                    type: 'pie',
-                                },
-                                labels: {!! json_encode($sub['answer']['label']) !!},
-                                theme: {
-                                    monochrome: {
-                                        enabled: true
-                                    }
-                                },
-                                plotOptions: {
-                                    pie: {
-                                        dataLabels: {
-                                            offset: -5
+                            var series = [0]
+                            var labels = ['data']
+                            @if($sub['answer'])
+                            series = {!! json_encode($sub['answer']['value']) !!};
+                            labels =  {!! json_encode($sub['answer']['label']) !!}
+                                var options = {
+                                    series:series,
+                                    chart: {
+                                        width: '100%',
+                                        type: 'pie',
+                                    },
+                                    labels: labels,
+                                    theme: {
+                                        monochrome: {
+                                            enabled: true
                                         }
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            dataLabels: {
+                                                offset: -5
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                        text: "Grafik Kuesioner: {{$sub['name']}}"
+                                    },
+                                    legend: {
+                                        show: true
                                     }
-                                },
-                                title: {
-                                    text: "Grafik Kuesioner: {{$sub['name']}}"
-                                },
-                                legend: {
-                                    show: true
-                                }
-                            };
+                                };
+                            @endif
                             var chart = new ApexCharts(document.querySelector("#chart-{{$sub['id']}}"), options);
                             chart.render();
                         </script>
                         @endpush
-                    @endif
+
 
                     @endforeach
                 </div>
