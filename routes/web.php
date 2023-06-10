@@ -33,5 +33,6 @@ Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('sub_category', SubCategoryController::class);
     Route::resource('form', FormController::class);
+    Route::get('/calculation', [FormController::class, 'calculation'])->name('calculation');
 
 });

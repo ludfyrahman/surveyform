@@ -68,7 +68,7 @@
                 <div class="card overflow-hidden sales-card bg-warning-gradient">
                     <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">Survet Tahun Ini</h6>
+                            <h6 class="mb-3 tx-12 text-white">Survey Tahun Ini</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">

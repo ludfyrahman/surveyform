@@ -43,13 +43,6 @@
                                             Ubah</a>
                                         <a href="{{ route('category.show', $item->id)}}" class="btn btn-sm btn-primary me-2"> <i class="mdi mdi-table"></i>
                                             Detail</a>
-                                        <form method="POST" action="{{route('category.destroy', $item->id)}}">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" onclick="return confirm('apakah anda yakin ingin menghapus data ??')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i>
-                                            Hapus
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

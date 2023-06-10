@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Form;
 use App\Models\SubCategory;
 
+
+use App\Http\Controllers\BackOffice\Services\SummaryService;
 /**
  * model block
  */
@@ -18,6 +20,13 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public SummaryService $service;
+
+    public function __construct(SummaryService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         //
@@ -154,5 +163,13 @@ class FormController extends Controller
         //
         Form::find($id)->delete();
         return redirect('form')->with('success', 'Berhasil mengubah data!');
+    }
+
+
+    public function calculation(){
+        $title = 'Perhitungan';
+        $data = $this->service->getCalculation();
+        // dd($data[1]->toArray());
+        return view('pages.backoffice.form.calculation', compact('data', 'title'));
     }
 }
