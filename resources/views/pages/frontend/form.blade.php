@@ -52,8 +52,8 @@
                 @endif
                     <button type="button" class="next" id="stepbtn" value="{{$index+1}}">Next Question</button>
             @else
-            @endif
             <button type="submit" class="next" value="{{$index+1}}">Simpan</button>
+            @endif
             </div>
         </section>
         @endforeach

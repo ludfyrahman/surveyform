@@ -65,10 +65,10 @@
                 </div>
             </div>
         </div>
-        <div class="card card-primary mt-2">
+        <div class="card card-danger mt-2">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">Validitas</h4>
+                    <h4 class="card-title mg-b-0">Rekapitulasi</h4>
                 </div>
             </div>
             <div class="card-body row">
@@ -116,6 +116,113 @@
                             </table>
                         </div>
                     </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="card card-warning mt-2">
+            <div class="card-header pb-0">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title mg-b-0">Validitas</h4>
+                </div>
+            </div>
+            <div class="card-body row">
+                @foreach ($data[0] as $key => $d)
+                        @foreach ($d->question as $question)
+                        <div class="col-md-6">
+                            <h5>{{$d->name}}</h5>
+                            <p class="text-muted">{{$question->name}}</p>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Responden</th>
+                                            <th>X</th>
+                                            <th>Y</th>
+                                            <th>XY</th>
+                                            <th>X2</th>
+                                            <th>Y2</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $sumX = 0;
+                                            $sumY = 0;
+                                            $sumXY = 0;
+                                            $sumX2 = 0;
+                                            $sumY2 = 0;
+                                        @endphp
+                                        @foreach ($data[1] as $key => $child)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>
+                                                    @php
+                                                    $x = 0;
+                                                        $filter = $child->filter(function ($value, $key) use ($question) {
+                                                            return $value->form_id == $question->id;
+                                                        });
+                                                        $reset = array_values($filter->toArray());
+                                                    @endphp
+                                                @if (isset($reset[0]))
+                                                    @php
+                                                        $x = $reset[0]['answer'] ?? 0;
+                                                    @endphp
+                                                @endif
+                                                {{$x}}
+                                            </td>
+                                            <td>
+                                                @php $total = 0;@endphp
+                                                @foreach ($child as $dd)
+                                                    @if($dd->form->sub_category_id == $d->id)
+                                                        @php $countQuestion++;$total += $dd->answer; @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{$total}}
+                                            </td>
+                                            <td>{{$x * $total}}</td>
+                                            <td>{{$x**2}}</td>
+                                            <td>{{$total**2}}</td>
+
+                                            @php
+                                                $sumX += $x;
+                                                $sumY += $total;
+                                                $sumXY += $x * $total;
+                                                $sumX2 += $x**2;
+                                                $sumY2 += $total**2;
+                                            @endphp
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>𝚺</td>
+                                            <td>{{$sumX}}</td>
+                                            <td>{{$sumY}}</td>
+                                            <td>{{$sumXY}}</td>
+                                            <td>{{$sumX2}}</td>
+                                            <td>{{$sumY2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>(Total)2</td>
+                                            <td>{{$sumX**2}}</td>
+                                            <td>{{$sumY**2}}</td>
+                                            <td>{{$sumXY**2}}</td>
+                                            <td>{{$sumX2**2}}</td>
+                                            <td>{{$sumY2**2}}</td>
+                                        </tr>
+                                    @php
+                                        $allData = count($data[1]);
+                                        $division = sqrt(($allData * $sumX2 - pow($sumX, 2)) * ($allData * $sumY2 - pow($sumY, 2)));
+                                        $top = (($allData * $sumXY) - ($sumX * $sumY));
+                                        $result = $top / ($division > 0 ? $division : 1);
+                                    @endphp
+                                        <tr class="bg-primary">
+                                            <td colspan="6">r = {{$result}}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        @endforeach
                 @endforeach
             </div>
         </div>
