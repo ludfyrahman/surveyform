@@ -20,4 +20,8 @@ class Form extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function subcategory(){
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
 }

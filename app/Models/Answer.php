@@ -14,4 +14,9 @@ class Answer extends Model
         'answer',
         'key'
     ];
+
+    public function form()
+    {
+        return $this->belongsTo(Form::class, 'form_id');
+    }
 }
