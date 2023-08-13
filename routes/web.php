@@ -23,6 +23,9 @@ use App\Models\Voucher;
 
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::get('/postSkp', [SiteController::class, 'postSkp'])->name('postSkp');
+Route::get('/getData', [SiteController::class, 'getData'])->name('authLogin');
+Route::get('/checkToken', [SiteController::class, 'checkToken'])->name('checkToken');
 Route::post('/form/submit', [SiteController::class, 'store'])->name('form.submit');
 Route::get('/form/success', [SiteController::class, 'success'])->name('form.success');
 Route::middleware(['auth',  'verified'])->group(function () {

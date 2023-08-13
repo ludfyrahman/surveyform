@@ -13,7 +13,7 @@
 
             <!-- form -->
             <fieldset class="form" id="step{{$index+1}}">
-                <div class="row justify-content-space-between">
+                <div class="row justify-content-space-between w-100">
                     <div class="rating">
                         @foreach ($d->question as $child => $question)
                         <h3>{{$question->name}}</h3>
@@ -21,7 +21,7 @@
                         <div class="score">
                             <div class="score-inner delay-100ms">
                                 @for($i=1; $i <= 5; $i++)
-                                <input type="radio" name="question[{{ $question->id }}]" value='{{$i }}' class="score-point">
+                                <input type="radio" name="question[{{ $question->id }}]" value='{{$i }}' class="score-point" required>
                                 @endfor
                             </div>
                             <p><span>Sangat tidak setuju</span><span>Sangat Setuju</span></p>
@@ -30,14 +30,14 @@
                         @php
                             $value = json_decode($question->value);
                         @endphp
-                        <select class="form-control" name="question[{{ $question->id }}]">
+                        <select class="form-control" name="question[{{ $question->id }}]" required>
                             <option value="">Silahkan Pilih Opsi</option>
                             @foreach($value as $v)
                             <option value="{{$v}}">{{$v}}</option>
                             @endforeach
                         </select>
                         @else
-                        <input type="{{$question->type}}" class="form-control" name="question[{{ $question->id }}]" placeholder="Input {{$question->name}}"/>
+                        <input type="{{$question->type}}" class="form-control" name="question[{{ $question->id }}]" placeholder="Input {{$question->name}}" required/>
                         @endif
                         <div class="line-break {{$question->type == 'radio-range' ? 'mt-5 mb-5' : 'mt-2 mb-2'}}"></div>
                         @endforeach

@@ -142,13 +142,13 @@ class FormController extends Controller
             $data = ([
                 'name' => $request->name,
                 'type' => $request->type,
-                'value' => $request->value,
+                // 'value' => $request->value,
             ]);
 
             Form::where('id', $id)->update($data);
             return redirect('form')->with('success', 'Berhasil mengubah data!');
         } catch (\Throwable $th) {
-            return back()->with('failed', 'Gagal mengubah data!');
+            return back()->with('failed', 'Gagal mengubah data! '.$th->getMessage());
         }
     }
 
@@ -169,7 +169,7 @@ class FormController extends Controller
     public function calculation(){
         $title = 'Perhitungan';
         $data = $this->service->getCalculation();
-        // dd($data[1]->toArray());
+        // dd($data[0]->toArray());
         return view('pages.backoffice.form.calculation', compact('data', 'title'));
     }
 }
