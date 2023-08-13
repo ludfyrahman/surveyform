@@ -166,10 +166,10 @@ class FormController extends Controller
     }
 
 
-    public function calculation(){
+    public function calculation(Request $request){
         $title = 'Perhitungan';
-        $data = $this->service->getCalculation();
-        // dd($data[0]->toArray());
-        return view('pages.backoffice.form.calculation', compact('data', 'title'));
+        $data = $this->service->getCalculation($request);
+        $category = Category::where('id', '!=', 1)->get();
+        return view('pages.backoffice.form.calculation', compact('data', 'title', 'category'));
     }
 }
