@@ -7,6 +7,15 @@
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Data Kuesioner</h4>
                 </div>
+                <form action="" method="get">
+                    <select name="usability_id" id="" class="form-control">
+                        <option value="">Pilih Jenis Penghitungan</option>
+                        @foreach ($category as $item)
+                            <option value="{{$item->id}}" {{request()->usability_id ?? 2 == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-primary mt-2">Filter</button>
+                </form>
             </div>
             <div class="card-body">
                 @php
@@ -18,6 +27,7 @@
                     $meritValue = [0,0.25,0.5,0.75,1];
                     $minimumCriteria = [0.2,0.4,0.7,0.9,1];
                     $final = null;
+                    $allCriteria = [];
                 @endphp
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -84,14 +94,14 @@
             <div class="card-body row">
                 @foreach ($data[0] as $key => $d)
                     <div class="col-md-6">
-                        <h5>{{$key+1}} {{$d->name}}</h5>
+                        <h5 class="text-capitalize">{{$key+1}} {{$d->name}}</h5>
                         <div class="table-responsive">
                             <table class="table table-sriped">
                                 <thead>
                                     <tr>
                                         <th>Responden</th>
                                         @php
-                                            $form = Helper::result_form(2)->where('sub_category_id', $d->id)->get();
+                                            $form = Helper::result_form(request()->usability_id ?? 2)->where('sub_category_id', $d->id)->get();
                                         @endphp
                                         @foreach ($form as $f)
                                             <th>{{$f->name}}</th>
@@ -137,8 +147,8 @@
                 @foreach ($data[0] as $key => $d)
                         @foreach ($d->question as $question)
                         <div class="col-md-6">
-                            <h5>{{$d->name}}</h5>
-                            <p class="text-muted">{{$question->name}}</p>
+                            <h5 class="text-capitalize">{{$d->name}}</h5>
+                            <p class="text-muted text-capitalize">{{$question->name}}</p>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -253,7 +263,7 @@
                                     <tr>
                                         <th>Responden</th>
                                         @php
-                                            $form = Helper::result_form(2)->where('sub_category_id', $d->id)->get();
+                                            $form = Helper::result_form(request()->usability_id ?? 2)->where('sub_category_id', $d->id)->get();
                                         @endphp
                                         @foreach ($form as $f)
                                             <th>{{$f->name}}</th>
@@ -530,6 +540,7 @@
                         @php
                             $usability = array_sum($meritTotal) / count($data[1]);
                             $kelayakan = $totalScore / ($totalScore * $likertValue[4]) * 100;
+                            $allCriteria[] = $kelayakan;
                         @endphp
                         <tr class="bg-primary">
                             <td  colspan="2">Kelayakan</td>
@@ -542,7 +553,6 @@
                                         @endphp
                                     @endif
                                 @endforeach
-
                                 {{$final}}
                             </td>
                         </tr>
@@ -551,10 +561,25 @@
                             <td  colspan="2">Usability</td>
                             <td colspan="6">{{$usability}}</td>
                         </tr>
-
                     </tfoot>
                 </table>
                 @endforeach
+                <div class="alert alert-info">
+                    <h4 class="alert-header">Hasil Akhir</h4>
+                    <h5>Rata Rata Kelayakan {{array_sum($allCriteria) / count($allCriteria)}}%.
+                    <b>
+                        @foreach ($worthinessLabel as $key => $worth)
+                            @if(array_sum($allCriteria) / count($allCriteria) < $worthinessValue[$key])
+                                @php
+                                    $final = $worth;
+                                    break;
+                                @endphp
+                            @endif
+                        @endforeach
+                        {{$final}}
+                    </b>
+                    </h5>
+                </div>
             </div>
         </div>
 

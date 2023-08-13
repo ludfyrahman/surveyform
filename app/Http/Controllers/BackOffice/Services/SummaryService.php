@@ -68,8 +68,8 @@ class SummaryService
         ];
     }
 
-    public function getCalculation(){
-        $usability_id = 2;
+    public function getCalculation($request){
+        $usability_id = $request->usability_id ?? 2;
         $form = Form::with('subcategory', 'subcategory.category')->whereHas('subcategory.category', function($query) use ($usability_id){
             $query->where('id', $usability_id);
         })->get();
