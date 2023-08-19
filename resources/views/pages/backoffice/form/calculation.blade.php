@@ -537,7 +537,7 @@
                         </tr>
                         @php
                             $usability = array_sum($meritTotal) / count($data[1]);
-                            $kelayakan = $totalScore / ($totalScore * $likertValue[4]) * 100;
+                            $kelayakan = $totalScore / (array_sum($likertCount) * $likertValue[4]) * 100;
                             $allCriteria[] = $kelayakan;
                         @endphp
                         <tr class="bg-primary">
