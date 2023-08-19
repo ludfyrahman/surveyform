@@ -219,7 +219,7 @@
                                             <td>{{$sumX2}}</td>
                                             <td>{{$sumY2}}</td>
                                         </tr>
-                                        <tr>
+                                        <tr class="d-none">
                                             <td>(Total)2</td>
                                             <td>{{$sumX**2}}</td>
                                             <td>{{$sumY**2}}</td>
