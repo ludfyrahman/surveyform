@@ -2,7 +2,7 @@
 
 @section('content-app')
     <div class="container mt-4">
-        <div class="card card-primary">
+        <div class="card card-primary" id="kuesioner">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Data Kuesioner</h4>
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-danger mt-2">
+        <div class="card card-danger mt-2" id="rekapitulasi">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Rekapitulasi</h4>
@@ -137,7 +137,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="card card-warning mt-2">
+        <div class="card card-warning mt-2" id="validitas">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Validitas</h4>
@@ -244,7 +244,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="card card-danger mt-2">
+        <div class="card card-danger mt-2" id="reliabilitas">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Reliabilitas</h4>
@@ -445,7 +445,7 @@
                 </table>
             </div>
         </div>
-        <div class="card card-warning mt-2">
+        <div class="card card-warning mt-2" id="hasil">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">Hasil</h4>
@@ -478,9 +478,7 @@
                                 <td>{{$question->name}}</td>
                                 @foreach ($likertValue as $lik)
                                 @php
-                                    $countAnswer = $question->where('sub_category_id', $d->id)->whereHas('answer', function ($query) use ($lik, $question, $d) {
-                                        $query->where('answer', $lik)->where('form_id', $question->id);
-                                    })->count();
+                                    $countAnswer = \App\Models\Answer::where('answer', $lik)->where('form_id', $question->id)->count();
                                     $totalByQuestion += $countAnswer;
                                     if(isset($likertCount[$lik])){
                                         $likertCount[$lik] += $countAnswer;
@@ -582,6 +580,39 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    <div class="right-menu card">
+        <ul style="list-style-type: none">
+            <li>
+                <a href="#kuesioner">Kuesioner</a>
+            </li>
+            <li>
+                <a href="#rekapitulasi">Rekapitulasi</a>
+            </li>
+            <li>
+                <a href="#validitas">Validitas</a>
+            </li>
+            <li>
+                <a href="#reliabilitas">Reliabilitas</a>
+            </li>
+            <li>
+                <a href="#hasil">Hasil</a>
+            </li>
+        </ul>
+    </div>
+    <style>
+        .right-menu{
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            padding: 0!important;
+            margin: 0!important;
+        }
+        .right-menu li{
+            padding: 12px;
+        }
+    </style>
 @endsection
