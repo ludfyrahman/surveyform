@@ -386,7 +386,7 @@
 
 
                                         foreach ($criteria as $key => $cri) {
-                                            if($r11 < $minimumCriteria[$key]){
+                                            if($r11 < $minimumCriteria[$key] || ($key == 4 && $r11 > 1)){
                                                 $result = $cri;
                                                 break;
                                             }
