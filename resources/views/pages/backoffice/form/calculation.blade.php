@@ -289,10 +289,10 @@
                                                 @php $countQuestion++;$total += $dd->answer;
                                                 if(isset($bottomTotal[$dd->form->id])){
                                                     $bottomTotal[$dd->form->id] += $dd->answer;
-                                                    $bottomTotalSquare[$dd->form->id] += $dd->answer * $dd->answer;
+                                                    $bottomTotalSquare[$dd->form->id] += $dd->answer**2;
                                                 }else{
                                                     $bottomTotal[$dd->form->id] = $dd->answer;
-                                                    $bottomTotalSquare[$dd->form->id] = $dd->answer * $dd->answer;
+                                                    $bottomTotalSquare[$dd->form->id] = $dd->answer**2;
                                                 }
 
                                                 @endphp
@@ -344,7 +344,7 @@
                                             Varian
                                         </td>
                                         @php
-                                            $varianceSum = 0;
+                                            $varianceSum = 0.0;
                                         @endphp
                                         @foreach ($form as $f)
                                         @php
@@ -364,7 +364,9 @@
                                         </td>
                                     </tr>
                                     @php
-                                        $varianceTotal = ($totalPowAll - (($totalAll**2) / count($data[1]))) / count($data[1]);
+                                        $jumlah = count($data[1]);
+                                        $varianceTotal = ($totalPowAll - (($totalAll**2) / $jumlah)) / $jumlah;
+
                                     @endphp
                                     <tr>
                                         <td>
@@ -377,6 +379,7 @@
                                     @php
                                         // calculate r11
                                         $nTotal = $form->count() == 1 ? 2 : $form->count();
+                                        $nTotal = 3;
                                         $r11Top = (1 - ($varianceSum / $varianceTotal));
                                         $r11 = ($nTotal / ($nTotal - 1)) * $r11Top;
                                         $result = null;
