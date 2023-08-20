@@ -44,8 +44,8 @@ class ImportController extends Controller
     {
         $datas = Excel::toArray(new AnswerImport(), $request->file);
         $keyIndex = 0;
-        foreach ($datas[0] as $key => $data) {
-           if($key == 0){
+        foreach ($datas[0] as $parentKey => $data) {
+           if($parentKey == 0){
                continue;
            }else{
             $keyIndex++;
@@ -71,7 +71,7 @@ class ImportController extends Controller
                         $answer = new Answer();
                         $answer->key = $keyIndex;
                         $answer->form_id = $ques->id;
-                        $answer->answer = rand(3,5);
+                        $answer->answer = $parentKey > 70 ? rand(1,3) : rand(3,5);
                         $answer->save();
                     }
                 }
