@@ -137,12 +137,13 @@ class FormController extends Controller
             'name' => 'required',
             'type' => 'required',
             'value' => 'required',
+            'sub_category_id' => 'required',
         ]);
         try {
             $data = ([
                 'name' => $request->name,
                 'type' => $request->type,
-                // 'value' => $request->value,
+                'sub_category_id' => $request->sub_category_id,
             ]);
 
             Form::where('id', $id)->update($data);

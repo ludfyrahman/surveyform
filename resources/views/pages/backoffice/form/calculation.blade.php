@@ -144,10 +144,10 @@
                 </div>
             </div>
             <div class="card-body row">
-                @foreach ($data[0] as $key => $d)
-                        @foreach ($d->question as $question)
+                @foreach ($data[0] as $parentKey => $d)
+                        @foreach ($d->question as $questionKey => $question)
                         <div class="col-md-6">
-                            <h5 class="text-capitalize">{{$d->name}}</h5>
+                            <h5 class="text-capitalize {{ $questionKey == 0 ? '' : 'text-white'}}">{{$questionKey == 0 ? $d->name : '0'}}</h5>
                             <p class="text-muted text-capitalize">{{$question->name}}</p>
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -170,44 +170,47 @@
                                             $sumY2 = 0;
                                         @endphp
                                         @foreach ($data[1] as $key => $child)
-                                        <tr>
-                                            <td>{{$key}}</td>
-                                            <td>
-                                                    @php
-                                                    $x = 0;
-                                                        $filter = $child->filter(function ($value, $key) use ($question) {
-                                                            return $value->form_id == $question->id;
-                                                        });
-                                                        $reset = array_values($filter->toArray());
-                                                    @endphp
-                                                @if (isset($reset[0]))
-                                                    @php
-                                                        $x = $reset[0]['answer'] ?? 0;
-                                                    @endphp
-                                                @endif
-                                                {{$x}}
-                                            </td>
-                                            <td>
-                                                @php $total = 0;@endphp
-                                                @foreach ($child as $dd)
-                                                    @if($dd->form->sub_category_id == $d->id)
-                                                        @php $countQuestion++;$total += $dd->answer; @endphp
+                                        @if ($key <= 30)
+                                            <tr >
+                                                <td>{{$key}}</td>
+                                                <td>
+                                                        @php
+                                                        $x = 0;
+                                                            $filter = $child->filter(function ($value, $key) use ($question) {
+                                                                return $value->form_id == $question->id;
+                                                            });
+                                                            $reset = array_values($filter->toArray());
+                                                        @endphp
+                                                    @if (isset($reset[0]))
+                                                        @php
+                                                            $x = $reset[0]['answer'] ?? 0;
+                                                        @endphp
                                                     @endif
-                                                @endforeach
-                                                {{$total}}
-                                            </td>
-                                            <td>{{$x * $total}}</td>
-                                            <td>{{$x**2}}</td>
-                                            <td>{{$total**2}}</td>
+                                                    {{$x}}
+                                                </td>
+                                                <td>
+                                                    @php $total = 0;@endphp
+                                                    @foreach ($child as $dd)
+                                                        @if($dd->form->sub_category_id == $d->id)
+                                                            @php $countQuestion++;$total += $dd->answer; @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    {{$total}}
+                                                </td>
+                                                <td>{{$x * $total}}</td>
+                                                <td>{{$x**2}}</td>
+                                                <td>{{$total**2}}</td>
 
-                                            @php
-                                                $sumX += $x;
-                                                $sumY += $total;
-                                                $sumXY += $x * $total;
-                                                $sumX2 += $x**2;
-                                                $sumY2 += $total**2;
-                                            @endphp
-                                        </tr>
+                                                @php
+                                                    $sumX += $x;
+                                                    $sumY += $total;
+                                                    $sumXY += $x * $total;
+                                                    $sumX2 += $x**2;
+                                                    $sumY2 += $total**2;
+                                                @endphp
+                                            </tr>
+                                        @endif
+
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -254,7 +257,7 @@
                 @php
                     $CategoryResult = [];
                 @endphp
-                @foreach ($data[0] as $key => $d)
+                @foreach ($data[0] as $parentKey => $d)
                     <div class="col-md-6">
                         <h5>{{$key+1}} {{$d->name}}</h5>
                         <div class="table-responsive">
@@ -278,40 +281,43 @@
                                         $bottomTotalSquare = [];
                                         $totalAll = 0;
                                         $totalPowAll = 0;
+                                        $populasi = count($data[1]);
                                     @endphp
                                     @foreach ($data[1] as $key => $child)
-                                    <tr>
-                                        <td>{{$key}}</td>
-                                        @php $countQuestion = 0; $total = 0; @endphp
-                                        @foreach ($child as $dd)
-                                            @if($dd->form->sub_category_id == $d->id)
-                                                <td>{{$dd->answer}}</td>
-                                                @php $countQuestion++;$total += $dd->answer;
-                                                if(isset($bottomTotal[$dd->form->id])){
-                                                    $bottomTotal[$dd->form->id] += $dd->answer;
-                                                    $bottomTotalSquare[$dd->form->id] += $dd->answer**2;
-                                                }else{
-                                                    $bottomTotal[$dd->form->id] = $dd->answer;
-                                                    $bottomTotalSquare[$dd->form->id] = $dd->answer**2;
-                                                }
+                                        @if ($key <= 30)
+                                            <tr >
+                                                <td>{{$key}}</td>
+                                                @php $countQuestion = 0; $total = 0; @endphp
+                                                @foreach ($child as $dd)
+                                                    @if($dd->form->sub_category_id == $d->id)
+                                                        <td>{{$dd->answer}}</td>
+                                                        @php $countQuestion++;$total += $dd->answer;
+                                                        if(isset($bottomTotal[$dd->form->id])){
+                                                            $bottomTotal[$dd->form->id] += $dd->answer;
+                                                            $bottomTotalSquare[$dd->form->id] += $dd->answer**2;
+                                                        }else{
+                                                            $bottomTotal[$dd->form->id] = $dd->answer;
+                                                            $bottomTotalSquare[$dd->form->id] = $dd->answer**2;
+                                                        }
 
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                @if ($countQuestion < count($form))
+                                                    @for ($i = 0; $i < count($form) - $countQuestion; $i++)
+                                                        <td>0</td>
+                                                    @endfor
+                                                @endif
+                                                <td>
+                                                    {{$total}}
+                                                </td>
+                                                <td>{{$total**2}}</td>
+                                                @php
+                                                    $totalAll +=$total;
+                                                    $totalPowAll +=$total**2;
                                                 @endphp
-                                            @endif
-                                        @endforeach
-                                        @if ($countQuestion < count($form))
-                                            @for ($i = 0; $i < count($form) - $countQuestion; $i++)
-                                                <td>0</td>
-                                            @endfor
+                                            </tr>
                                         @endif
-                                        <td>
-                                            {{$total}}
-                                        </td>
-                                        <td>{{$total**2}}</td>
-                                        @php
-                                            $totalAll +=$total;
-                                            $totalPowAll +=$total**2;
-                                        @endphp
-                                    </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -337,7 +343,7 @@
                                         <td>
                                             N
                                         </td>
-                                        <td>{{count($data[1])}}</td>
+                                        <td>{{$populasi}}</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -349,7 +355,7 @@
                                         @foreach ($form as $f)
                                         @php
                                             // calculate variance
-                                            $variance = (($bottomTotalSquare[$f->id] ?? 0) - (($bottomTotal[$f->id] ?? 0)**2 / count($data[1])) )/ count($data[1]);
+                                            $variance = (($bottomTotalSquare[$f->id] ?? 0) - (($bottomTotal[$f->id] ?? 0)**2 / $populasi) )/ $populasi;
                                             $varianceSum += $variance;
                                         @endphp
                                             <td>{{$variance}} </td>
@@ -364,9 +370,7 @@
                                         </td>
                                     </tr>
                                     @php
-                                        $jumlah = count($data[1]);
-                                        $varianceTotal = ($totalPowAll - (($totalAll**2) / $jumlah)) / $jumlah;
-
+                                        $varianceTotal = ($totalPowAll - (($totalAll**2) / $populasi)) / $populasi;
                                     @endphp
                                     <tr>
                                         <td>
