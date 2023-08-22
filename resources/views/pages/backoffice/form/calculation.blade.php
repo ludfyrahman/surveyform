@@ -259,7 +259,7 @@
                 @endphp
                 @foreach ($data[0] as $parentKey => $d)
                     <div class="col-md-6">
-                        <h5>{{$key+1}} {{$d->name}}</h5>
+                        <h5>{{$parentKey+1}} {{$d->name}}</h5>
                         <div class="table-responsive">
                             <table class="table table-sriped">
                                 <thead>
